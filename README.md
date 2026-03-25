@@ -50,18 +50,43 @@ ollama serve   # starts on http://localhost:11434
 
 Set `USE_LOCAL_LLM=true` in `.env`. All LLM calls are free.
 
+## Windows Setup (WSL2)
+
+Running on Windows? Use WSL2 — it gives a Linux environment with native NVIDIA GPU support, which is required for Ollama to use the GPU.
+
+**One-time WSL2 setup (PowerShell as Administrator):**
+```powershell
+wsl --install   # installs Ubuntu; reboot when prompted
+```
+
+**Install NVIDIA CUDA drivers for WSL2:**
+Download and install from: https://developer.nvidia.com/cuda/wsl
+
+Then open the Ubuntu terminal and follow the standard Linux instructions below. Everything works as-is inside WSL2.
+
+**Clone the repo inside WSL2** (not on the Windows filesystem — keep it in `~/` for performance):
+```bash
+git clone https://github.com/alexjustdoit/tam-copilot
+cd tam-copilot
+```
+
 ## Remote Ollama (e.g., desktop with GPU)
 
-If running Ollama on a separate machine (e.g., a desktop with an RTX 4070):
+If running Ollama on a separate machine (e.g., a Windows desktop with an RTX 4070 running WSL2):
 
 ```bash
-# On the desktop running Ollama:
+# Inside WSL2 on the desktop — bind Ollama to all interfaces:
 OLLAMA_HOST=0.0.0.0 ollama serve
+
+# Find the desktop's local IP (run in WSL2):
+ip addr show eth0 | grep "inet " | awk '{print $2}' | cut -d/ -f1
 
 # In .env on your laptop:
 USE_LOCAL_LLM=true
-OLLAMA_BASE_URL=http://<desktop-ip>:11434
+OLLAMA_BASE_URL=http://<desktop-wsl2-ip>:11434
 ```
+
+> **Note:** The WSL2 IP can change on reboot. For a stable address, set a static IP in WSL2 or use the Windows host IP with port forwarding (`netsh interface portproxy` on the Windows side).
 
 ## API Keys (for cloud providers)
 
