@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "tick_0001",
+    "customer_id": "cust_003",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-01-25T18:54:43.278010"
+  },
+  {
+    "id": "tick_0002",
+    "customer_id": "cust_015",
+    "title": "Authentication tokens expiring unexpectedly",
+    "description": "Bearer tokens are expiring before the documented TTL. This is breaking our automated workflows and causing user logouts.",
+    "priority": "P4",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2026-01-12T18:54:43.278024"
+  },
+  {
+    "id": "tick_0003",
+    "customer_id": "cust_023",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2026-02-23T18:54:43.278030"
+  },
+  {
+    "id": "tick_0004",
+    "customer_id": "cust_017",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout. We are seriously considering alternatives if this isn't resolved today.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-12-26T18:54:43.278036"
+  },
+  {
+    "id": "tick_0005",
+    "customer_id": "cust_047",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2025-10-28T18:54:43.278040"
+  },
+  {
+    "id": "tick_0006",
+    "customer_id": "cust_013",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P1",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2025-11-07T18:54:43.278045"
+  },
+  {
+    "id": "tick_0007",
+    "customer_id": "cust_044",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "open",
+    "created_at": "2025-10-16T18:54:43.278049"
+  },
+  {
+    "id": "tick_0008",
+    "customer_id": "cust_021",
+    "title": "Unable to update payment method",
+    "description": "The billing portal gives a 500 error when I try to update our credit card. Our card expires next week.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "in_progress",
+    "created_at": "2025-12-31T18:54:43.278054"
+  },
+  {
+    "id": "tick_0009",
+    "customer_id": "cust_026",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2025-10-02T18:54:43.278058"
+  },
+  {
+    "id": "tick_0010",
+    "customer_id": "cust_048",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "in_progress",
+    "created_at": "2026-01-06T18:54:43.278062"
+  },
+  {
+    "id": "tick_0011",
+    "customer_id": "cust_019",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2025-12-01T18:54:43.278066"
+  },
+  {
+    "id": "tick_0012",
+    "customer_id": "cust_029",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them? This has been going on for over a week with no resolution.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2026-01-11T18:54:43.278073"
+  },
+  {
+    "id": "tick_0013",
+    "customer_id": "cust_033",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P2",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2026-01-26T18:54:43.278078"
+  },
+  {
+    "id": "tick_0014",
+    "customer_id": "cust_013",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P1",
+    "category": "Feature Request",
+    "status": "in_progress",
+    "created_at": "2026-03-06T18:54:43.278082"
+  },
+  {
+    "id": "tick_0015",
+    "customer_id": "cust_030",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2025-11-18T18:54:43.278086"
+  },
+  {
+    "id": "tick_0016",
+    "customer_id": "cust_026",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P2",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2026-01-27T18:54:43.278090"
+  },
+  {
+    "id": "tick_0017",
+    "customer_id": "cust_012",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2025-11-26T18:54:43.278094"
+  },
+  {
+    "id": "tick_0018",
+    "customer_id": "cust_043",
+    "title": "Data residency concern flagged by legal",
+    "description": "Our legal team has flagged that customer data may be processed in regions outside our DPA. Need written confirmation of data residency.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2025-11-15T18:54:43.278098"
+  },
+  {
+    "id": "tick_0019",
+    "customer_id": "cust_028",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-01-20T18:54:43.278103"
+  },
+  {
+    "id": "tick_0020",
+    "customer_id": "cust_041",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2025-12-02T18:54:43.278107"
+  },
+  {
+    "id": "tick_0021",
+    "customer_id": "cust_005",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "in_progress",
+    "created_at": "2026-01-24T18:54:43.278111"
+  },
+  {
+    "id": "tick_0022",
+    "customer_id": "cust_025",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "open",
+    "created_at": "2025-11-25T18:54:43.278115"
+  },
+  {
+    "id": "tick_0023",
+    "customer_id": "cust_027",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P3",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2026-03-19T18:54:43.278119"
+  },
+  {
+    "id": "tick_0024",
+    "customer_id": "cust_049",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-12-07T18:54:43.278124"
+  },
+  {
+    "id": "tick_0025",
+    "customer_id": "cust_035",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "in_progress",
+    "created_at": "2025-10-04T18:54:43.278128"
+  },
+  {
+    "id": "tick_0026",
+    "customer_id": "cust_044",
+    "title": "Salesforce sync failing after OAuth refresh",
+    "description": "Our Salesforce integration broke after your OAuth token refresh. CRM data is now out of sync.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-11-08T18:54:43.278133"
+  },
+  {
+    "id": "tick_0027",
+    "customer_id": "cust_002",
+    "title": "Salesforce sync failing after OAuth refresh",
+    "description": "Our Salesforce integration broke after your OAuth token refresh. CRM data is now out of sync.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2026-02-18T18:54:43.278138"
+  },
+  {
+    "id": "tick_0028",
+    "customer_id": "cust_030",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout.",
+    "priority": "P2",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2025-12-28T18:54:43.278142"
+  },
+  {
+    "id": "tick_0029",
+    "customer_id": "cust_049",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2026-03-04T18:54:43.278146"
+  },
+  {
+    "id": "tick_0030",
+    "customer_id": "cust_031",
+    "title": "Authentication tokens expiring unexpectedly",
+    "description": "Bearer tokens are expiring before the documented TTL. This is breaking our automated workflows and causing user logouts.",
+    "priority": "P4",
+    "category": "API",
+    "status": "open",
+    "created_at": "2026-03-07T18:54:43.278157"
+  },
+  {
+    "id": "tick_0031",
+    "customer_id": "cust_050",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P4",
+    "category": "API",
+    "status": "closed",
+    "created_at": "2025-10-16T18:54:43.278161"
+  },
+  {
+    "id": "tick_0032",
+    "customer_id": "cust_010",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P2",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2025-11-25T18:54:43.278165"
+  },
+  {
+    "id": "tick_0033",
+    "customer_id": "cust_045",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2026-02-23T18:54:43.278169"
+  },
+  {
+    "id": "tick_0034",
+    "customer_id": "cust_050",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "open",
+    "created_at": "2025-10-28T18:54:43.278173"
+  },
+  {
+    "id": "tick_0035",
+    "customer_id": "cust_044",
+    "title": "Salesforce sync failing after OAuth refresh",
+    "description": "Our Salesforce integration broke after your OAuth token refresh. CRM data is now out of sync.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-10-15T18:54:43.278177"
+  },
+  {
+    "id": "tick_0036",
+    "customer_id": "cust_016",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "in_progress",
+    "created_at": "2026-02-22T18:54:43.278181"
+  },
+  {
+    "id": "tick_0037",
+    "customer_id": "cust_037",
+    "title": "Authentication tokens expiring unexpectedly",
+    "description": "Bearer tokens are expiring before the documented TTL. This is breaking our automated workflows and causing user logouts. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P3",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2026-03-21T18:54:43.278186"
+  },
+  {
+    "id": "tick_0038",
+    "customer_id": "cust_027",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2025-11-27T18:54:43.278190"
+  },
+  {
+    "id": "tick_0039",
+    "customer_id": "cust_046",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-11-07T18:54:43.278194"
+  },
+  {
+    "id": "tick_0040",
+    "customer_id": "cust_050",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-01-21T18:54:43.278198"
+  },
+  {
+    "id": "tick_0041",
+    "customer_id": "cust_006",
+    "title": "Reports timing out for large datasets",
+    "description": "Any report covering more than 90 days times out. This is critical for our month-end close process.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "in_progress",
+    "created_at": "2025-10-04T18:54:43.278202"
+  },
+  {
+    "id": "tick_0042",
+    "customer_id": "cust_025",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P1",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2025-12-24T18:54:43.278206"
+  },
+  {
+    "id": "tick_0043",
+    "customer_id": "cust_017",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2025-11-12T18:54:43.278211"
+  },
+  {
+    "id": "tick_0044",
+    "customer_id": "cust_013",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P3",
+    "category": "Billing",
+    "status": "resolved",
+    "created_at": "2025-09-29T18:54:43.278215"
+  },
+  {
+    "id": "tick_0045",
+    "customer_id": "cust_031",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "open",
+    "created_at": "2025-09-28T18:54:43.278219"
+  },
+  {
+    "id": "tick_0046",
+    "customer_id": "cust_016",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2025-12-06T18:54:43.278223"
+  },
+  {
+    "id": "tick_0047",
+    "customer_id": "cust_048",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2026-02-22T18:54:43.278227"
+  },
+  {
+    "id": "tick_0048",
+    "customer_id": "cust_047",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them? I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2025-11-21T18:54:43.278233"
+  },
+  {
+    "id": "tick_0049",
+    "customer_id": "cust_018",
+    "title": "Reports timing out for large datasets",
+    "description": "Any report covering more than 90 days times out. This is critical for our month-end close process.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "closed",
+    "created_at": "2026-02-07T18:54:43.278238"
+  },
+  {
+    "id": "tick_0050",
+    "customer_id": "cust_020",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P4",
+    "category": "API",
+    "status": "open",
+    "created_at": "2025-11-03T18:54:43.278242"
+  },
+  {
+    "id": "tick_0051",
+    "customer_id": "cust_019",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-10-29T18:54:43.278245"
+  },
+  {
+    "id": "tick_0052",
+    "customer_id": "cust_019",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2025-11-22T18:54:43.278249"
+  },
+  {
+    "id": "tick_0053",
+    "customer_id": "cust_008",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P3",
+    "category": "Billing",
+    "status": "open",
+    "created_at": "2026-02-14T18:54:43.278253"
+  },
+  {
+    "id": "tick_0054",
+    "customer_id": "cust_010",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P2",
+    "category": "Performance",
+    "status": "in_progress",
+    "created_at": "2025-10-20T18:54:43.278258"
+  },
+  {
+    "id": "tick_0055",
+    "customer_id": "cust_039",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained.",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2025-10-25T18:54:43.278262"
+  },
+  {
+    "id": "tick_0056",
+    "customer_id": "cust_028",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2025-10-15T18:54:43.278266"
+  },
+  {
+    "id": "tick_0057",
+    "customer_id": "cust_014",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2026-02-12T18:54:43.278270"
+  },
+  {
+    "id": "tick_0058",
+    "customer_id": "cust_001",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2025-09-25T18:54:43.278274"
+  },
+  {
+    "id": "tick_0059",
+    "customer_id": "cust_019",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2025-10-15T18:54:43.278278"
+  },
+  {
+    "id": "tick_0060",
+    "customer_id": "cust_038",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them? Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2026-02-16T18:54:43.278283"
+  },
+  {
+    "id": "tick_0061",
+    "customer_id": "cust_005",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P2",
+    "category": "API",
+    "status": "in_progress",
+    "created_at": "2026-01-10T18:54:43.278287"
+  },
+  {
+    "id": "tick_0062",
+    "customer_id": "cust_029",
+    "title": "Unable to update payment method",
+    "description": "The billing portal gives a 500 error when I try to update our credit card. Our card expires next week.",
+    "priority": "P3",
+    "category": "Billing",
+    "status": "in_progress",
+    "created_at": "2025-11-16T18:54:43.278291"
+  },
+  {
+    "id": "tick_0063",
+    "customer_id": "cust_035",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "resolved",
+    "created_at": "2025-10-21T18:54:43.278295"
+  },
+  {
+    "id": "tick_0064",
+    "customer_id": "cust_017",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P2",
+    "category": "API",
+    "status": "closed",
+    "created_at": "2026-03-19T18:54:43.278299"
+  },
+  {
+    "id": "tick_0065",
+    "customer_id": "cust_049",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "closed",
+    "created_at": "2025-10-09T18:54:43.278303"
+  },
+  {
+    "id": "tick_0066",
+    "customer_id": "cust_029",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P2",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2026-03-01T18:54:43.278307"
+  },
+  {
+    "id": "tick_0067",
+    "customer_id": "cust_031",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "in_progress",
+    "created_at": "2025-12-30T18:54:43.278311"
+  },
+  {
+    "id": "tick_0068",
+    "customer_id": "cust_027",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release. This has been going on for over a week with no resolution.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-01-03T18:54:43.278315"
+  },
+  {
+    "id": "tick_0069",
+    "customer_id": "cust_017",
+    "title": "Data residency concern flagged by legal",
+    "description": "Our legal team has flagged that customer data may be processed in regions outside our DPA. Need written confirmation of data residency.",
+    "priority": "P2",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2026-03-24T18:54:43.278319"
+  },
+  {
+    "id": "tick_0070",
+    "customer_id": "cust_043",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "open",
+    "created_at": "2025-11-17T18:54:43.278323"
+  },
+  {
+    "id": "tick_0071",
+    "customer_id": "cust_041",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2025-12-02T18:54:43.278327"
+  },
+  {
+    "id": "tick_0072",
+    "customer_id": "cust_045",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-02-12T18:54:43.278332"
+  },
+  {
+    "id": "tick_0073",
+    "customer_id": "cust_020",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P3",
+    "category": "API",
+    "status": "open",
+    "created_at": "2026-02-22T18:54:43.278336"
+  },
+  {
+    "id": "tick_0074",
+    "customer_id": "cust_042",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-12-08T18:54:43.278341"
+  },
+  {
+    "id": "tick_0075",
+    "customer_id": "cust_031",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines. Your support has been completely unresponsive for 5 days.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "resolved",
+    "created_at": "2025-11-14T18:54:43.278345"
+  },
+  {
+    "id": "tick_0076",
+    "customer_id": "cust_048",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "in_progress",
+    "created_at": "2025-11-15T18:54:43.278349"
+  },
+  {
+    "id": "tick_0077",
+    "customer_id": "cust_018",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P3",
+    "category": "API",
+    "status": "in_progress",
+    "created_at": "2025-10-07T18:54:43.278353"
+  },
+  {
+    "id": "tick_0078",
+    "customer_id": "cust_032",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2025-11-05T18:54:43.278358"
+  },
+  {
+    "id": "tick_0079",
+    "customer_id": "cust_025",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2025-12-16T18:54:43.278362"
+  },
+  {
+    "id": "tick_0080",
+    "customer_id": "cust_015",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P1",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-12-17T18:54:43.278365"
+  },
+  {
+    "id": "tick_0081",
+    "customer_id": "cust_025",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "open",
+    "created_at": "2025-12-30T18:54:43.278370"
+  },
+  {
+    "id": "tick_0082",
+    "customer_id": "cust_007",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2025-12-10T18:54:43.278374"
+  },
+  {
+    "id": "tick_0083",
+    "customer_id": "cust_042",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P2",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-09-28T18:54:43.278377"
+  },
+  {
+    "id": "tick_0084",
+    "customer_id": "cust_026",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "closed",
+    "created_at": "2026-01-02T18:54:43.278381"
+  },
+  {
+    "id": "tick_0085",
+    "customer_id": "cust_041",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "open",
+    "created_at": "2025-09-30T18:54:43.278385"
+  },
+  {
+    "id": "tick_0086",
+    "customer_id": "cust_019",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2025-09-25T18:54:43.278389"
+  },
+  {
+    "id": "tick_0087",
+    "customer_id": "cust_007",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day. This has been going on for over a week with no resolution.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2026-01-08T18:54:43.278394"
+  },
+  {
+    "id": "tick_0088",
+    "customer_id": "cust_023",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "in_progress",
+    "created_at": "2026-02-06T18:54:43.278398"
+  },
+  {
+    "id": "tick_0089",
+    "customer_id": "cust_011",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P2",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-11-17T18:54:43.278402"
+  },
+  {
+    "id": "tick_0090",
+    "customer_id": "cust_038",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2026-03-22T18:54:43.278405"
+  },
+  {
+    "id": "tick_0091",
+    "customer_id": "cust_030",
+    "title": "Reports timing out for large datasets",
+    "description": "Any report covering more than 90 days times out. This is critical for our month-end close process.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2025-10-25T18:54:43.278409"
+  },
+  {
+    "id": "tick_0092",
+    "customer_id": "cust_020",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end. We are seriously considering alternatives if this isn't resolved today.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2025-11-21T18:54:43.278414"
+  },
+  {
+    "id": "tick_0093",
+    "customer_id": "cust_007",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2026-01-08T18:54:43.278418"
+  },
+  {
+    "id": "tick_0094",
+    "customer_id": "cust_002",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2026-03-12T18:54:43.278422"
+  },
+  {
+    "id": "tick_0095",
+    "customer_id": "cust_039",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2025-12-24T18:54:43.278426"
+  },
+  {
+    "id": "tick_0096",
+    "customer_id": "cust_015",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2025-10-01T18:54:43.278430"
+  },
+  {
+    "id": "tick_0097",
+    "customer_id": "cust_009",
+    "title": "Unable to update payment method",
+    "description": "The billing portal gives a 500 error when I try to update our credit card. Our card expires next week.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "resolved",
+    "created_at": "2026-03-16T18:54:43.278435"
+  },
+  {
+    "id": "tick_0098",
+    "customer_id": "cust_038",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "open",
+    "created_at": "2025-12-08T18:54:43.278439"
+  },
+  {
+    "id": "tick_0099",
+    "customer_id": "cust_012",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained.",
+    "priority": "P2",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2026-01-14T18:54:43.278444"
+  },
+  {
+    "id": "tick_0100",
+    "customer_id": "cust_011",
+    "title": "Reports timing out for large datasets",
+    "description": "Any report covering more than 90 days times out. This is critical for our month-end close process.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "closed",
+    "created_at": "2025-12-28T18:54:43.278448"
+  },
+  {
+    "id": "tick_0101",
+    "customer_id": "cust_008",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "open",
+    "created_at": "2025-10-03T18:54:43.278452"
+  },
+  {
+    "id": "tick_0102",
+    "customer_id": "cust_026",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P2",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2025-11-28T18:54:43.278456"
+  },
+  {
+    "id": "tick_0103",
+    "customer_id": "cust_024",
+    "title": "Reports timing out for large datasets",
+    "description": "Any report covering more than 90 days times out. This is critical for our month-end close process. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "closed",
+    "created_at": "2025-11-24T18:54:43.278462"
+  },
+  {
+    "id": "tick_0104",
+    "customer_id": "cust_002",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "in_progress",
+    "created_at": "2025-11-26T18:54:43.278466"
+  },
+  {
+    "id": "tick_0105",
+    "customer_id": "cust_045",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2026-01-06T18:54:43.278472"
+  },
+  {
+    "id": "tick_0106",
+    "customer_id": "cust_032",
+    "title": "Invoice discrepancy for Q1",
+    "description": "Our invoice shows charges for 50 seats but we only have 35 active users. Please review and issue a credit.",
+    "priority": "P2",
+    "category": "Billing",
+    "status": "closed",
+    "created_at": "2025-12-20T18:54:43.278476"
+  },
+  {
+    "id": "tick_0107",
+    "customer_id": "cust_043",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-11-19T18:54:43.278480"
+  },
+  {
+    "id": "tick_0108",
+    "customer_id": "cust_040",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "in_progress",
+    "created_at": "2025-12-01T18:54:43.278484"
+  },
+  {
+    "id": "tick_0109",
+    "customer_id": "cust_029",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "open",
+    "created_at": "2025-10-10T18:54:43.278488"
+  },
+  {
+    "id": "tick_0110",
+    "customer_id": "cust_023",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P3",
+    "category": "API",
+    "status": "open",
+    "created_at": "2025-11-28T18:54:43.278492"
+  },
+  {
+    "id": "tick_0111",
+    "customer_id": "cust_006",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2026-01-21T18:54:43.278496"
+  },
+  {
+    "id": "tick_0112",
+    "customer_id": "cust_009",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P2",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2026-01-24T18:54:43.278500"
+  },
+  {
+    "id": "tick_0113",
+    "customer_id": "cust_022",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2026-02-15T18:54:43.278504"
+  },
+  {
+    "id": "tick_0114",
+    "customer_id": "cust_009",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2026-01-23T18:54:43.278508"
+  },
+  {
+    "id": "tick_0115",
+    "customer_id": "cust_038",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P1",
+    "category": "Security",
+    "status": "in_progress",
+    "created_at": "2025-11-10T18:54:43.278513"
+  },
+  {
+    "id": "tick_0116",
+    "customer_id": "cust_008",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P3",
+    "category": "Billing",
+    "status": "closed",
+    "created_at": "2025-11-29T18:54:43.278517"
+  },
+  {
+    "id": "tick_0117",
+    "customer_id": "cust_033",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "open",
+    "created_at": "2025-11-27T18:54:43.278521"
+  },
+  {
+    "id": "tick_0118",
+    "customer_id": "cust_042",
+    "title": "Authentication tokens expiring unexpectedly",
+    "description": "Bearer tokens are expiring before the documented TTL. This is breaking our automated workflows and causing user logouts.",
+    "priority": "P2",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2026-02-25T18:54:43.278524"
+  },
+  {
+    "id": "tick_0119",
+    "customer_id": "cust_032",
+    "title": "Mobile app crashes on iOS 17",
+    "description": "The mobile app crashes immediately on launch for all users on iOS 17. This started after your 2.4.1 release. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "open",
+    "created_at": "2026-01-13T18:54:43.278529"
+  },
+  {
+    "id": "tick_0120",
+    "customer_id": "cust_040",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2025-10-21T18:54:43.278533"
+  },
+  {
+    "id": "tick_0121",
+    "customer_id": "cust_028",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "open",
+    "created_at": "2025-11-03T18:54:43.278537"
+  },
+  {
+    "id": "tick_0122",
+    "customer_id": "cust_047",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2025-11-28T18:54:43.278541"
+  },
+  {
+    "id": "tick_0123",
+    "customer_id": "cust_026",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "in_progress",
+    "created_at": "2025-12-19T18:54:43.278544"
+  },
+  {
+    "id": "tick_0124",
+    "customer_id": "cust_010",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2025-12-19T18:54:43.278548"
+  },
+  {
+    "id": "tick_0125",
+    "customer_id": "cust_009",
+    "title": "Authentication tokens expiring unexpectedly",
+    "description": "Bearer tokens are expiring before the documented TTL. This is breaking our automated workflows and causing user logouts.",
+    "priority": "P3",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2025-12-09T18:54:43.278552"
+  },
+  {
+    "id": "tick_0126",
+    "customer_id": "cust_023",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-12-24T18:54:43.278556"
+  },
+  {
+    "id": "tick_0127",
+    "customer_id": "cust_007",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P2",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2025-11-02T18:54:43.278560"
+  },
+  {
+    "id": "tick_0128",
+    "customer_id": "cust_024",
+    "title": "Unable to update payment method",
+    "description": "The billing portal gives a 500 error when I try to update our credit card. Our card expires next week.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "resolved",
+    "created_at": "2025-10-16T18:54:43.278564"
+  },
+  {
+    "id": "tick_0129",
+    "customer_id": "cust_040",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P3",
+    "category": "API",
+    "status": "closed",
+    "created_at": "2026-02-06T18:54:43.278569"
+  },
+  {
+    "id": "tick_0130",
+    "customer_id": "cust_018",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2025-10-31T18:54:43.278573"
+  },
+  {
+    "id": "tick_0131",
+    "customer_id": "cust_043",
+    "title": "Salesforce sync failing after OAuth refresh",
+    "description": "Our Salesforce integration broke after your OAuth token refresh. CRM data is now out of sync. Your support has been completely unresponsive for 5 days.",
+    "priority": "P2",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2026-01-28T18:54:43.278577"
+  },
+  {
+    "id": "tick_0132",
+    "customer_id": "cust_025",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "open",
+    "created_at": "2025-10-30T18:54:43.278581"
+  },
+  {
+    "id": "tick_0133",
+    "customer_id": "cust_039",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team. This has been going on for over a week with no resolution.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "open",
+    "created_at": "2026-01-14T18:54:43.278585"
+  },
+  {
+    "id": "tick_0134",
+    "customer_id": "cust_029",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2025-11-13T18:54:43.278589"
+  },
+  {
+    "id": "tick_0135",
+    "customer_id": "cust_008",
+    "title": "Data residency concern flagged by legal",
+    "description": "Our legal team has flagged that customer data may be processed in regions outside our DPA. Need written confirmation of data residency.",
+    "priority": "P3",
+    "category": "Security",
+    "status": "in_progress",
+    "created_at": "2025-11-10T18:54:43.278593"
+  },
+  {
+    "id": "tick_0136",
+    "customer_id": "cust_043",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P1",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2026-01-06T18:54:43.278601"
+  },
+  {
+    "id": "tick_0137",
+    "customer_id": "cust_014",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout. We are seriously considering alternatives if this isn't resolved today.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "in_progress",
+    "created_at": "2026-02-08T18:54:43.278606"
+  },
+  {
+    "id": "tick_0138",
+    "customer_id": "cust_009",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "in_progress",
+    "created_at": "2025-12-24T18:54:43.278609"
+  },
+  {
+    "id": "tick_0139",
+    "customer_id": "cust_005",
+    "title": "Salesforce sync failing after OAuth refresh",
+    "description": "Our Salesforce integration broke after your OAuth token refresh. CRM data is now out of sync.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "open",
+    "created_at": "2026-03-05T18:54:43.278613"
+  },
+  {
+    "id": "tick_0140",
+    "customer_id": "cust_021",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-12-11T18:54:43.278617"
+  },
+  {
+    "id": "tick_0141",
+    "customer_id": "cust_002",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P2",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2025-12-22T18:54:43.278621"
+  },
+  {
+    "id": "tick_0142",
+    "customer_id": "cust_006",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "in_progress",
+    "created_at": "2026-03-04T18:54:43.278625"
+  },
+  {
+    "id": "tick_0143",
+    "customer_id": "cust_026",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users. This has been going on for over a week with no resolution.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "in_progress",
+    "created_at": "2025-11-09T18:54:43.278629"
+  },
+  {
+    "id": "tick_0144",
+    "customer_id": "cust_033",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "in_progress",
+    "created_at": "2025-10-10T18:54:43.278633"
+  },
+  {
+    "id": "tick_0145",
+    "customer_id": "cust_010",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P2",
+    "category": "Onboarding",
+    "status": "in_progress",
+    "created_at": "2025-10-08T18:54:43.278637"
+  },
+  {
+    "id": "tick_0146",
+    "customer_id": "cust_005",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2025-10-27T18:54:43.278641"
+  },
+  {
+    "id": "tick_0147",
+    "customer_id": "cust_029",
+    "title": "Possible unauthorized access to our account",
+    "description": "We noticed logins from unusual IP addresses in Asia. We don't have any staff in that region. Please investigate and lock down the account.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2025-11-24T18:54:43.278645"
+  },
+  {
+    "id": "tick_0148",
+    "customer_id": "cust_029",
+    "title": "Reports timing out for large datasets",
+    "description": "Any report covering more than 90 days times out. This is critical for our month-end close process.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "resolved",
+    "created_at": "2026-01-04T18:54:43.278649"
+  },
+  {
+    "id": "tick_0149",
+    "customer_id": "cust_030",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines. This has been going on for over a week with no resolution.",
+    "priority": "P1",
+    "category": "Bug",
+    "status": "resolved",
+    "created_at": "2025-10-18T18:54:43.278654"
+  },
+  {
+    "id": "tick_0150",
+    "customer_id": "cust_039",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2025-11-29T18:54:43.278658"
+  },
+  {
+    "id": "tick_0151",
+    "customer_id": "cust_037",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "resolved",
+    "created_at": "2025-11-29T18:54:43.278662"
+  },
+  {
+    "id": "tick_0152",
+    "customer_id": "cust_007",
+    "title": "Data residency concern flagged by legal",
+    "description": "Our legal team has flagged that customer data may be processed in regions outside our DPA. Need written confirmation of data residency. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "open",
+    "created_at": "2025-12-02T18:54:43.278667"
+  },
+  {
+    "id": "tick_0153",
+    "customer_id": "cust_029",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-12-28T18:54:43.278671"
+  },
+  {
+    "id": "tick_0154",
+    "customer_id": "cust_044",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P4",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2025-11-02T18:54:43.278674"
+  },
+  {
+    "id": "tick_0155",
+    "customer_id": "cust_044",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-10-21T18:54:43.278678"
+  },
+  {
+    "id": "tick_0156",
+    "customer_id": "cust_010",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P2",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2025-10-08T18:54:43.278682"
+  },
+  {
+    "id": "tick_0157",
+    "customer_id": "cust_045",
+    "title": "Salesforce sync failing after OAuth refresh",
+    "description": "Our Salesforce integration broke after your OAuth token refresh. CRM data is now out of sync.",
+    "priority": "P2",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2025-12-18T18:54:43.278686"
+  },
+  {
+    "id": "tick_0158",
+    "customer_id": "cust_042",
+    "title": "Data residency concern flagged by legal",
+    "description": "Our legal team has flagged that customer data may be processed in regions outside our DPA. Need written confirmation of data residency.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "closed",
+    "created_at": "2025-11-10T18:54:43.278690"
+  },
+  {
+    "id": "tick_0159",
+    "customer_id": "cust_006",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P3",
+    "category": "Integration",
+    "status": "open",
+    "created_at": "2025-12-27T18:54:43.278694"
+  },
+  {
+    "id": "tick_0160",
+    "customer_id": "cust_050",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day. This has been going on for over a week with no resolution.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2025-11-15T18:54:43.278698"
+  },
+  {
+    "id": "tick_0161",
+    "customer_id": "cust_050",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate. We are seriously considering alternatives if this isn't resolved today.",
+    "priority": "P4",
+    "category": "API",
+    "status": "closed",
+    "created_at": "2026-02-13T18:54:43.278702"
+  },
+  {
+    "id": "tick_0162",
+    "customer_id": "cust_011",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2026-03-13T18:54:43.278706"
+  },
+  {
+    "id": "tick_0163",
+    "customer_id": "cust_027",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "in_progress",
+    "created_at": "2025-11-30T18:54:43.278710"
+  },
+  {
+    "id": "tick_0164",
+    "customer_id": "cust_015",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained.",
+    "priority": "P3",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2026-02-03T18:54:43.278714"
+  },
+  {
+    "id": "tick_0165",
+    "customer_id": "cust_024",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2025-12-07T18:54:43.278718"
+  },
+  {
+    "id": "tick_0166",
+    "customer_id": "cust_011",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained. We are seriously considering alternatives if this isn't resolved today.",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "open",
+    "created_at": "2025-12-19T18:54:43.278723"
+  },
+  {
+    "id": "tick_0167",
+    "customer_id": "cust_036",
+    "title": "Invoice discrepancy for Q1",
+    "description": "Our invoice shows charges for 50 seats but we only have 35 active users. Please review and issue a credit.",
+    "priority": "P4",
+    "category": "Billing",
+    "status": "resolved",
+    "created_at": "2026-02-11T18:54:43.278729"
+  },
+  {
+    "id": "tick_0168",
+    "customer_id": "cust_018",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "open",
+    "created_at": "2025-11-29T18:54:43.278733"
+  },
+  {
+    "id": "tick_0169",
+    "customer_id": "cust_023",
+    "title": "Authentication tokens expiring unexpectedly",
+    "description": "Bearer tokens are expiring before the documented TTL. This is breaking our automated workflows and causing user logouts.",
+    "priority": "P3",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2026-03-04T18:54:43.278737"
+  },
+  {
+    "id": "tick_0170",
+    "customer_id": "cust_024",
+    "title": "Documentation missing for new API endpoints",
+    "description": "The v3 API docs don't cover the new /reports endpoints that were announced in the changelog. How do we use them?",
+    "priority": "P1",
+    "category": "Onboarding",
+    "status": "closed",
+    "created_at": "2026-02-15T18:54:43.278741"
+  },
+  {
+    "id": "tick_0171",
+    "customer_id": "cust_009",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P3",
+    "category": "API",
+    "status": "closed",
+    "created_at": "2025-09-25T18:54:43.278745"
+  },
+  {
+    "id": "tick_0172",
+    "customer_id": "cust_031",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P3",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-02-14T18:54:43.278749"
+  },
+  {
+    "id": "tick_0173",
+    "customer_id": "cust_036",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P2",
+    "category": "Integration",
+    "status": "in_progress",
+    "created_at": "2025-12-07T18:54:43.278753"
+  },
+  {
+    "id": "tick_0174",
+    "customer_id": "cust_041",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-03-20T18:54:43.278758"
+  },
+  {
+    "id": "tick_0175",
+    "customer_id": "cust_041",
+    "title": "Migration from legacy system not completing",
+    "description": "We've been trying to migrate 50k records for 4 days. The job keeps timing out at around 70%. Need help.",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "in_progress",
+    "created_at": "2026-01-22T18:54:43.278762"
+  },
+  {
+    "id": "tick_0176",
+    "customer_id": "cust_037",
+    "title": "Zapier integration missing new fields",
+    "description": "New custom fields added to our account are not appearing in the Zapier integration. Blocking several automations.",
+    "priority": "P2",
+    "category": "Integration",
+    "status": "closed",
+    "created_at": "2026-03-07T18:54:43.278766"
+  },
+  {
+    "id": "tick_0177",
+    "customer_id": "cust_034",
+    "title": "Webhook payloads not being delivered",
+    "description": "We set up webhooks 3 days ago but have not received a single payload. Our endpoint is returning 200 OK. Please investigate.",
+    "priority": "P3",
+    "category": "API",
+    "status": "resolved",
+    "created_at": "2025-12-19T18:54:43.278770"
+  },
+  {
+    "id": "tick_0178",
+    "customer_id": "cust_017",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P3",
+    "category": "API",
+    "status": "open",
+    "created_at": "2025-10-15T18:54:43.278774"
+  },
+  {
+    "id": "tick_0179",
+    "customer_id": "cust_007",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P2",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2026-02-08T18:54:43.278779"
+  },
+  {
+    "id": "tick_0180",
+    "customer_id": "cust_050",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "resolved",
+    "created_at": "2026-03-08T18:54:43.278783"
+  },
+  {
+    "id": "tick_0181",
+    "customer_id": "cust_046",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P1",
+    "category": "Bug",
+    "status": "in_progress",
+    "created_at": "2026-01-03T18:54:43.278787"
+  },
+  {
+    "id": "tick_0182",
+    "customer_id": "cust_020",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end. I've opened 3 tickets about this already. This is unacceptable for a paying customer.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2026-01-10T18:54:43.278792"
+  },
+  {
+    "id": "tick_0183",
+    "customer_id": "cust_023",
+    "title": "API rate limits causing 429 errors in production",
+    "description": "Our application is hitting rate limits during peak hours. We're seeing 429 responses which is causing downstream failures. This is a critical issue affecting our end users.",
+    "priority": "P4",
+    "category": "API",
+    "status": "in_progress",
+    "created_at": "2025-12-03T18:54:43.278797"
+  },
+  {
+    "id": "tick_0184",
+    "customer_id": "cust_026",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P4",
+    "category": "Bug",
+    "status": "resolved",
+    "created_at": "2025-11-17T18:54:43.278801"
+  },
+  {
+    "id": "tick_0185",
+    "customer_id": "cust_024",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users.",
+    "priority": "P4",
+    "category": "Performance",
+    "status": "closed",
+    "created_at": "2026-02-06T18:54:43.278805"
+  },
+  {
+    "id": "tick_0186",
+    "customer_id": "cust_035",
+    "title": "Search returning stale results",
+    "description": "Search results appear to be 20\u201330 minutes behind. For our use case, we need near-real-time results.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "open",
+    "created_at": "2025-11-30T18:54:43.278809"
+  },
+  {
+    "id": "tick_0187",
+    "customer_id": "cust_039",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P2",
+    "category": "Integration",
+    "status": "resolved",
+    "created_at": "2025-10-18T18:54:43.278813"
+  },
+  {
+    "id": "tick_0188",
+    "customer_id": "cust_028",
+    "title": "Dashboard load times degraded significantly",
+    "description": "Since last Tuesday, our main dashboard takes 15\u201325 seconds to load. It used to be under 3 seconds. Affecting all users. We are seriously considering alternatives if this isn't resolved today.",
+    "priority": "P3",
+    "category": "Performance",
+    "status": "closed",
+    "created_at": "2025-12-21T18:54:43.278818"
+  },
+  {
+    "id": "tick_0189",
+    "customer_id": "cust_033",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "open",
+    "created_at": "2025-12-02T18:54:43.278822"
+  },
+  {
+    "id": "tick_0190",
+    "customer_id": "cust_003",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P2",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2025-10-30T18:54:43.278826"
+  },
+  {
+    "id": "tick_0191",
+    "customer_id": "cust_003",
+    "title": "Bulk export of audit logs",
+    "description": "We need to export 12 months of audit logs for a compliance audit. Current UI only allows 30-day exports.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "closed",
+    "created_at": "2026-03-05T18:54:43.278830"
+  },
+  {
+    "id": "tick_0192",
+    "customer_id": "cust_037",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2026-02-23T18:54:43.278834"
+  },
+  {
+    "id": "tick_0193",
+    "customer_id": "cust_002",
+    "title": "Role-based access controls for teams",
+    "description": "We need granular RBAC to prevent junior staff from accessing sensitive configuration. This is required by our security policy. Our team is blocked and we're losing money every hour this is down.",
+    "priority": "P3",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2025-09-25T18:54:43.278838"
+  },
+  {
+    "id": "tick_0194",
+    "customer_id": "cust_029",
+    "title": "Training session rescheduled 3 times",
+    "description": "Our onboarding training has been rescheduled twice by your team. Our go-live is in 2 weeks and team is not trained.",
+    "priority": "P4",
+    "category": "Onboarding",
+    "status": "in_progress",
+    "created_at": "2026-02-18T18:54:43.278842"
+  },
+  {
+    "id": "tick_0195",
+    "customer_id": "cust_005",
+    "title": "Date filter returns incorrect results",
+    "description": "The 'last 30 days' filter appears to be using UTC but our account is set to EST. Data is off by one day.",
+    "priority": "P2",
+    "category": "Bug",
+    "status": "closed",
+    "created_at": "2026-01-02T18:54:43.278846"
+  },
+  {
+    "id": "tick_0196",
+    "customer_id": "cust_043",
+    "title": "Audit log gap detected",
+    "description": "Our compliance team noticed a 4-hour gap in audit logs on March 15. We need to understand what happened.",
+    "priority": "P4",
+    "category": "Security",
+    "status": "resolved",
+    "created_at": "2026-02-12T18:54:43.278850"
+  },
+  {
+    "id": "tick_0197",
+    "customer_id": "cust_046",
+    "title": "SAML SSO support for enterprise IdP",
+    "description": "We need SAML 2.0 SSO integration with our Okta instance for compliance reasons. This is blocking our enterprise rollout.",
+    "priority": "P4",
+    "category": "Feature Request",
+    "status": "resolved",
+    "created_at": "2026-02-17T18:54:43.278854"
+  },
+  {
+    "id": "tick_0198",
+    "customer_id": "cust_016",
+    "title": "CSV export includes deleted records",
+    "description": "Exported CSVs still contain records we deleted 6 months ago. This is causing issues in our data pipelines.",
+    "priority": "P1",
+    "category": "Bug",
+    "status": "resolved",
+    "created_at": "2025-11-03T18:54:43.278860"
+  },
+  {
+    "id": "tick_0199",
+    "customer_id": "cust_009",
+    "title": "Unexpected overage charges",
+    "description": "We were charged $2,400 in overage fees but were never warned we were approaching limits. We need this escalated to our account team.",
+    "priority": "P2",
+    "category": "Billing",
+    "status": "resolved",
+    "created_at": "2025-11-10T18:54:43.278865"
+  },
+  {
+    "id": "tick_0200",
+    "customer_id": "cust_027",
+    "title": "Slack notifications not triggering",
+    "description": "Slack integration worked for 2 months then stopped last week. No changes on our end.",
+    "priority": "P4",
+    "category": "Integration",
+    "status": "open",
+    "created_at": "2025-11-29T18:54:43.278869"
+  }
+]
