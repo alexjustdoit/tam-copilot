@@ -1,0 +1,25 @@
+{
+  "tags": [
+    "Escalation Risk",
+    "Exec Visibility",
+    "Recurring Issue",
+    "Workaround Active",
+    "Blocked",
+    "Training Gap",
+    "Product Gap",
+    "Data Issue",
+    "SLA Risk",
+    "Churn Signal",
+    "QBR Worthy"
+  ],
+  "categories": [
+    "API",
+    "Billing",
+    "Feature Request",
+    "Onboarding",
+    "Performance",
+    "Security",
+    "Integration",
+    "Bug"
+  ]
+}

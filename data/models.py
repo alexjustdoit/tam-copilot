@@ -27,6 +27,7 @@ class SupportTicket(BaseModel):
     category: str  # "API", "Billing", "Feature Request", "Onboarding", etc.
     status: Literal["open", "in_progress", "resolved", "closed"]
     created_at: datetime
+    tags: List[str] = Field(default_factory=list)  # set via triage workflow
 
 
 class UsageMetrics(BaseModel):
