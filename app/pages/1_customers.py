@@ -89,14 +89,33 @@ with col4:
 
 st.divider()
 
-# Color-coded table
+# Color-coded table — separate palettes for light and dark mode
+try:
+    _theme = st.get_option("theme.base") or "light"
+except Exception:
+    _theme = "light"
+
+if _theme == "dark":
+    _colors = {
+        "p1p2":    "background-color: #6b1f1f; color: #ffcccc",   # dark red, light red text
+        "renewal": "background-color: #6b4219; color: #ffd9aa",   # dark orange, light orange text
+        "risk":    "background-color: #4a4a19; color: #f0f0a0",   # dark olive, light yellow text
+    }
+else:
+    _colors = {
+        "p1p2":    "background-color: #ffe0e0",
+        "renewal": "background-color: #fff4e0",
+        "risk":    "background-color: #fffde0",
+    }
+
+
 def highlight_risk(row):
     if row["P1/P2 Open"] > 0:
-        return ["background-color: #ffe0e0"] * len(row)
+        return [_colors["p1p2"]] * len(row)
     if row["Days to Renewal"] < 60:
-        return ["background-color: #fff4e0"] * len(row)
+        return [_colors["renewal"]] * len(row)
     if row["Risk Flags"]:
-        return ["background-color: #fffde0"] * len(row)
+        return [_colors["risk"]] * len(row)
     return [""] * len(row)
 
 display_cols = ["Company", "Tier", "Industry", "ARR", "TAM Owner", "Renewal Date", "Days to Renewal", "Open Tickets", "P1/P2 Open", "Seat Util %", "Risk Flags"]
