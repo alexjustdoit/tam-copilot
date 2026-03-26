@@ -13,6 +13,7 @@ import os
 
 import streamlit as st
 
+import config  # noqa: F401 — loads .env via load_dotenv()
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
 st.set_page_config(
