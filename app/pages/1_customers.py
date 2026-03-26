@@ -125,4 +125,4 @@ st.dataframe(
     height=500,
 )
 
-st.caption("Red = P1/P2 open | Orange = renewal within 60 days | Yellow = other risk flags")
+st.caption("Red = P1/P2 open | Orange = renewal within 60 days | Yellow = other risk flags · Color scheme adapts to light/dark mode — requires refresh after switching.")
