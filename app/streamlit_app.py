@@ -63,6 +63,7 @@ with st.sidebar:
             st.success("Anthropic API key configured")
 
     st.divider()
+    st.caption("Color scheme adapts to light/dark mode — requires page refresh after switching.")
     st.caption("Stack: Python · Streamlit · Ollama · OpenAI · Anthropic")
 
 
