@@ -164,11 +164,21 @@ cd tam-copilot
 
 ### Step 7 — Install Python dependencies (inside WSL2)
 
-From inside the `tam-copilot` directory:
+Ubuntu protects its system Python, so you need to use a **virtual environment** rather than installing packages directly. Run this once from inside the `tam-copilot` directory:
 
 ```bash
-pip3 install -r requirements.txt
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
+
+You'll see `(venv)` appear at the start of your prompt — this means the virtual environment is active and packages will install into it rather than system-wide.
+
+> **Every time you open a new terminal**, you need to reactivate the virtual environment before running the app:
+> ```bash
+> cd ~/tam-copilot
+> source venv/bin/activate
+> ```
 
 ---
 
@@ -201,6 +211,7 @@ Leave this running. You should see `Listening on 127.0.0.1:11434`.
 **Terminal 2 — start the dashboard:**
 ```bash
 cd ~/tam-copilot
+source venv/bin/activate
 streamlit run app/streamlit_app.py
 ```
 
