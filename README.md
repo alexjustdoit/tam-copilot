@@ -192,7 +192,7 @@ pip install -r requirements.txt
 
 You'll see `(venv)` appear at the start of your prompt — this means the virtual environment is active and packages will install into it rather than system-wide.
 
-> **Every time you open a new terminal**, you need to reactivate the virtual environment before running the app:
+> **Every time you open a new terminal**, you need to reactivate the virtual environment before running the app, tests, or any Python command. Without it, the system Python is used which doesn't have any of the installed packages (`faker`, `pydantic`, `streamlit`, etc.):
 > ```bash
 > cd ~/tam-copilot
 > source venv/bin/activate
@@ -316,6 +316,8 @@ ANTHROPIC_API_KEY=sk-ant-...   # optional, enables quality routing
 Demo session cost on GPT-4o-mini: **~$0.05–0.20 total**.
 
 ## Running Tests
+
+Make sure the venv is active first (`source venv/bin/activate`), then:
 
 ```bash
 pytest tests/ -v
