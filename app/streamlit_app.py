@@ -130,7 +130,7 @@ st.divider()
 # Provider capabilities
 st.subheader("LLM Provider Architecture")
 data = {
-    "Provider": ["Ollama (local)", "GPT-4o-mini", "Claude Haiku 4.5"],
+    "Provider": ["Ollama (local)", "GPT-5.4-nano", "Claude Haiku 4.5"],
     "Cost": ["Free", "~$0.001/call", "~$0.003/call"],
     "Speed": ["Varies by GPU", "~1.5s", "~1.5s"],
     "Use Case": ["Development / demo", "Production (cheap)", "Quality tasks (P1 triage, QBR)"],

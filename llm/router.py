@@ -10,11 +10,11 @@ class LLMRouter:
     Routes to local (Ollama) or API providers based on env config.
 
     USE_LOCAL_LLM=true  → OllamaProvider (free, requires local Ollama)
-    USE_LOCAL_LLM=false → OpenAIProvider (gpt-4o-mini) or ClaudeProvider (for quality tasks)
+    USE_LOCAL_LLM=false → OpenAIProvider (gpt-5.4-nano) or ClaudeProvider (for quality tasks)
     """
 
     DEFAULT_LOCAL_MODEL = "llama3.1:8b"
-    DEFAULT_CHEAP_API = "gpt-4o-mini"
+    DEFAULT_CHEAP_API = "gpt-5.4-nano"
     DEFAULT_QUALITY_API = "claude-haiku-4-5-20251001"
 
     def get_provider(self, quality_required: bool = False) -> LLMProvider:

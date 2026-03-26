@@ -9,13 +9,13 @@ from pydantic import BaseModel
 
 from llm.providers.base import LLMProvider, LLMResponse
 
-# Cost per 1M tokens (USD) for gpt-4o-mini
-GPT4O_MINI_INPUT_COST = 0.150 / 1_000_000
-GPT4O_MINI_OUTPUT_COST = 0.600 / 1_000_000
+# Cost per 1M tokens (USD) for gpt-5.4-nano
+GPT4O_MINI_INPUT_COST = 0.200 / 1_000_000
+GPT4O_MINI_OUTPUT_COST = 1.250 / 1_000_000
 
 
 class OpenAIProvider(LLMProvider):
-    def __init__(self, model: str = "gpt-4o-mini"):
+    def __init__(self, model: str = "gpt-5.4-nano"):
         self.model = model
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
