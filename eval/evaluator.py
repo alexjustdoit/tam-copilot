@@ -13,6 +13,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+import config  # noqa: F401 — loads .env via load_dotenv()
 import argparse
 from typing import List
 
