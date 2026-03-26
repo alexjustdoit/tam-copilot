@@ -242,13 +242,42 @@ OLLAMA_BASE_URL=http://192.168.0.11:11434
 > ```
 > Replace `<wsl2-internal-ip>` with what `ip addr` returned above.
 
+## Ollama vs Cloud APIs — When to Use Each
+
+### Use Ollama (local) when:
+- Developing or testing — it's free and runs entirely on your machine
+- Output quality doesn't need to be production-grade (demos, exploration, iteration)
+- Data sensitivity matters — nothing leaves your machine
+- You have a capable GPU (RTX 3070+ recommended; the project was built on an RTX 4070)
+
+### Use cloud APIs when:
+- You need to showcase real-world quality output (e.g. for an interview or live demo)
+- Output accuracy matters — frontier models (GPT-4o, Claude) meaningfully outperform 8B local models on nuanced tasks like churn reasoning and QBR narrative generation
+- You don't have a GPU available
+
+### Switching is one line
+
+The entire provider selection is controlled by a single flag in `.env`:
+
+```bash
+# Use Ollama (free, local)
+USE_LOCAL_LLM=true
+
+# Use cloud APIs (GPT-4o-mini by default, Claude for quality tasks)
+USE_LOCAL_LLM=false
+```
+
+No code changes required. The router handles everything automatically. Quality-sensitive tasks (P1 ticket triage, QBR prep) automatically upgrade to Claude when `USE_LOCAL_LLM=false` and an Anthropic key is set.
+
+**Recommended approach:** develop and iterate with `USE_LOCAL_LLM=true`, then flip to `false` before any demo or showcase where output quality matters.
+
 ## API Keys (for cloud providers)
 
 ```bash
 # .env
 USE_LOCAL_LLM=false
 OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...   # optional
+ANTHROPIC_API_KEY=sk-ant-...   # optional, enables quality routing
 ```
 
 Demo session cost on GPT-4o-mini: **~$0.05–0.20 total**.
