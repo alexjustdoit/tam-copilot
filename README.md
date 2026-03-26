@@ -219,6 +219,27 @@ Open `http://localhost:8501` in your **Windows browser** (Chrome, Edge, etc.).
 
 > **Why `--server.address 0.0.0.0`?** WSL2 runs as a lightweight virtual machine with its own internal network — it's not truly "localhost" from Windows' perspective. By default Streamlit binds to `127.0.0.1` (WSL2-internal only), which Windows can't reach via `localhost`. Binding to `0.0.0.0` makes Streamlit listen on all interfaces, including the one Windows can see.
 
+> **If `localhost:8501` still doesn't work**, try accessing via the WSL2 IP directly. Run this in Ubuntu to find it:
+> ```bash
+> hostname -I | awk '{print $1}'
+> ```
+> Then open `http://<that-ip>:8501` in your Windows browser.
+>
+> For a permanent fix, enable WSL2 mirrored networking mode. In Windows PowerShell run:
+> ```powershell
+> notepad "$env:USERPROFILE/.wslconfig"
+> ```
+> Add the following (create the file if it doesn't exist):
+> ```ini
+> [wsl2]
+> networkingMode=mirrored
+> ```
+> Then restart WSL2:
+> ```powershell
+> wsl --shutdown
+> ```
+> Reopen Ubuntu and start Streamlit again. With mirrored mode, WSL2 shares Windows' network stack and `localhost` works as expected. `$env:USERPROFILE` resolves automatically — no need to replace it with your username.
+
 ---
 
 ### Using the app from a separate laptop (remote Ollama)
