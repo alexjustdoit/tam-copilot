@@ -23,22 +23,40 @@ LLM Router → Ollama (local, free)
 
 Provider selection is environment-driven. Dev uses Ollama (free). Production uses the cheapest viable API. Quality-required tasks (P1 tickets, QBR prep) auto-upgrade to Claude.
 
-## Quick Start
+## Quick Start (First-Time Setup)
 
 ```bash
-# 1. Install dependencies
+# 1. Navigate to project directory
+cd ~/tam-copilot
+
+# 2. Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# 2. Configure environment
+# 4. Configure environment
 cp .env.example .env
 # Edit .env — set USE_LOCAL_LLM=true for Ollama, or add API keys
 
-# 3. Generate demo data (runs instantly, committed fixtures also available)
-python data/seed.py
-
-# 4. Launch dashboard
-streamlit run app/streamlit_app.py
+# 5. Launch dashboard
+streamlit run app/streamlit_app.py --server.address 0.0.0.0
 ```
+
+Fixture data (50 customers, 200 tickets, etc.) is already committed — no data generation needed.
+
+## Running the App (Already Set Up)
+
+Each time you open a new terminal:
+
+```bash
+cd ~/tam-copilot
+source venv/bin/activate
+streamlit run app/streamlit_app.py --server.address 0.0.0.0
+```
+
+Then open `http://<wsl2-ip>:8501` in your browser. Find the WSL2 IP printed in the terminal when Streamlit starts, or run `hostname -I | awk '{print $1}'`.
 
 ## Local LLM Setup (Ollama)
 
