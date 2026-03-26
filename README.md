@@ -212,10 +212,12 @@ Leave this running. You should see `Listening on 127.0.0.1:11434`.
 ```bash
 cd ~/tam-copilot
 source venv/bin/activate
-streamlit run app/streamlit_app.py
+streamlit run app/streamlit_app.py --server.address 0.0.0.0
 ```
 
-Streamlit will print a URL like `http://localhost:8501`. Open that in your **Windows browser** (Chrome, Edge, etc.) — it works automatically because WSL2 bridges the network.
+Open `http://localhost:8501` in your **Windows browser** (Chrome, Edge, etc.).
+
+> **Why `--server.address 0.0.0.0`?** WSL2 runs as a lightweight virtual machine with its own internal network — it's not truly "localhost" from Windows' perspective. By default Streamlit binds to `127.0.0.1` (WSL2-internal only), which Windows can't reach via `localhost`. Binding to `0.0.0.0` makes Streamlit listen on all interfaces, including the one Windows can see.
 
 ---
 
