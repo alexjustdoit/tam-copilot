@@ -43,7 +43,13 @@ def run_eval(provider_name: str, dataset: List[dict]) -> EvalReport:
     provider = router.get_provider_by_name(provider_name)
     results = []
 
-    from features.ticket_triage import SYSTEM_PROMPT
+    from features.ticket_triage import SYSTEM_PROMPT_TEMPLATE
+    from data.taxonomy import load_taxonomy
+    _taxonomy = load_taxonomy()
+    SYSTEM_PROMPT = SYSTEM_PROMPT_TEMPLATE.format(
+        categories=", ".join(_taxonomy["categories"]),
+        tags=", ".join(_taxonomy["tags"]),
+    )
 
     for case in dataset:
         ticket = case["ticket"]
