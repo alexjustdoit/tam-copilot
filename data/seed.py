@@ -25,7 +25,7 @@ def seed():
     customer_ids = [c.id for c in customers]
 
     print("Generating tickets...")
-    tickets = generate_tickets(customer_ids, 200)
+    tickets = generate_tickets(customer_ids, 500)
 
     print("Generating usage metrics...")
     usage = generate_usage(customers, 12)
