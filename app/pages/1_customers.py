@@ -7,10 +7,13 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 import pandas as pd
 import streamlit as st
+import config  # noqa: F401
 
+from app.components.sidebar import render_sidebar, is_dark_mode
 from data.models import Customer, Subscription, SupportTicket
 
 st.set_page_config(page_title="Customers — TAM Copilot", layout="wide")
+render_sidebar()
 st.title("Customer Portfolio")
 
 
@@ -90,12 +93,7 @@ with col4:
 st.divider()
 
 # Color-coded table — separate palettes for light and dark mode
-try:
-    _theme = st.get_option("theme.base") or "light"
-except Exception:
-    _theme = "light"
-
-if _theme == "dark":
+if is_dark_mode():
     _colors = {
         "p1p2":    "background-color: #6b1f1f; color: #ffcccc",   # dark red, light red text
         "renewal": "background-color: #6b4219; color: #ffd9aa",   # dark orange, light orange text

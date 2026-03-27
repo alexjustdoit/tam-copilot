@@ -7,11 +7,13 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 import streamlit as st
 import config  # noqa: F401
+from app.components.sidebar import render_sidebar
 
 from data.models import Customer, SupportTicket
 from data.taxonomy import load_taxonomy, save_taxonomy
 
 st.set_page_config(page_title="Ticket Triage — TAM Copilot", layout="wide")
+render_sidebar()
 st.title("AI Ticket Triage")
 st.caption("Classify priority, detect sentiment, assess escalation risk, and draft responses — instantly.")
 

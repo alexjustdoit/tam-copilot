@@ -8,10 +8,13 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import config  # noqa: F401
+from app.components.sidebar import render_sidebar
 
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
 st.set_page_config(page_title="Churn Risk — TAM Copilot", layout="wide")
+render_sidebar()
 st.title("Churn Risk Analysis")
 st.caption("AI-powered at-risk account detection with specific risk factors and recommended actions.")
 

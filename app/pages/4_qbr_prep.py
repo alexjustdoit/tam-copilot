@@ -5,10 +5,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 import streamlit as st
+import config  # noqa: F401
+from app.components.sidebar import render_sidebar
 
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
 st.set_page_config(page_title="QBR Prep — TAM Copilot", layout="wide")
+render_sidebar()
 st.title("QBR Preparation")
 st.caption("Auto-generate executive-ready Quarterly Business Review talking points from customer data.")
 

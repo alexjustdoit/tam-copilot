@@ -8,11 +8,13 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 import config  # noqa: F401
+from app.components.sidebar import render_sidebar
 
 from data.models import Customer, SupportTicket
 from data.taxonomy import load_taxonomy
 
 st.set_page_config(page_title="Management Insights — TAM Copilot", layout="wide")
+render_sidebar()
 st.title("Management Insights")
 st.caption("Department-level view across all TAMs and segments. Use this page to identify portfolio-wide patterns, coverage gaps, and team performance.")
 

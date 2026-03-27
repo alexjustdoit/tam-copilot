@@ -14,6 +14,7 @@ import os
 import streamlit as st
 
 import config  # noqa: F401 — loads .env via load_dotenv()
+from app.components.sidebar import render_sidebar
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
 st.set_page_config(
@@ -37,34 +38,7 @@ def load_all_data():
 
 # ---------- Sidebar ----------
 
-with st.sidebar:
-    st.title("TAM Copilot")
-    st.caption("AI-Powered Technical Account Management")
-
-    st.divider()
-    st.subheader("LLM Provider")
-    use_local = st.toggle(
-        "Use Local LLM (Ollama)",
-        value=os.getenv("USE_LOCAL_LLM", "true").lower() == "true",
-        help="Toggle between free local Ollama and API providers",
-    )
-    os.environ["USE_LOCAL_LLM"] = "true" if use_local else "false"
-
-    if use_local:
-        st.info("Local mode: Free, requires Ollama running")
-    else:
-        has_openai = bool(os.getenv("OPENAI_API_KEY"))
-        has_anthropic = bool(os.getenv("ANTHROPIC_API_KEY"))
-        if has_openai:
-            st.success("OpenAI API key configured")
-        else:
-            st.warning("Set OPENAI_API_KEY in .env")
-        if has_anthropic:
-            st.success("Anthropic API key configured")
-
-    st.divider()
-    st.caption("Color scheme adapts to light/dark mode — requires page refresh after switching.")
-    st.caption("Stack: Python · Streamlit · Ollama · OpenAI · Anthropic")
+render_sidebar()
 
 
 # ---------- Home Page ----------

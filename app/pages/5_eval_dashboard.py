@@ -7,8 +7,11 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import config  # noqa: F401
+from app.components.sidebar import render_sidebar
 
 st.set_page_config(page_title="Eval Dashboard — TAM Copilot", layout="wide")
+render_sidebar()
 st.title("Provider Evaluation Dashboard")
 st.caption("Compare Ollama, GPT-4o-mini, and Claude Haiku on accuracy, latency, and cost.")
 
