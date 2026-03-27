@@ -24,7 +24,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Tags field displayed in ticket details view
 
 ### Fixed
-- Customer portfolio table: dark mode now uses high-contrast color scheme (dark red/orange/olive with light text) instead of light pastels that were invisible against dark backgrounds
+- Customer portfolio table: replaced background-color row highlighting (which was unreadable in dark mode) with theme-agnostic emoji risk indicators (🔴 P1/P2, 🟠 RENEWAL, 🟡 LOW-UTIL) in a dedicated Risk Flags column — no matplotlib or theme detection required
+- Management Insights page: removed `background_gradient` calls on triage coverage and tag heatmap tables — pandas `.style.background_gradient()` requires matplotlib and fails at runtime; replaced with plain `st.dataframe()`
 - `.env` not being loaded in `streamlit_app.py` — fixed by importing `config` at startup
 - `.env` not being loaded in `eval/evaluator.py` — same fix
 - `pytest` failing with `ModuleNotFoundError` — fixed by adding `conftest.py` to project root
