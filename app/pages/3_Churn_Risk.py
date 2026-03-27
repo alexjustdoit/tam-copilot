@@ -97,7 +97,7 @@ for c in filtered:
     })
 
 df = pd.DataFrame(rows)
-st.dataframe(df.style.background_gradient(subset=["Risk Score"], cmap="RdYlGn_r"), use_container_width=True, height=400)
+st.dataframe(df, use_container_width=True, height=400)
 
 st.divider()
 
