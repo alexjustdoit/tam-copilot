@@ -33,12 +33,4 @@ def render_sidebar():
                 st.success("Anthropic API key configured")
 
         st.divider()
-        st.toggle("Dark Mode", key="dark_mode", value=st.session_state.get("dark_mode", False))
-        st.caption("Toggle to match Streamlit's dark theme. Applies immediately on this page.")
-
-        st.divider()
         st.caption("Stack: Python · Streamlit · Ollama · OpenAI · Anthropic")
-
-
-def is_dark_mode() -> bool:
-    return st.session_state.get("dark_mode", False)

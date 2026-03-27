@@ -9,7 +9,7 @@ import pandas as pd
 import streamlit as st
 import config  # noqa: F401
 
-from app.components.sidebar import render_sidebar, is_dark_mode
+from app.components.sidebar import render_sidebar
 from data.models import Customer, Subscription, SupportTicket
 
 st.set_page_config(page_title="Customers — TAM Copilot", layout="wide")
@@ -39,12 +39,12 @@ for c in customers:
     seat_util = (sub.seats_used / sub.seats_purchased) if sub and sub.seats_purchased > 0 else None
 
     risk_flag = ""
-    if days_to_renewal < 60:
-        risk_flag += "RENEWAL "
     if p1_p2 > 0:
-        risk_flag += "P1/P2 "
+        risk_flag += "🔴 P1/P2  "
+    if days_to_renewal < 60:
+        risk_flag += "🟠 RENEWAL  "
     if seat_util is not None and seat_util < 0.5:
-        risk_flag += "LOW-UTIL"
+        risk_flag += "🟡 LOW-UTIL"
 
     rows.append({
         "ID": c.id,
@@ -92,35 +92,11 @@ with col4:
 
 st.divider()
 
-# Color-coded table — separate palettes for light and dark mode
-if is_dark_mode():
-    _colors = {
-        "p1p2":    "background-color: #6b1f1f; color: #ffcccc",   # dark red, light red text
-        "renewal": "background-color: #6b4219; color: #ffd9aa",   # dark orange, light orange text
-        "risk":    "background-color: #4a4a19; color: #f0f0a0",   # dark olive, light yellow text
-    }
-else:
-    _colors = {
-        "p1p2":    "background-color: #ffe0e0",
-        "renewal": "background-color: #fff4e0",
-        "risk":    "background-color: #fffde0",
-    }
-
-
-def highlight_risk(row):
-    if row["P1/P2 Open"] > 0:
-        return [_colors["p1p2"]] * len(row)
-    if row["Days to Renewal"] < 60:
-        return [_colors["renewal"]] * len(row)
-    if row["Risk Flags"]:
-        return [_colors["risk"]] * len(row)
-    return [""] * len(row)
-
 display_cols = ["Company", "Tier", "Industry", "ARR", "TAM Owner", "Renewal Date", "Days to Renewal", "Open Tickets", "P1/P2 Open", "Seat Util %", "Risk Flags"]
 st.dataframe(
-    filtered[display_cols].style.apply(highlight_risk, axis=1).format({"ARR": "${:,.0f}", "Seat Util %": "{:.0f}%"}),
+    filtered[display_cols].style.format({"ARR": "${:,.0f}", "Seat Util %": "{:.0f}%"}),
     use_container_width=True,
     height=500,
 )
 
-st.caption("Red = P1/P2 open | Orange = renewal within 60 days | Yellow = other risk flags")
+st.caption("🔴 P1/P2 = critical open tickets  |  🟠 RENEWAL = renewing within 60 days  |  🟡 LOW-UTIL = seat utilization below 50%")
