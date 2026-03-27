@@ -9,11 +9,8 @@ import pandas as pd
 import streamlit as st
 import config  # noqa: F401
 
-from app.components.sidebar import render_sidebar
 from data.models import Customer, Subscription, SupportTicket
 
-st.set_page_config(page_title="Customers — TAM Copilot", layout="wide")
-render_sidebar()
 st.title("Customer Portfolio")
 
 
