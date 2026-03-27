@@ -90,11 +90,7 @@ for tam in scoped_tam_ids:
     })
 
 coverage_df = pd.DataFrame(coverage_rows).sort_values("Coverage %", ascending=False)
-st.dataframe(
-    coverage_df.style.background_gradient(subset=["Coverage %"], cmap="RdYlGn"),
-    use_container_width=True,
-    hide_index=True,
-)
+st.dataframe(coverage_df, use_container_width=True, hide_index=True)
 
 st.divider()
 
@@ -154,10 +150,7 @@ else:
                 pivot[seg] = 0
         pivot = pivot[["Enterprise", "Mid-Market", "SMB"]].sort_values("Enterprise", ascending=False)
 
-        st.dataframe(
-            pivot.style.background_gradient(cmap="Blues", axis=None),
-            use_container_width=True,
-        )
+        st.dataframe(pivot, use_container_width=True)
     else:
         st.info("Triaged tickets exist but none have tags applied yet.")
 
