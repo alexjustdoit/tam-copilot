@@ -37,6 +37,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.2.1] — 2026-03-26
+
+### Changed
+- Migrated to `st.navigation()` API to decouple sidebar labels from filenames
+  - Home page now displays as **Overview** in the sidebar while `streamlit_app.py` retains its name and the run command is unchanged
+  - All page labels (Customers, Ticket Triage, Churn Risk, etc.) are now defined explicitly in code rather than inferred from filenames
+  - `st.set_page_config()` and `render_sidebar()` consolidated into the entry point — removed from all 7 individual page files
+  - Developer comment added in `streamlit_app.py` (module docstring and inline above the page list) explaining the two-step process required to add new pages when `st.navigation()` is in use
+
+---
+
 ## [0.1.0] — 2026-03-24
 
 ### Added
