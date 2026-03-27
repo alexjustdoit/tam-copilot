@@ -5,6 +5,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.2.1] — 2026-03-26
+
+### Fixed
+- Churn Risk page: removed `background_gradient` on the Risk Score column — same matplotlib dependency error as in 0.2.0; replaced with plain `st.dataframe()`
+
+### Changed
+- Migrated to `st.navigation()` API to decouple sidebar labels from filenames
+  - Home page now displays as **Overview** in the sidebar while `streamlit_app.py` retains its name and the run command is unchanged
+  - All page labels (Customers, Ticket Triage, Churn Risk, etc.) are now defined explicitly in code rather than inferred from filenames
+  - `st.set_page_config()` and `render_sidebar()` consolidated into the entry point — removed from all 7 individual page files
+  - Developer comment added in `streamlit_app.py` (module docstring and inline above the page list) explaining the two-step process required to add new pages when `st.navigation()` is in use
+
+---
+
 ## [0.2.0] — 2026-03-26
 
 ### Added
@@ -34,17 +48,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Default OpenAI model upgraded from `gpt-4o-mini` to `gpt-5.4-nano`
 - Cost constants in `openai_provider.py` updated to reflect gpt-5.4-nano pricing ($0.20/$1.25 per 1M tokens)
 - Triage system prompt now injects current taxonomy at call time so the LLM always works with the latest tag/category vocabulary
-
----
-
-## [0.2.1] — 2026-03-26
-
-### Changed
-- Migrated to `st.navigation()` API to decouple sidebar labels from filenames
-  - Home page now displays as **Overview** in the sidebar while `streamlit_app.py` retains its name and the run command is unchanged
-  - All page labels (Customers, Ticket Triage, Churn Risk, etc.) are now defined explicitly in code rather than inferred from filenames
-  - `st.set_page_config()` and `render_sidebar()` consolidated into the entry point — removed from all 7 individual page files
-  - Developer comment added in `streamlit_app.py` (module docstring and inline above the page list) explaining the two-step process required to add new pages when `st.navigation()` is in use
 
 ---
 
