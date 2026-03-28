@@ -78,7 +78,7 @@ if "filter_tams" not in st.session_state:
 else:
     st.session_state["filter_tams"] = [t for t in st.session_state["filter_tams"] if t in all_tams]
 
-col1, col2, col3 = st.columns([2, 2, 1])
+col1, col2, col3 = st.columns([1, 3, 1])
 with col1:
     sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
     st.session_state["filter_segments"] = sel_segments
