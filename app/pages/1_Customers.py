@@ -55,7 +55,7 @@ for c in customers:
         "ID": c.id,
         "Company": c.company_name,
         "Industry": c.industry,
-        "Tier": c.tier,
+        "Segment": c.tier,
         "ARR": c.arr,
         "Employees": c.employees,
         "TAM Owner": c.tam_owner,
@@ -69,16 +69,25 @@ for c in customers:
 
 df = pd.DataFrame(rows)
 
-# Filters
+# Persistent filters — keys shared across pages so selections survive navigation
+_all_segments = ["Enterprise", "Mid-Market", "SMB"]
+_all_tams = sorted(df["TAM Owner"].unique())
+if "filter_segments" not in st.session_state:
+    st.session_state["filter_segments"] = _all_segments
+if "filter_tams" not in st.session_state:
+    st.session_state["filter_tams"] = _all_tams
+else:
+    st.session_state["filter_tams"] = [t for t in st.session_state["filter_tams"] if t in _all_tams]
+
 col1, col2, col3 = st.columns(3)
 with col1:
-    tier_filter = st.multiselect("Tier", ["Enterprise", "Mid-Market", "SMB"], default=["Enterprise", "Mid-Market", "SMB"])
+    st.multiselect("Segment", _all_segments, key="filter_segments")
 with col2:
-    tam_filter = st.multiselect("TAM Owner", sorted(df["TAM Owner"].unique()), default=list(df["TAM Owner"].unique()))
+    st.multiselect("TAM Owner", _all_tams, key="filter_tams")
 with col3:
     risk_only = st.checkbox("Show At-Risk Only (flags present)")
 
-filtered = df[df["Tier"].isin(tier_filter) & df["TAM Owner"].isin(tam_filter)]
+filtered = df[df["Segment"].isin(st.session_state["filter_segments"]) & df["TAM Owner"].isin(st.session_state["filter_tams"])]
 if risk_only:
     filtered = filtered[filtered["Risk Flags"] != ""]
 
@@ -97,7 +106,7 @@ with col4:
 
 st.divider()
 
-display_cols = ["Company", "Tier", "Industry", "ARR", "TAM Owner", "Renewal Date", "Days to Renewal", "Open Tickets", "P1/P2 Open", "Seat Util %", "Risk Flags"]
+display_cols = ["Company", "Segment", "Industry", "ARR", "TAM Owner", "Renewal Date", "Days to Renewal", "Open Tickets", "P1/P2 Open", "Seat Util %", "Risk Flags"]
 st.dataframe(
     filtered[display_cols].style.format({"ARR": "${:,.0f}", "Seat Util %": "{:.0f}%"}),
     use_container_width=True,

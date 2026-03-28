@@ -77,18 +77,18 @@ def compute_expansion_score(c: Customer) -> int:
 ranked = sorted(customers, key=lambda c: compute_expansion_score(c), reverse=True)
 
 # --- Filters ---
+_all_segments = ["Enterprise", "Mid-Market", "SMB"]
+if "filter_segments" not in st.session_state:
+    st.session_state["filter_segments"] = _all_segments
+
 st.subheader("Expansion Opportunity Overview")
 col1, col2 = st.columns([3, 1])
 with col1:
-    tier_filter = st.multiselect(
-        "Filter by Tier",
-        ["Enterprise", "Mid-Market", "SMB"],
-        default=["Enterprise", "Mid-Market", "SMB"],
-    )
+    st.multiselect("Segment", _all_segments, key="filter_segments")
 with col2:
     top_n = st.slider("Show Top N Accounts", 5, 50, 15)
 
-filtered = [c for c in ranked if c.tier in tier_filter][:top_n]
+filtered = [c for c in ranked if c.tier in st.session_state["filter_segments"]][:top_n]
 
 # --- Summary table ---
 rows = []
@@ -106,7 +106,7 @@ for c in filtered:
 
     rows.append({
         "Company": c.company_name,
-        "Tier": c.tier,
+        "Segment": c.tier,
         "ARR": c.arr,
         "Industry": c.industry,
         "Seat Util %": round(seat_util * 100) if seat_util is not None else 0,

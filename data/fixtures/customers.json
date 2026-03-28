@@ -7,8 +7,8 @@
     "arr": 8347.94,
     "employees": 23,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2026-01-02",
-    "renewal_date": "2027-01-13"
+    "contract_start": "2026-01-04",
+    "renewal_date": "2027-01-15"
   },
   {
     "id": "cust_002",
@@ -18,8 +18,8 @@
     "arr": 137478.1,
     "employees": 4311,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2023-10-12",
-    "renewal_date": "2026-05-09"
+    "contract_start": "2023-10-14",
+    "renewal_date": "2026-05-11"
   },
   {
     "id": "cust_003",
@@ -29,8 +29,8 @@
     "arr": 11737.69,
     "employees": 45,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2025-01-11",
-    "renewal_date": "2027-06-10"
+    "contract_start": "2025-01-13",
+    "renewal_date": "2027-06-12"
   },
   {
     "id": "cust_004",
@@ -40,8 +40,8 @@
     "arr": 9167.79,
     "employees": 37,
     "tam_owner": "Priya Patel",
-    "contract_start": "2025-04-02",
-    "renewal_date": "2027-06-13"
+    "contract_start": "2025-04-04",
+    "renewal_date": "2027-06-15"
   },
   {
     "id": "cust_005",
@@ -51,8 +51,8 @@
     "arr": 438997.75,
     "employees": 4833,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2024-01-06",
-    "renewal_date": "2026-07-15"
+    "contract_start": "2024-01-08",
+    "renewal_date": "2026-07-17"
   },
   {
     "id": "cust_006",
@@ -62,8 +62,8 @@
     "arr": 13280.06,
     "employees": 90,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2025-06-12",
-    "renewal_date": "2027-04-29"
+    "contract_start": "2025-06-14",
+    "renewal_date": "2027-05-01"
   },
   {
     "id": "cust_007",
@@ -73,8 +73,8 @@
     "arr": 5687.32,
     "employees": 39,
     "tam_owner": "Priya Patel",
-    "contract_start": "2024-02-13",
-    "renewal_date": "2026-10-20"
+    "contract_start": "2024-02-15",
+    "renewal_date": "2026-10-22"
   },
   {
     "id": "cust_008",
@@ -84,8 +84,8 @@
     "arr": 9169.33,
     "employees": 91,
     "tam_owner": "Priya Patel",
-    "contract_start": "2024-11-03",
-    "renewal_date": "2026-07-19"
+    "contract_start": "2024-11-05",
+    "renewal_date": "2026-07-21"
   },
   {
     "id": "cust_009",
@@ -95,8 +95,8 @@
     "arr": 380728.13,
     "employees": 1669,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2024-02-26",
-    "renewal_date": "2026-11-07"
+    "contract_start": "2024-02-28",
+    "renewal_date": "2026-11-09"
   },
   {
     "id": "cust_010",
@@ -106,8 +106,8 @@
     "arr": 10691.45,
     "employees": 91,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2024-10-09",
-    "renewal_date": "2026-09-21"
+    "contract_start": "2024-10-11",
+    "renewal_date": "2026-09-23"
   },
   {
     "id": "cust_011",
@@ -117,8 +117,8 @@
     "arr": 85743.39,
     "employees": 261,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2024-04-29",
-    "renewal_date": "2026-06-03"
+    "contract_start": "2024-05-01",
+    "renewal_date": "2026-06-05"
   },
   {
     "id": "cust_012",
@@ -128,8 +128,8 @@
     "arr": 72434.44,
     "employees": 302,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2024-12-17",
-    "renewal_date": "2027-02-23"
+    "contract_start": "2024-12-19",
+    "renewal_date": "2027-02-25"
   },
   {
     "id": "cust_013",
@@ -139,8 +139,8 @@
     "arr": 398805.52,
     "employees": 7519,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2025-05-13",
-    "renewal_date": "2026-12-15"
+    "contract_start": "2025-05-15",
+    "renewal_date": "2026-12-17"
   },
   {
     "id": "cust_014",
@@ -150,8 +150,8 @@
     "arr": 27272.66,
     "employees": 124,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2024-11-30",
-    "renewal_date": "2026-08-26"
+    "contract_start": "2024-12-02",
+    "renewal_date": "2026-08-28"
   },
   {
     "id": "cust_015",
@@ -161,8 +161,8 @@
     "arr": 253906.92,
     "employees": 8168,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2025-04-01",
-    "renewal_date": "2027-06-13"
+    "contract_start": "2025-04-03",
+    "renewal_date": "2027-06-15"
   },
   {
     "id": "cust_016",
@@ -172,8 +172,8 @@
     "arr": 81487.13,
     "employees": 274,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2026-01-30",
-    "renewal_date": "2026-08-02"
+    "contract_start": "2026-02-01",
+    "renewal_date": "2026-08-04"
   },
   {
     "id": "cust_017",
@@ -183,8 +183,8 @@
     "arr": 96304.32,
     "employees": 468,
     "tam_owner": "Priya Patel",
-    "contract_start": "2025-04-05",
-    "renewal_date": "2027-07-15"
+    "contract_start": "2025-04-07",
+    "renewal_date": "2027-07-17"
   },
   {
     "id": "cust_018",
@@ -194,8 +194,8 @@
     "arr": 18056.91,
     "employees": 48,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2025-02-22",
-    "renewal_date": "2027-09-08"
+    "contract_start": "2025-02-24",
+    "renewal_date": "2027-09-10"
   },
   {
     "id": "cust_019",
@@ -205,8 +205,8 @@
     "arr": 13090.15,
     "employees": 77,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2025-04-15",
-    "renewal_date": "2027-04-24"
+    "contract_start": "2025-04-17",
+    "renewal_date": "2027-04-26"
   },
   {
     "id": "cust_020",
@@ -216,8 +216,8 @@
     "arr": 94326.96,
     "employees": 257,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2023-05-29",
-    "renewal_date": "2026-04-26"
+    "contract_start": "2023-05-31",
+    "renewal_date": "2026-04-28"
   },
   {
     "id": "cust_021",
@@ -227,8 +227,8 @@
     "arr": 426409.3,
     "employees": 9227,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2025-09-14",
-    "renewal_date": "2026-07-03"
+    "contract_start": "2025-09-16",
+    "renewal_date": "2026-07-05"
   },
   {
     "id": "cust_022",
@@ -238,8 +238,8 @@
     "arr": 311069.51,
     "employees": 7432,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2023-06-25",
-    "renewal_date": "2026-09-23"
+    "contract_start": "2023-06-27",
+    "renewal_date": "2026-09-25"
   },
   {
     "id": "cust_023",
@@ -249,8 +249,8 @@
     "arr": 19926.25,
     "employees": 93,
     "tam_owner": "Priya Patel",
-    "contract_start": "2025-01-07",
-    "renewal_date": "2027-02-20"
+    "contract_start": "2025-01-09",
+    "renewal_date": "2027-02-22"
   },
   {
     "id": "cust_024",
@@ -260,8 +260,8 @@
     "arr": 39832.2,
     "employees": 132,
     "tam_owner": "Priya Patel",
-    "contract_start": "2023-03-31",
-    "renewal_date": "2027-07-13"
+    "contract_start": "2023-04-02",
+    "renewal_date": "2027-07-15"
   },
   {
     "id": "cust_025",
@@ -271,8 +271,8 @@
     "arr": 128397.23,
     "employees": 1464,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2024-11-08",
-    "renewal_date": "2026-11-18"
+    "contract_start": "2024-11-10",
+    "renewal_date": "2026-11-20"
   },
   {
     "id": "cust_026",
@@ -282,8 +282,8 @@
     "arr": 305662.45,
     "employees": 5062,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2025-12-20",
-    "renewal_date": "2027-03-11"
+    "contract_start": "2025-12-22",
+    "renewal_date": "2027-03-13"
   },
   {
     "id": "cust_027",
@@ -293,8 +293,8 @@
     "arr": 82768.77,
     "employees": 308,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2025-05-28",
-    "renewal_date": "2027-08-04"
+    "contract_start": "2025-05-30",
+    "renewal_date": "2027-08-06"
   },
   {
     "id": "cust_028",
@@ -304,8 +304,8 @@
     "arr": 264440.91,
     "employees": 1387,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2023-09-24",
-    "renewal_date": "2027-04-04"
+    "contract_start": "2023-09-26",
+    "renewal_date": "2027-04-06"
   },
   {
     "id": "cust_029",
@@ -315,8 +315,8 @@
     "arr": 176636.03,
     "employees": 9286,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2024-03-30",
-    "renewal_date": "2026-07-27"
+    "contract_start": "2024-04-01",
+    "renewal_date": "2026-07-29"
   },
   {
     "id": "cust_030",
@@ -326,8 +326,8 @@
     "arr": 199922.58,
     "employees": 1735,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2025-02-12",
-    "renewal_date": "2027-01-17"
+    "contract_start": "2025-02-14",
+    "renewal_date": "2027-01-19"
   },
   {
     "id": "cust_031",
@@ -337,8 +337,8 @@
     "arr": 19533.97,
     "employees": 40,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2025-08-06",
-    "renewal_date": "2026-05-28"
+    "contract_start": "2025-08-08",
+    "renewal_date": "2026-05-30"
   },
   {
     "id": "cust_032",
@@ -348,8 +348,8 @@
     "arr": 92194.53,
     "employees": 184,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2023-06-13",
-    "renewal_date": "2026-11-11"
+    "contract_start": "2023-06-15",
+    "renewal_date": "2026-11-13"
   },
   {
     "id": "cust_033",
@@ -359,8 +359,8 @@
     "arr": 214099.69,
     "employees": 9605,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2023-12-16",
-    "renewal_date": "2027-01-03"
+    "contract_start": "2023-12-18",
+    "renewal_date": "2027-01-05"
   },
   {
     "id": "cust_034",
@@ -370,8 +370,8 @@
     "arr": 331672.12,
     "employees": 9383,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2024-06-25",
-    "renewal_date": "2026-11-15"
+    "contract_start": "2024-06-27",
+    "renewal_date": "2026-11-17"
   },
   {
     "id": "cust_035",
@@ -381,8 +381,8 @@
     "arr": 12542.25,
     "employees": 77,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2025-10-28",
-    "renewal_date": "2026-05-28"
+    "contract_start": "2025-10-30",
+    "renewal_date": "2026-05-30"
   },
   {
     "id": "cust_036",
@@ -392,8 +392,8 @@
     "arr": 127408.53,
     "employees": 1613,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2023-04-19",
-    "renewal_date": "2026-06-28"
+    "contract_start": "2023-04-21",
+    "renewal_date": "2026-06-30"
   },
   {
     "id": "cust_037",
@@ -403,8 +403,8 @@
     "arr": 53537.57,
     "employees": 398,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2024-10-06",
-    "renewal_date": "2026-05-17"
+    "contract_start": "2024-10-08",
+    "renewal_date": "2026-05-19"
   },
   {
     "id": "cust_038",
@@ -414,8 +414,8 @@
     "arr": 39094.64,
     "employees": 302,
     "tam_owner": "Marcus Johnson",
-    "contract_start": "2024-09-06",
-    "renewal_date": "2026-11-02"
+    "contract_start": "2024-09-08",
+    "renewal_date": "2026-11-04"
   },
   {
     "id": "cust_039",
@@ -425,8 +425,8 @@
     "arr": 18934.35,
     "employees": 19,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2024-06-18",
-    "renewal_date": "2027-07-19"
+    "contract_start": "2024-06-20",
+    "renewal_date": "2027-07-21"
   },
   {
     "id": "cust_040",
@@ -436,8 +436,8 @@
     "arr": 60470.27,
     "employees": 167,
     "tam_owner": "Priya Patel",
-    "contract_start": "2025-08-02",
-    "renewal_date": "2026-06-21"
+    "contract_start": "2025-08-04",
+    "renewal_date": "2026-06-23"
   },
   {
     "id": "cust_041",
@@ -447,8 +447,8 @@
     "arr": 7366.04,
     "employees": 79,
     "tam_owner": "Priya Patel",
-    "contract_start": "2024-10-10",
-    "renewal_date": "2027-04-20"
+    "contract_start": "2024-10-12",
+    "renewal_date": "2027-04-22"
   },
   {
     "id": "cust_042",
@@ -458,8 +458,8 @@
     "arr": 19083.01,
     "employees": 27,
     "tam_owner": "Priya Patel",
-    "contract_start": "2026-02-06",
-    "renewal_date": "2027-02-07"
+    "contract_start": "2026-02-08",
+    "renewal_date": "2027-02-09"
   },
   {
     "id": "cust_043",
@@ -469,8 +469,8 @@
     "arr": 212702.51,
     "employees": 3950,
     "tam_owner": "Priya Patel",
-    "contract_start": "2025-07-18",
-    "renewal_date": "2026-09-13"
+    "contract_start": "2025-07-20",
+    "renewal_date": "2026-09-15"
   },
   {
     "id": "cust_044",
@@ -480,8 +480,8 @@
     "arr": 40089.45,
     "employees": 126,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2024-08-31",
-    "renewal_date": "2027-09-06"
+    "contract_start": "2024-09-02",
+    "renewal_date": "2027-09-08"
   },
   {
     "id": "cust_045",
@@ -491,8 +491,8 @@
     "arr": 10003.01,
     "employees": 26,
     "tam_owner": "Priya Patel",
-    "contract_start": "2024-08-05",
-    "renewal_date": "2026-05-22"
+    "contract_start": "2024-08-07",
+    "renewal_date": "2026-05-24"
   },
   {
     "id": "cust_046",
@@ -502,8 +502,8 @@
     "arr": 144749.55,
     "employees": 2942,
     "tam_owner": "Elena Vasquez",
-    "contract_start": "2023-09-02",
-    "renewal_date": "2027-06-18"
+    "contract_start": "2023-09-04",
+    "renewal_date": "2027-06-20"
   },
   {
     "id": "cust_047",
@@ -513,8 +513,8 @@
     "arr": 150978.21,
     "employees": 5550,
     "tam_owner": "Priya Patel",
-    "contract_start": "2024-01-28",
-    "renewal_date": "2026-09-05"
+    "contract_start": "2024-01-30",
+    "renewal_date": "2026-09-07"
   },
   {
     "id": "cust_048",
@@ -524,8 +524,8 @@
     "arr": 15230.32,
     "employees": 95,
     "tam_owner": "Sarah Chen",
-    "contract_start": "2025-12-03",
-    "renewal_date": "2027-04-08"
+    "contract_start": "2025-12-05",
+    "renewal_date": "2027-04-10"
   },
   {
     "id": "cust_049",
@@ -535,8 +535,8 @@
     "arr": 89167.59,
     "employees": 190,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2023-11-13",
-    "renewal_date": "2026-09-12"
+    "contract_start": "2023-11-15",
+    "renewal_date": "2026-09-14"
   },
   {
     "id": "cust_050",
@@ -546,7 +546,7 @@
     "arr": 206722.28,
     "employees": 2271,
     "tam_owner": "Tom Kowalski",
-    "contract_start": "2024-04-13",
-    "renewal_date": "2027-06-02"
+    "contract_start": "2024-04-15",
+    "renewal_date": "2027-06-04"
   }
 ]

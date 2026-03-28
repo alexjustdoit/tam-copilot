@@ -69,13 +69,17 @@ ranked = sorted(customers, key=lambda c: compute_risk_score(c), reverse=True)
 
 st.subheader("At-Risk Account Overview")
 
+_all_segments = ["Enterprise", "Mid-Market", "SMB"]
+if "filter_segments" not in st.session_state:
+    st.session_state["filter_segments"] = _all_segments
+
 col1, col2 = st.columns([3, 1])
 with col1:
-    tier_filter = st.multiselect("Filter by Tier", ["Enterprise", "Mid-Market", "SMB"], default=["Enterprise", "Mid-Market", "SMB"])
+    st.multiselect("Segment", _all_segments, key="filter_segments")
 with col2:
     top_n = st.slider("Show Top N Accounts", 5, 50, 15)
 
-filtered = [c for c in ranked if c.tier in tier_filter][:top_n]
+filtered = [c for c in ranked if c.tier in st.session_state["filter_segments"]][:top_n]
 
 # Quick summary table
 rows = []
@@ -87,7 +91,7 @@ for c in filtered:
 
     rows.append({
         "Company": c.company_name,
-        "Tier": c.tier,
+        "Segment": c.tier,
         "ARR": c.arr,
         "Days to Renewal": days,
         "Seat Util %": round(seat_util * 100) if seat_util else 0,
