@@ -15,12 +15,15 @@ import streamlit as st
 
 
 _SIDEBAR_CSS = """<style>
-[data-testid="stLogoSpacer"] {
+section[data-testid="stSidebar"] [data-testid="stLogoSpacer"] {
     display: none !important;
-}
-[data-testid="stSidebarHeader"] {
+    height: 0 !important;
     min-height: 0 !important;
-    padding-bottom: 0 !important;
+}
+section[data-testid="stSidebar"] [data-testid="stSidebarHeader"] {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
 }
 [data-testid="stSidebarContent"] {
     display: flex !important;
