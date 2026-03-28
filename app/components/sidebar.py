@@ -1,16 +1,21 @@
 """
-Shared sidebar rendered on every page.
-Import and call render_sidebar() at the top of each page.
+Shared sidebar rendered from the entry point.
+
+Call render_sidebar_header() before st.navigation() — renders the branding above the page list.
+Call render_sidebar_footer() after pg.run() — renders the LLM toggle below page-specific controls.
 """
 import os
 import streamlit as st
 
 
-def render_sidebar():
+def render_sidebar_header():
     with st.sidebar:
         st.title("TAM Copilot")
         st.caption("AI-Powered Technical Account Management")
 
+
+def render_sidebar_footer():
+    with st.sidebar:
         st.divider()
         st.subheader("LLM Provider")
         use_local = st.toggle(
@@ -21,16 +26,15 @@ def render_sidebar():
         os.environ["USE_LOCAL_LLM"] = "true" if use_local else "false"
 
         if use_local:
-            st.info("Local mode: Free, requires Ollama running")
+            st.caption("Local mode · Free · requires Ollama")
         else:
             has_openai = bool(os.getenv("OPENAI_API_KEY"))
             has_anthropic = bool(os.getenv("ANTHROPIC_API_KEY"))
             if has_openai:
-                st.success("OpenAI API key configured")
+                st.caption("✅ OpenAI key set")
             else:
                 st.warning("Set OPENAI_API_KEY in .env")
             if has_anthropic:
-                st.success("Anthropic API key configured")
+                st.caption("✅ Anthropic key set")
 
-        st.divider()
-        st.caption("Stack: Python · Streamlit · Ollama · OpenAI · Anthropic")
+        st.caption("Python · Streamlit · Ollama · OpenAI · Anthropic")

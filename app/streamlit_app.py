@@ -19,7 +19,7 @@ import pandas as pd
 import streamlit as st
 
 import config  # noqa: F401 — loads .env via load_dotenv()
-from app.components.sidebar import render_sidebar
+from app.components.sidebar import render_sidebar_header, render_sidebar_footer
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
 st.set_page_config(
@@ -29,7 +29,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-render_sidebar()
+render_sidebar_header()
 
 
 # ---------- Data loading (cached) ----------
@@ -116,7 +116,6 @@ Side-by-side accuracy, latency, and cost benchmarks across Ollama, GPT-5.4-nano,
     }
     st.dataframe(pd.DataFrame(data), use_container_width=True, hide_index=True)
 
-    st.caption("Navigate using the sidebar pages →")
 
 
 # ---------- Navigation ----------
@@ -137,3 +136,4 @@ pg = st.navigation([
     st.Page("pages/8_Expansion_Intelligence.py", title="Expansion Intelligence"),
 ])
 pg.run()
+render_sidebar_footer()
