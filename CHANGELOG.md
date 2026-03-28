@@ -5,6 +5,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.0.0] — 2026-03-27
+
+### Added
+- Batch triage scoped by current customer, by TAM, or full portfolio — replaces the old per-customer-only batch section
+- Batch triage now filters to un-triaged tickets only (open/in_progress with no tags)
+- "Save All" button on batch results — writes all AI suggestions back in a single file pass via new `save_tickets_batch()`
+- Batch results table includes Company and TAM columns when scope is broader than current customer
+
+### Changed
+- README fully rewritten to reflect v1 feature set, accurate project structure, condensed WSL2 setup, and expanded portfolio talking points
+
+---
+
 ## [0.3.0] — 2026-03-27
 
 ### Added

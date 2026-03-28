@@ -5,6 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
+import pandas as pd
 import streamlit as st
 import config  # noqa: F401
 
@@ -32,6 +33,18 @@ def save_ticket(updated_ticket: SupportTicket):
         if t["id"] == updated_ticket.id:
             all_tickets[i] = json.loads(updated_ticket.model_dump_json())
             break
+    tickets_path.write_text(json.dumps(all_tickets, indent=2, default=str))
+    st.cache_data.clear()
+
+
+def save_tickets_batch(updated_tickets: list[SupportTicket]):
+    """Write multiple updated tickets back to fixtures/tickets.json in a single pass."""
+    tickets_path = FIXTURES_PATH / "tickets.json"
+    all_tickets = json.loads(tickets_path.read_text())
+    updated_map = {t.id: t for t in updated_tickets}
+    for i, t in enumerate(all_tickets):
+        if t["id"] in updated_map:
+            all_tickets[i] = json.loads(updated_map[t["id"]].model_dump_json())
     tickets_path.write_text(json.dumps(all_tickets, indent=2, default=str))
     st.cache_data.clear()
 
@@ -334,43 +347,124 @@ st.divider()
 
 # ── Batch triage ──────────────────────────────────────────────────────────────
 
-st.subheader("Batch Triage All Open Tickets")
-st.caption("Triage all open tickets for this customer at once. Results displayed only — use single ticket triage above to save changes.")
+st.subheader("Batch Triage")
+st.caption("Triage un-triaged open tickets in bulk. Scoped by customer, TAM, or full portfolio.")
 
-if st.button("Batch Triage All Open Tickets", use_container_width=True):
-    progress = st.progress(0, text="Triaging tickets...")
-    results_container = st.container()
+all_tams = sorted(set(c.tam_owner for c in customers))
 
-    try:
-        results = []
-        for i, t in enumerate(open_tickets):
-            try:
-                from features.ticket_triage import triage_ticket
-                result, resp = triage_ticket(t)
-                results.append((t, result, resp))
-            except Exception as e:
-                st.warning(f"Failed to triage {t.id}: {e}")
-            progress.progress((i + 1) / len(open_tickets), text=f"Triaged {i+1}/{len(open_tickets)}")
+scope = st.radio(
+    "Scope",
+    ["Current customer", "By TAM", "All customers"],
+    horizontal=True,
+    key="batch_scope",
+)
 
-        progress.empty()
+selected_tam = None
+if scope == "By TAM":
+    selected_tam = st.selectbox("TAM", all_tams, key="batch_tam_select")
 
-        with results_container:
-            import pandas as pd
-            rows = []
-            for t, r, resp in results:
-                rows.append({
-                    "Ticket": t.title[:50],
-                    "Current Priority": t.priority,
-                    "Recommended Priority": r.priority_recommendation,
-                    "Sentiment": r.sentiment,
-                    "Escalation Risk": r.escalation_risk,
-                    "Category": r.category,
-                    "Suggested Tags": ", ".join(r.suggested_tags) if r.suggested_tags else "—",
-                    "Latency (ms)": round(resp.latency_ms),
-                })
-            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-            total_cost = sum(resp.estimated_cost_usd for _, _, resp in results)
-            st.caption(f"Total cost: ${total_cost:.4f} | Provider: {results[0][2].provider if results else 'N/A'}")
+# Un-triaged = open/in_progress with no tags applied yet
+if scope == "Current customer":
+    batch_tickets = [t for t in open_tickets if not t.tags]
+elif scope == "By TAM":
+    tam_ids = {c.id for c in customers if c.tam_owner == selected_tam}
+    batch_tickets = [
+        t for t in tickets
+        if t.customer_id in tam_ids and t.status in ("open", "in_progress") and not t.tags
+    ]
+else:
+    batch_tickets = [
+        t for t in tickets
+        if t.status in ("open", "in_progress") and not t.tags
+    ]
 
-    except ConnectionError as e:
-        st.error(str(e))
+# Reset results when scope changes
+scope_key = (scope, selected_tam)
+if st.session_state.get("_batch_scope_key") != scope_key:
+    st.session_state.pop("batch_results", None)
+    st.session_state["_batch_scope_key"] = scope_key
+
+if not batch_tickets:
+    st.success("No un-triaged tickets in scope — all caught up.")
+else:
+    st.info(f"{len(batch_tickets)} un-triaged ticket{'s' if len(batch_tickets) != 1 else ''} in scope.")
+
+    if st.button("Run Batch Triage", type="primary", use_container_width=True, key="btn_batch_run"):
+        progress = st.progress(0, text="Triaging...")
+        try:
+            from features.ticket_triage import triage_ticket
+            results = []
+            for i, t in enumerate(batch_tickets):
+                try:
+                    result, resp = triage_ticket(t)
+                    results.append((t, result, resp))
+                except Exception as e:
+                    st.warning(f"Failed {t.id}: {e}")
+                progress.progress((i + 1) / len(batch_tickets), text=f"Triaged {i + 1}/{len(batch_tickets)}")
+            progress.empty()
+            st.session_state.batch_results = results
+        except ConnectionError as e:
+            st.error(str(e))
+
+if st.session_state.get("batch_results"):
+    results = st.session_state.batch_results
+    include_company = scope != "Current customer"
+
+    rows = []
+    for t, r, resp in results:
+        c = customer_map.get(t.customer_id)
+        row = {}
+        if include_company:
+            row["Company"] = c.company_name if c else "—"
+            row["TAM"] = c.tam_owner if c else "—"
+        priority_str = f"{t.priority} → {r.priority_recommendation}" if r.priority_recommendation != t.priority else t.priority
+        row.update({
+            "Ticket": t.title[:50],
+            "Priority": priority_str,
+            "Category": r.category,
+            "Sentiment": r.sentiment,
+            "Escalation": r.escalation_risk,
+            "Suggested Tags": ", ".join(r.suggested_tags) if r.suggested_tags else "—",
+            "Latency (ms)": round(resp.latency_ms),
+        })
+        rows.append(row)
+
+    st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+
+    total_cost = sum(r.estimated_cost_usd for _, _, r in results)
+    cost_str = f"${total_cost:.4f}" if total_cost > 0 else "Free (local)"
+    st.caption(f"{len(results)} tickets · Provider: {results[0][2].provider.upper()} · Cost: {cost_str}")
+
+    st.divider()
+    col1, col2 = st.columns([4, 1])
+    with col1:
+        st.markdown("**Save All AI Suggestions** — applies recommended priority, category, and tags to every ticket above.")
+    with col2:
+        if st.button("Save All", type="primary", use_container_width=True, key="btn_batch_save"):
+            from data.taxonomy import load_taxonomy, save_taxonomy
+            taxonomy = load_taxonomy()
+            updated = []
+            for t, r, _ in results:
+                new_tags = list(t.tags)
+                for tag in r.suggested_tags:
+                    if tag not in new_tags:
+                        new_tags.append(tag)
+                    if tag not in taxonomy["tags"]:
+                        taxonomy["tags"].append(tag)
+                if r.suggested_new_tag and r.suggested_new_tag not in new_tags:
+                    new_tags.append(r.suggested_new_tag)
+                    if r.suggested_new_tag not in taxonomy["tags"]:
+                        taxonomy["tags"].append(r.suggested_new_tag)
+                final_category = r.suggested_new_category or r.category
+                if final_category not in taxonomy["categories"]:
+                    taxonomy["categories"].append(final_category)
+                updated.append(t.model_copy(update={
+                    "priority": r.priority_recommendation,
+                    "category": final_category,
+                    "tags": new_tags,
+                }))
+            save_taxonomy(taxonomy)
+            save_tickets_batch(updated)
+            st.session_state.pop("batch_results", None)
+            st.success(f"✅ {len(updated)} tickets saved.")
+            st.rerun()
