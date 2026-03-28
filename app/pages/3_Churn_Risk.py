@@ -12,7 +12,7 @@ import config  # noqa: F401
 
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
-st.title("Churn Risk Analysis")
+st.title("Churn Risk")
 st.caption("AI-powered at-risk account detection with specific risk factors and recommended actions.")
 
 

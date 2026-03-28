@@ -12,7 +12,7 @@ import config  # noqa: F401
 from data.models import Customer, SupportTicket
 from data.taxonomy import load_taxonomy, save_taxonomy
 
-st.title("AI Ticket Triage")
+st.title("Ticket Triage")
 st.caption("Classify priority, detect sentiment, assess escalation risk, and draft responses — instantly.")
 
 FIXTURES_PATH = Path(__file__).parent.parent.parent / "data" / "fixtures"

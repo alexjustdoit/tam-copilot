@@ -36,18 +36,25 @@ all_tams = sorted(set(c.tam_owner for c in customers))
 _all_segments = ["Enterprise", "Mid-Market", "SMB"]
 if "filter_segments" not in st.session_state:
     st.session_state["filter_segments"] = _all_segments
+if "filter_tams" not in st.session_state:
+    st.session_state["filter_tams"] = all_tams
+else:
+    st.session_state["filter_tams"] = [t for t in st.session_state["filter_tams"] if t in all_tams]
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
     st.session_state["filter_segments"] = sel_segments
 with col2:
+    sel_tams = st.multiselect("TAM Owner", all_tams, default=st.session_state["filter_tams"])
+    st.session_state["filter_tams"] = sel_tams
+with col3:
     status_filter = st.radio(
         "Ticket Status",
         ["Open Only", "All Tickets"],
         horizontal=True,
     )
-with col3:
+with col4:
     tag_filter = st.multiselect(
         "Filter by Tag",
         options=taxonomy["tags"],
@@ -55,7 +62,7 @@ with col3:
     )
 
 # Apply filters
-scoped_customers = {c.id for c in customers if c.tier in sel_segments}
+scoped_customers = {c.id for c in customers if c.tier in sel_segments and c.tam_owner in (sel_tams if sel_tams else all_tams)}
 
 if status_filter == "Open Only":
     scoped_tickets = [t for t in tickets if t.customer_id in scoped_customers and t.status in ("open", "in_progress")]
@@ -189,7 +196,7 @@ if st.button("Generate Insights Summary", type="primary"):
             try:
                 from features.tag_insights import summarize_tag_trends
                 tag_count_dict = pd.Series([tag for t in triaged_tickets for tag in t.tags]).value_counts().to_dict()
-                segment_label = ", ".join(sel_segments) if len(sel_segments) < 3 else "All"
+                segment_label = ", ".join(sel_segments) if len(sel_segments) < 3 else "All Segments"
                 summary, resp = summarize_tag_trends(
                     segment=segment_label,
                     tag_counts=tag_count_dict,

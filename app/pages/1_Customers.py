@@ -12,7 +12,7 @@ import config  # noqa: F401
 
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 
-st.title("Customer Portfolio")
+st.title("Customers")
 
 
 @st.cache_data
