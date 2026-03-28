@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.0.1] — 2026-03-27
+
+### Changed
+- Segment filter selections (`filter_segments`, `filter_tams`) are now persistent across page navigation — set once on any page and all other pages reflect it immediately
+- Renamed "Tier" → "Segment" in all filter labels and summary table columns across Customers, Churn Risk, Ticket Insights, and Expansion Intelligence pages
+
+---
+
 ## [1.0.0] — 2026-03-27
 
 ### Added
