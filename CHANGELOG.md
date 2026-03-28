@@ -10,6 +10,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - TAM Owner filter on Churn Risk, Ticket Insights, Expansion Intelligence, and Management Insights pages — all pages with portfolio scope now have both Segment and TAM Owner filters
 - Segment filter added to Management Insights (was missing)
+- Churn Risk assessment results cached in session state per customer — navigating away and back restores the last result instantly; button switches to "Re-run Assessment" when a cached result exists
 
 ### Fixed
 - Filter persistence across page navigation — switched from Streamlit `key=` pattern to explicit `default=session_state` + write-back, which reliably restores selections after page switches
