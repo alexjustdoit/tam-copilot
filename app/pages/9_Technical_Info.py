@@ -38,6 +38,15 @@ with col3:
     else:
         st.metric("Quality Tasks", f"{router.DEFAULT_CHEAP_API} (fallback — no Anthropic key)")
 
+# Provider comparison table
+provider_data = {
+    "Provider": ["Ollama (local)", "GPT-5.4-nano", "Claude Haiku 4.5"],
+    "Cost": ["Free", "~$0.001/call", "~$0.003/call"],
+    "Speed": ["Varies by GPU", "~1.5s", "~1.5s"],
+    "Use Case": ["Development / demo", "Production (cheap)", "Quality tasks (P1 triage, QBR)"],
+}
+st.dataframe(pd.DataFrame(provider_data), use_container_width=True, hide_index=True)
+
 # ── Ollama Status ──────────────────────────────────────────────────────────────
 
 st.divider()

@@ -23,6 +23,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - LLM status indicators downsized from colored info/success boxes to captions — less visual noise for a control meant to be out of the way
 - Removed redundant "Navigate using the sidebar pages" caption from Overview page
 - Removed "Provider Comparison Eval" paragraph from Overview — it is a developer tool, not a TAM-facing feature
+- Moved LLM Provider Architecture table from Overview to Technical Info
+- Overview feature descriptions now use "**Feature Name:** Description" format for visual clarity
+- Overview top stats expanded from 4 to 6 metrics: added Triage Coverage % and ARR Renewing in 90 Days
+- Overview now includes a **Needs Attention** section — accounts with open P1/P2 tickets, renewals within 60 days, or low seat utilization near renewal, sorted by severity
 - `requirements.txt` minimum Streamlit version bumped to `>=1.36.0` (`position="hidden"` requires 1.36)
 
 ### Added (continued)

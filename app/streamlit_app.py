@@ -47,6 +47,8 @@ def load_all_data():
 # ---------- Overview Page ----------
 
 def overview():
+    from datetime import date as _date
+
     try:
         customers, tickets, usage, subscriptions = load_all_data()
         data_loaded = True
@@ -61,23 +63,76 @@ def overview():
         st.code("python data/seed.py", language="bash")
         st.stop()
 
-    # Quick stats
-    col1, col2, col3, col4 = st.columns(4)
+    sub_map = {s.customer_id: s for s in subscriptions}
+    ticket_map: dict[str, list] = {}
+    for t in tickets:
+        ticket_map.setdefault(t.customer_id, []).append(t)
+
+    open_tickets = [t for t in tickets if t.status in ("open", "in_progress")]
+    tagged_open = [t for t in open_tickets if t.tags]
+    triage_coverage = round(len(tagged_open) / len(open_tickets) * 100) if open_tickets else 0
+    total_arr = sum(c.arr for c in customers)
+    renewal_90 = [c for c in customers if 0 <= (_date.today() - c.renewal_date).days * -1 <= 90
+                  or 0 <= (c.renewal_date - _date.today()).days <= 90]
+    arr_at_renewal = sum(c.arr for c in renewal_90)
+
+    # ── Top-line stats ─────────────────────────────────────────────────────────
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
     with col1:
-        st.metric("Total Customers", len(customers))
+        st.metric("Customers", len(customers))
     with col2:
-        open_tickets = sum(1 for t in tickets if t.status in ("open", "in_progress"))
-        st.metric("Open Tickets", open_tickets)
-    with col3:
-        total_arr = sum(c.arr for c in customers)
-        st.metric("Total ARR", f"${total_arr:,.0f}")
-    with col4:
         enterprise_count = sum(1 for c in customers if c.tier == "Enterprise")
-        st.metric("Enterprise Accounts", enterprise_count)
+        st.metric("Enterprise", enterprise_count)
+    with col3:
+        st.metric("Total ARR", f"${total_arr / 1_000_000:.1f}M")
+    with col4:
+        st.metric("Open Tickets", len(open_tickets))
+    with col5:
+        st.metric("Triage Coverage", f"{triage_coverage}%")
+    with col6:
+        st.metric("ARR Renewing (90d)", f"${arr_at_renewal / 1_000_000:.1f}M")
 
     st.divider()
 
-    # Feature overview
+    # ── Needs Attention ────────────────────────────────────────────────────────
+    st.subheader("Needs Attention")
+
+    attention_rows = []
+    for c in customers:
+        cust_tickets = ticket_map.get(c.id, [])
+        sub = sub_map.get(c.id)
+        days_to_renewal = (c.renewal_date - _date.today()).days
+        p1p2_open = [t for t in cust_tickets if t.priority in ("P1", "P2") and t.status in ("open", "in_progress")]
+        seat_util = (sub.seats_used / sub.seats_purchased) if sub and sub.seats_purchased > 0 else None
+
+        flags = []
+        if p1p2_open:
+            flags.append(f"🔴 {len(p1p2_open)} P1/P2 open")
+        if 0 <= days_to_renewal <= 60:
+            flags.append(f"🟠 Renewing in {days_to_renewal}d")
+        if seat_util is not None and seat_util < 0.5 and days_to_renewal <= 90:
+            flags.append("🟡 Low utilization")
+
+        if flags:
+            attention_rows.append({
+                "Company": c.company_name,
+                "Tier": c.tier,
+                "TAM": c.tam_owner,
+                "ARR": f"${c.arr:,.0f}",
+                "Flags": "  ".join(flags),
+            })
+
+    if attention_rows:
+        attention_rows.sort(key=lambda r: (
+            0 if "🔴" in r["Flags"] else (1 if "🟠" in r["Flags"] else 2)
+        ))
+        st.dataframe(pd.DataFrame(attention_rows), use_container_width=True, hide_index=True)
+    else:
+        st.success("No accounts currently flagged — portfolio looks healthy.")
+
+    st.divider()
+
+    # ── Feature overview ───────────────────────────────────────────────────────
     st.subheader("What TAM Copilot Does")
 
     col1, col2 = st.columns(2)
@@ -95,18 +150,6 @@ def overview():
 
 **Expansion Intelligence:** Finds upsell and cross-sell opportunities by analyzing feature gaps vs. industry benchmarks.
 """)
-
-    st.divider()
-
-    # Provider capabilities
-    st.subheader("LLM Provider Architecture")
-    data = {
-        "Provider": ["Ollama (local)", "GPT-5.4-nano", "Claude Haiku 4.5"],
-        "Cost": ["Free", "~$0.001/call", "~$0.003/call"],
-        "Speed": ["Varies by GPU", "~1.5s", "~1.5s"],
-        "Use Case": ["Development / demo", "Production (cheap)", "Quality tasks (P1 triage, QBR)"],
-    }
-    st.dataframe(pd.DataFrame(data), use_container_width=True, hide_index=True)
 
 
 
