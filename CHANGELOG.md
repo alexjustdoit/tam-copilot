@@ -5,6 +5,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.3.0] — 2026-03-27
+
+### Added
+- Expansion Intelligence page (`8_Expansion_Intelligence.py`) — portfolio-wide expansion ranking table with heuristic scoring (seat utilization, DAU/MAU engagement, peer feature gaps, tier), plus per-account AI deep-dive using the existing `features/expansion.py` module
+- Customer detail drill-down on the Customers page — select any account to see subscription info, DAU/MAU trend chart, features adopted/unadopted, open tickets table, and on-demand AI health assessment
+- 7 new tests covering expansion schemas, `find_expansion_opportunities` provider wiring, `summarize_tag_trends` quality-provider enforcement, empty-tag edge case, and `taxonomy.py` round-trip/append behavior; 28/28 passing
+
+### Fixed
+- `eval/evaluator.py`: replaced `"resp" in dir()` guard with `resp = None` initialization + `resp is not None` check — previous pattern could incorrectly inherit latency/cost from the prior loop iteration when a case failed mid-eval
+- `5_Eval_Dashboard.py`: stale caption updated from `GPT-4o-mini` to `GPT-5.4-nano`
+- `README.md`: updated 4 stale `GPT-4o-mini` references to `GPT-5.4-nano`; fixture count corrected from 200 to 500 tickets
+
+### Fixed (pre-existing test failures)
+- `test_triage_result_schema` and `test_triage_uses_quality_provider_for_p1`: `TicketTriageResult` grew a required `suggested_tags` field in 0.2.0 but these tests were never updated — both now pass
+
+---
+
 ## [0.2.1] — 2026-03-26
 
 ### Fixed

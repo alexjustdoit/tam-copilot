@@ -134,5 +134,6 @@ pg = st.navigation([
     st.Page("pages/5_Eval_Dashboard.py", title="Eval Dashboard"),
     st.Page("pages/6_Ticket_Insights.py", title="Ticket Insights"),
     st.Page("pages/7_Management_Insights.py", title="Management Insights"),
+    st.Page("pages/8_Expansion_Intelligence.py", title="Expansion Intelligence"),
 ])
 pg.run()

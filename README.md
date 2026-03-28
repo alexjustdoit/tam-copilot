@@ -11,13 +11,13 @@ AI-powered Technical Account Management dashboard. Demonstrates LLM engineering,
 | **Churn Risk** | At-risk account detection with specific risk factors and TAM actions |
 | **QBR Prep** | Auto-generate executive-ready Quarterly Business Review talking points |
 | **Expansion Finder** | Upsell/cross-sell signals from feature gap analysis |
-| **Provider Eval** | Side-by-side accuracy/latency/cost benchmark: Ollama vs GPT-4o-mini vs Claude Haiku |
+| **Provider Eval** | Side-by-side accuracy/latency/cost benchmark: Ollama vs GPT-5.4-nano vs Claude Haiku |
 
 ## Architecture
 
 ```
 LLM Router → Ollama (local, free)
-           → GPT-4o-mini (cheap API, default)
+           → GPT-5.4-nano (cheap API, default)
            → Claude Haiku 4.5 (quality tasks: P1 triage, QBR)
 ```
 
@@ -44,7 +44,7 @@ cp .env.example .env
 streamlit run app/streamlit_app.py --server.address 0.0.0.0
 ```
 
-Fixture data (50 customers, 200 tickets, etc.) is already committed — no data generation needed.
+Fixture data (50 customers, 500 tickets, etc.) is already committed — no data generation needed.
 
 ## Running the App (Already Set Up)
 
@@ -296,7 +296,7 @@ The entire provider selection is controlled by a single flag in `.env`:
 # Use Ollama (free, local)
 USE_LOCAL_LLM=true
 
-# Use cloud APIs (GPT-4o-mini by default, Claude for quality tasks)
+# Use cloud APIs (GPT-5.4-nano by default, Claude for quality tasks)
 USE_LOCAL_LLM=false
 ```
 
@@ -313,7 +313,7 @@ OPENAI_API_KEY=sk-...
 ANTHROPIC_API_KEY=sk-ant-...   # optional, enables quality routing
 ```
 
-Demo session cost on GPT-4o-mini: **~$0.05–0.20 total**.
+Demo session cost on GPT-5.4-nano: **~$0.05–0.20 total**.
 
 ## Running Tests
 

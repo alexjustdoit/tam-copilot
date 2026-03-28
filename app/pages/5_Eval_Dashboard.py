@@ -10,7 +10,7 @@ import streamlit as st
 import config  # noqa: F401
 
 st.title("Provider Evaluation Dashboard")
-st.caption("Compare Ollama, GPT-4o-mini, and Claude Haiku on accuracy, latency, and cost.")
+st.caption("Compare Ollama, GPT-5.4-nano, and Claude Haiku on accuracy, latency, and cost.")
 
 DATASET_PATH = Path(__file__).parent.parent.parent / "eval" / "datasets" / "ticket_triage_eval.jsonl"
 RESULTS_PATH = Path(__file__).parent.parent.parent / "eval" / "results.json"

@@ -67,6 +67,7 @@ Description:
 
 Provide your structured assessment."""
 
+        resp = None
         try:
             parsed, resp = provider.complete_structured(
                 system=SYSTEM_PROMPT,
@@ -87,8 +88,8 @@ Provide your structured assessment."""
             output=output,
             expected=expected,
             accuracy_score=accuracy,
-            latency_ms=resp.latency_ms if "resp" in dir() else 0,
-            estimated_cost_usd=resp.estimated_cost_usd if "resp" in dir() else 0,
+            latency_ms=resp.latency_ms if resp is not None else 0,
+            estimated_cost_usd=resp.estimated_cost_usd if resp is not None else 0,
             field_scores=field_scores,
         ))
 
