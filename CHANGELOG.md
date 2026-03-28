@@ -22,6 +22,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Eval Dashboard and Technical Info moved into a collapsible **Developers** expander in the sidebar — they are not day-to-day TAM tools
 - LLM status indicators downsized from colored info/success boxes to captions — less visual noise for a control meant to be out of the way
 - Removed redundant "Navigate using the sidebar pages" caption from Overview page
+- Removed "Provider Comparison Eval" paragraph from Overview — it is a developer tool, not a TAM-facing feature
 - `requirements.txt` minimum Streamlit version bumped to `>=1.36.0` (`position="hidden"` requires 1.36)
 
 ### Added (continued)
