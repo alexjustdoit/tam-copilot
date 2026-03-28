@@ -40,8 +40,7 @@ if not st.session_state.get("_initialized"):
 
 st.markdown("""
 <style>
-/* Reduce default top padding on every page's main content area
-   Multiple selectors cover Streamlit version differences */
+/* Reduce default top padding on every page's main content area */
 .main .block-container,
 .stMainBlockContainer,
 [data-testid="stMainBlockContainer"],
@@ -49,19 +48,22 @@ st.markdown("""
     padding-top: 1.5rem !important;
 }
 
-/* Tighten sidebar top padding and enable flex column for anchored footer */
-section[data-testid="stSidebar"] > div:first-child,
-[data-testid="stSidebarContent"] {
+/* Sidebar: reduce top padding */
+[data-testid="stSidebarContent"],
+section[data-testid="stSidebar"] > div:first-child {
     padding-top: 0.75rem !important;
 }
-section[data-testid="stSidebar"] > div:first-child {
+
+/* Sidebar: flex column so footer can be anchored to bottom */
+[data-testid="stSidebarContent"] {
     display: flex !important;
     flex-direction: column !important;
-    height: 100vh !important;
+    min-height: 100vh !important;
 }
 
-/* Spacer before LLM footer — flex:1 fills remaining height, pushing footer to bottom */
-section[data-testid="stSidebar"] > div:first-child > div:has(.sidebar-footer-spacer) {
+/* The element-container wrapping our spacer grows to fill remaining space,
+   pushing the LLM footer to the bottom */
+.element-container:has(.sidebar-footer-spacer) {
     flex: 1 !important;
     min-height: 1rem !important;
 }
