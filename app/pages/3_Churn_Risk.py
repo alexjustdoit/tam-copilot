@@ -129,7 +129,7 @@ if st.button("Run Churn Risk Assessment", type="primary", use_container_width=Tr
             tier_colors = {"Low": "green", "Medium": "orange", "High": "red", "Critical": "red"}
             tier_icons = {"Low": "✅", "Medium": "⚠️", "High": "🔴", "Critical": "🚨"}
 
-            col1, col2, col3 = st.columns(3)
+            col1, col2 = st.columns(2)
             with col1:
                 st.metric(
                     "Risk Tier",
@@ -137,8 +137,6 @@ if st.button("Run Churn Risk Assessment", type="primary", use_container_width=Tr
                 )
             with col2:
                 st.metric("Churn Probability", f"{result.churn_probability_pct}%")
-            with col3:
-                st.metric("Provider / Latency", f"{resp.provider.upper()} / {resp.latency_ms:.0f}ms")
 
             st.divider()
 
