@@ -186,5 +186,13 @@ with st.sidebar:
         for page in dev_pages:
             st.page_link(page)
 
+# On the first render after a server restart, session state is empty.
+# With position="hidden", the entire sidebar is Python-rendered, so a
+# deep-linked URL can produce a broken first render cycle. Redirecting to
+# Overview ensures the sidebar initialises correctly before the user navigates.
+if not st.session_state.get("_initialized"):
+    st.session_state["_initialized"] = True
+    st.switch_page(main_pages[0])
+
 pg.run()
 render_sidebar_footer()
