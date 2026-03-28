@@ -48,24 +48,37 @@ st.markdown("""
     padding-top: 1.5rem !important;
 }
 
-/* Sidebar: reduce top padding */
-[data-testid="stSidebarContent"],
-section[data-testid="stSidebar"] > div:first-child {
-    padding-top: 0.75rem !important;
+/* Sidebar: hide the logo spacer that creates unwanted top padding */
+[data-testid="stLogoSpacer"] {
+    display: none !important;
 }
 
-/* Sidebar: flex column so footer can be anchored to bottom */
+/* Sidebar: flex chain — must propagate through every ancestor level
+   for the spacer's flex:1 to push the footer to the bottom */
 [data-testid="stSidebarContent"] {
     display: flex !important;
     flex-direction: column !important;
-    min-height: 100vh !important;
+}
+[data-testid="stSidebarUserContent"] {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 0.5rem !important;
+}
+[data-testid="stSidebarUserContent"] > div:first-child {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+[data-testid="stSidebarUserContent"] > div:first-child > [data-testid="stVerticalBlock"] {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-/* The element-container wrapping our spacer grows to fill remaining space,
-   pushing the LLM footer to the bottom */
+/* Spacer element grows to fill remaining space, pushing LLM footer down */
 .element-container:has(.sidebar-footer-spacer) {
     flex: 1 !important;
-    min-height: 1rem !important;
 }
 </style>""", unsafe_allow_html=True)
 
