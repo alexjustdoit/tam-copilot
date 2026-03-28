@@ -14,8 +14,44 @@ import os
 import streamlit as st
 
 
+_SIDEBAR_CSS = """<style>
+[data-testid="stLogoSpacer"] {
+    display: none !important;
+}
+[data-testid="stSidebarContent"] {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+[data-testid="stSidebarUserContent"] {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    padding-top: 0.5rem !important;
+}
+[data-testid="stSidebarUserContent"] > div:first-child {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+}
+[data-testid="stSidebarUserContent"] > div:first-child > [data-testid="stVerticalBlock"] {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+}
+.element-container:has(.sidebar-footer-spacer) {
+    flex: 1 !important;
+    min-height: 0 !important;
+}
+</style>"""
+
+
 def render_sidebar_header():
     with st.sidebar:
+        st.markdown(_SIDEBAR_CSS, unsafe_allow_html=True)
         st.title("TAM Copilot")
         st.caption("AI-Powered Technical Account Management")
         st.divider()

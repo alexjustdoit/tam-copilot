@@ -47,39 +47,6 @@ st.markdown("""
 [data-testid="stAppViewBlockContainer"] {
     padding-top: 1.5rem !important;
 }
-
-/* Sidebar: hide the logo spacer that creates unwanted top padding */
-[data-testid="stLogoSpacer"] {
-    display: none !important;
-}
-
-/* Sidebar: flex chain — must propagate through every ancestor level
-   for the spacer's flex:1 to push the footer to the bottom */
-[data-testid="stSidebarContent"] {
-    display: flex !important;
-    flex-direction: column !important;
-}
-[data-testid="stSidebarUserContent"] {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    padding-top: 0.5rem !important;
-}
-[data-testid="stSidebarUserContent"] > div:first-child {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-}
-[data-testid="stSidebarUserContent"] > div:first-child > [data-testid="stVerticalBlock"] {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-}
-
-/* Spacer element grows to fill remaining space, pushing LLM footer down */
-.element-container:has(.sidebar-footer-spacer) {
-    flex: 1 !important;
-}
 </style>""", unsafe_allow_html=True)
 
 render_sidebar_header()
