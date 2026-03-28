@@ -83,22 +83,17 @@ def overview():
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("""
-**AI-Powered Ticket Triage**
-Classifies priority, detects sentiment, assesses escalation risk, and drafts responses for every support ticket.
+**AI-Powered Ticket Triage:** Classifies priority, detects sentiment, assesses escalation risk, and drafts responses for every support ticket.
 
-**Customer Health Scoring**
-Composite 0–100 score combining usage trends, support history, and commercial signals.
+**Customer Health Scoring:** Composite 0–100 score combining usage trends, support history, and commercial signals.
 
-**Churn Risk Detection**
-Identifies at-risk accounts with specific risk factors and TAM action recommendations.
+**Churn Risk Detection:** Identifies at-risk accounts with specific risk factors and TAM action recommendations.
 """)
     with col2:
         st.markdown("""
-**QBR Preparation**
-Auto-generates executive-ready Quarterly Business Review talking points from 12 months of data.
+**QBR Preparation:** Auto-generates executive-ready Quarterly Business Review talking points from 12 months of data.
 
-**Expansion Intelligence**
-Finds upsell and cross-sell opportunities by analyzing feature gaps vs. industry benchmarks.
+**Expansion Intelligence:** Finds upsell and cross-sell opportunities by analyzing feature gaps vs. industry benchmarks.
 """)
 
     st.divider()
