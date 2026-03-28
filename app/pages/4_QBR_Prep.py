@@ -1,5 +1,6 @@
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -45,7 +46,6 @@ with col1:
 with col2:
     st.metric("ARR", f"${selected.arr:,.0f}")
 with col3:
-    from datetime import date
     days = (selected.renewal_date - date.today()).days
     st.metric("Days to Renewal", days)
 with col4:
@@ -53,7 +53,19 @@ with col4:
 
 st.divider()
 
-if st.button("Generate QBR", type="primary", use_container_width=True):
+if "qbr_cache" not in st.session_state:
+    st.session_state["qbr_cache"] = {}
+
+cached = st.session_state["qbr_cache"].get(selected_id)
+
+col_btn, col_hint = st.columns([2, 5])
+with col_btn:
+    run = st.button("Re-run QBR" if cached else "Generate QBR", type="primary", use_container_width=True)
+with col_hint:
+    if cached:
+        st.caption("Showing cached result. Click Re-run to refresh.")
+
+if run:
     with st.spinner("Generating QBR talking points..."):
         try:
             from features.qbr_prep import generate_qbr
@@ -64,49 +76,57 @@ if st.button("Generate QBR", type="primary", use_container_width=True):
                 tickets=ticket_map.get(selected_id, []),
                 subscription=sub_map.get(selected_id),
             )
-
+            st.session_state["qbr_cache"][selected_id] = qbr
+            cached = qbr
             st.success(f"QBR generated in {resp.latency_ms:.0f}ms via {resp.provider.upper()}")
 
-            # Executive Summary
-            st.subheader("Executive Summary")
-            st.info(qbr.executive_summary)
+        except ConnectionError as e:
+            st.error(str(e))
+        except Exception as e:
+            st.error(f"QBR generation failed: {e}")
+            raise
 
-            col1, col2 = st.columns(2)
-            with col1:
-                st.subheader("Business Wins")
-                for win in qbr.business_wins:
-                    st.markdown(f"- {win}")
+if cached:
+    qbr = cached
 
-                st.subheader("Usage Highlights")
-                for highlight in qbr.usage_highlights:
-                    st.markdown(f"- {highlight}")
+    st.subheader("Executive Summary")
+    st.info(qbr.executive_summary)
 
-                st.subheader("Renewal Talking Points")
-                for point in qbr.renewal_talking_points:
-                    st.markdown(f"- {point}")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Business Wins")
+        for win in qbr.business_wins:
+            st.markdown(f"- {win}")
 
-            with col2:
-                st.subheader("Open Risks (Address Honestly)")
-                for risk in qbr.open_risks:
-                    st.markdown(f"- {risk}")
+        st.subheader("Usage Highlights")
+        for highlight in qbr.usage_highlights:
+            st.markdown(f"- {highlight}")
 
-                st.subheader("Strategic Asks")
-                for ask in qbr.strategic_asks:
-                    st.markdown(f"- {ask}")
+        st.subheader("Renewal Talking Points")
+        for point in qbr.renewal_talking_points:
+            st.markdown(f"- {point}")
 
-                st.subheader("Follow-Up Actions")
-                for action in qbr.follow_up_actions:
-                    st.markdown(f"- {action}")
+    with col2:
+        st.subheader("Open Risks (Address Honestly)")
+        for risk in qbr.open_risks:
+            st.markdown(f"- {risk}")
 
-            st.divider()
-            st.subheader("Suggested Agenda")
-            for item in qbr.suggested_agenda:
-                st.markdown(f"- {item}")
+        st.subheader("Strategic Asks")
+        for ask in qbr.strategic_asks:
+            st.markdown(f"- {ask}")
 
-            st.divider()
+        st.subheader("Follow-Up Actions")
+        for action in qbr.follow_up_actions:
+            st.markdown(f"- {action}")
 
-            # Export
-            qbr_text = f"""QBR Preparation: {selected.company_name}
+    st.divider()
+    st.subheader("Suggested Agenda")
+    for item in qbr.suggested_agenda:
+        st.markdown(f"- {item}")
+
+    st.divider()
+
+    qbr_text = f"""QBR Preparation: {selected.company_name}
 Generated: {date.today()}
 TAM: {selected.tam_owner}
 
@@ -134,24 +154,9 @@ SUGGESTED AGENDA
 FOLLOW-UP ACTIONS
 {chr(10).join(f'- {a}' for a in qbr.follow_up_actions)}
 """
-            st.download_button(
-                label="Download QBR Notes",
-                data=qbr_text,
-                file_name=f"qbr_{selected.company_name.replace(' ', '_')}_{date.today()}.txt",
-                mime="text/plain",
-            )
-
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("Provider", resp.provider.upper())
-            with col2:
-                st.metric("Latency", f"{resp.latency_ms:.0f}ms")
-            with col3:
-                cost_str = f"${resp.estimated_cost_usd:.4f}" if resp.estimated_cost_usd > 0 else "Free (local)"
-                st.metric("Cost", cost_str)
-
-        except ConnectionError as e:
-            st.error(str(e))
-        except Exception as e:
-            st.error(f"QBR generation failed: {e}")
-            raise
+    st.download_button(
+        label="Download QBR Notes",
+        data=qbr_text,
+        file_name=f"qbr_{selected.company_name.replace(' ', '_')}_{date.today()}.txt",
+        mime="text/plain",
+    )
