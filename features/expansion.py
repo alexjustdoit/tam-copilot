@@ -14,6 +14,14 @@ ALL_FEATURES = [
     "mobile_app", "advanced_analytics", "data_retention", "rbac",
 ]
 
+INDUSTRY_FEATURE_BENCHMARKS = {
+    "FinTech": ["audit_logs", "rbac", "data_retention", "advanced_analytics"],
+    "Healthcare": ["audit_logs", "rbac", "data_retention", "sso"],
+    "SaaS": ["api_access", "webhooks", "automations", "advanced_analytics"],
+    "Retail": ["advanced_analytics", "mobile_app", "integrations", "custom_fields"],
+    "Manufacturing": ["integrations", "automations", "bulk_export", "custom_fields"],
+}
+
 SYSTEM_PROMPT = """You are a Technical Account Manager identifying expansion opportunities.
 Analyze usage patterns, adopted features, and industry benchmarks to find upsell and cross-sell signals.
 Be specific about which products/features to recommend and why. Frame everything as customer value."""
@@ -60,14 +68,6 @@ def find_expansion_opportunities(
     if subscription and subscription.seats_purchased > 0:
         seat_util = subscription.seats_used / subscription.seats_purchased
 
-    # Industry peer benchmarks (simulated)
-    INDUSTRY_FEATURE_BENCHMARKS = {
-        "FinTech": ["audit_logs", "rbac", "data_retention", "advanced_analytics"],
-        "Healthcare": ["audit_logs", "rbac", "data_retention", "sso"],
-        "SaaS": ["api_access", "webhooks", "automations", "advanced_analytics"],
-        "Retail": ["advanced_analytics", "mobile_app", "integrations", "custom_fields"],
-        "Manufacturing": ["integrations", "automations", "bulk_export", "custom_fields"],
-    }
     peer_features = INDUSTRY_FEATURE_BENCHMARKS.get(customer.industry, [])
     missing_peer_features = [f for f in peer_features if f not in adopted]
 
