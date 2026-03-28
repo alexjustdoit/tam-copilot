@@ -70,17 +70,25 @@ ranked = sorted(customers, key=lambda c: compute_risk_score(c), reverse=True)
 st.subheader("At-Risk Account Overview")
 
 _all_segments = ["Enterprise", "Mid-Market", "SMB"]
+all_tams = sorted(set(c.tam_owner for c in customers))
 if "filter_segments" not in st.session_state:
     st.session_state["filter_segments"] = _all_segments
+if "filter_tams" not in st.session_state:
+    st.session_state["filter_tams"] = all_tams
+else:
+    st.session_state["filter_tams"] = [t for t in st.session_state["filter_tams"] if t in all_tams]
 
-col1, col2 = st.columns([3, 1])
+col1, col2, col3 = st.columns([2, 2, 1])
 with col1:
     sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
     st.session_state["filter_segments"] = sel_segments
 with col2:
+    sel_tams = st.multiselect("TAM Owner", all_tams, default=st.session_state["filter_tams"])
+    st.session_state["filter_tams"] = sel_tams
+with col3:
     top_n = st.slider("Show Top N Accounts", 5, 50, 15)
 
-filtered = [c for c in ranked if c.tier in sel_segments][:top_n]
+filtered = [c for c in ranked if c.tier in sel_segments and c.tam_owner in (sel_tams if sel_tams else all_tams)][:top_n]
 
 # Quick summary table
 rows = []
