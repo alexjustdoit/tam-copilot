@@ -156,7 +156,7 @@ def overview():
         attention_rows.sort(key=lambda r: (
             0 if "🔴" in r["Flags"] else (1 if "🟠" in r["Flags"] else 2)
         ))
-        st.dataframe(pd.DataFrame(attention_rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(attention_rows), use_container_width=True, hide_index=True, height=400)
     else:
         st.success("No accounts currently flagged — portfolio looks healthy.")
 
