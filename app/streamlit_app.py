@@ -65,7 +65,10 @@ def overview():
         data_loaded = False
 
     st.title("TAM Copilot")
-    st.subheader("AI-Powered Technical Account Management Dashboard")
+    st.markdown("""
+<style>
+[data-testid="stDivider"] { margin-top: -0.5rem; margin-bottom: -0.5rem; }
+</style>""", unsafe_allow_html=True)
 
     if not data_loaded:
         st.error("Fixture data not found. Run `python data/seed.py` to generate demo data.")
