@@ -81,13 +81,15 @@ else:
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.multiselect("Segment", _all_segments, key="filter_segments")
+    sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
+    st.session_state["filter_segments"] = sel_segments
 with col2:
-    st.multiselect("TAM Owner", _all_tams, key="filter_tams")
+    sel_tams = st.multiselect("TAM Owner", _all_tams, default=st.session_state["filter_tams"])
+    st.session_state["filter_tams"] = sel_tams
 with col3:
     risk_only = st.checkbox("Show At-Risk Only (flags present)")
 
-filtered = df[df["Segment"].isin(st.session_state["filter_segments"]) & df["TAM Owner"].isin(st.session_state["filter_tams"])]
+filtered = df[df["Segment"].isin(sel_segments) & df["TAM Owner"].isin(sel_tams)]
 if risk_only:
     filtered = filtered[filtered["Risk Flags"] != ""]
 

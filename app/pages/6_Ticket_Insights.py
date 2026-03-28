@@ -39,7 +39,8 @@ if "filter_segments" not in st.session_state:
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.multiselect("Segment", _all_segments, key="filter_segments")
+    sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
+    st.session_state["filter_segments"] = sel_segments
 with col2:
     status_filter = st.radio(
         "Ticket Status",
@@ -54,7 +55,7 @@ with col3:
     )
 
 # Apply filters
-scoped_customers = {c.id for c in customers if c.tier in st.session_state["filter_segments"]}
+scoped_customers = {c.id for c in customers if c.tier in sel_segments}
 
 if status_filter == "Open Only":
     scoped_tickets = [t for t in tickets if t.customer_id in scoped_customers and t.status in ("open", "in_progress")]
@@ -188,7 +189,7 @@ if st.button("Generate Insights Summary", type="primary"):
             try:
                 from features.tag_insights import summarize_tag_trends
                 tag_count_dict = pd.Series([tag for t in triaged_tickets for tag in t.tags]).value_counts().to_dict()
-                segment_label = ", ".join(st.session_state["filter_segments"]) if len(st.session_state["filter_segments"]) < 3 else "All"
+                segment_label = ", ".join(sel_segments) if len(sel_segments) < 3 else "All"
                 summary, resp = summarize_tag_trends(
                     segment=segment_label,
                     tag_counts=tag_count_dict,

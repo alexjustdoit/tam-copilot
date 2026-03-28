@@ -33,14 +33,27 @@ all_tams = sorted(set(c.tam_owner for c in customers))
 
 # ── Filters ───────────────────────────────────────────────────────────────────
 
-col1, col2 = st.columns(2)
+_all_segments = ["Enterprise", "Mid-Market", "SMB"]
+if "filter_segments" not in st.session_state:
+    st.session_state["filter_segments"] = _all_segments
+if "filter_tams" not in st.session_state:
+    st.session_state["filter_tams"] = all_tams
+else:
+    st.session_state["filter_tams"] = [t for t in st.session_state["filter_tams"] if t in all_tams]
+
+col1, col2, col3 = st.columns(3)
 with col1:
-    tam_filter = st.multiselect("TAM", all_tams, default=all_tams, placeholder="All TAMs")
+    sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
+    st.session_state["filter_segments"] = sel_segments
 with col2:
+    sel_tams = st.multiselect("TAM", all_tams, default=st.session_state["filter_tams"])
+    st.session_state["filter_tams"] = sel_tams
+with col3:
     status_filter = st.radio("Ticket Status", ["Open Only", "All Tickets"], horizontal=True)
 
-scoped_tam_ids = tam_filter if tam_filter else all_tams
-scoped_customers = {c.id: c for c in customers if c.tam_owner in scoped_tam_ids}
+scoped_tam_ids = sel_tams if sel_tams else all_tams
+scoped_segments = sel_segments if sel_segments else _all_segments
+scoped_customers = {c.id: c for c in customers if c.tam_owner in scoped_tam_ids and c.tier in scoped_segments}
 
 if status_filter == "Open Only":
     scoped_tickets = [t for t in tickets if t.customer_id in scoped_customers and t.status in ("open", "in_progress")]
@@ -74,7 +87,7 @@ st.caption("How actively each TAM is using the triage workflow.")
 
 coverage_rows = []
 for tam in scoped_tam_ids:
-    tam_customer_ids = {c.id for c in customers if c.tam_owner == tam}
+    tam_customer_ids = {c.id for c in customers if c.tam_owner == tam and c.tier in scoped_segments}
     tam_tickets = [t for t in scoped_tickets if t.customer_id in tam_customer_ids]
     tam_triaged = [t for t in tam_tickets if t.tags]
     tam_coverage = round(len(tam_triaged) / len(tam_tickets) * 100) if tam_tickets else 0

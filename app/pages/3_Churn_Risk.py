@@ -75,11 +75,12 @@ if "filter_segments" not in st.session_state:
 
 col1, col2 = st.columns([3, 1])
 with col1:
-    st.multiselect("Segment", _all_segments, key="filter_segments")
+    sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
+    st.session_state["filter_segments"] = sel_segments
 with col2:
     top_n = st.slider("Show Top N Accounts", 5, 50, 15)
 
-filtered = [c for c in ranked if c.tier in st.session_state["filter_segments"]][:top_n]
+filtered = [c for c in ranked if c.tier in sel_segments][:top_n]
 
 # Quick summary table
 rows = []
