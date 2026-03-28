@@ -17,6 +17,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `5_Eval_Dashboard.py`: stale caption updated from `GPT-4o-mini` to `GPT-5.4-nano`
 - `README.md`: updated 4 stale `GPT-4o-mini` references to `GPT-5.4-nano`; fixture count corrected from 200 to 500 tickets
 
+### Changed
+- Sidebar layout restructured: branding (TAM Copilot title + caption) now appears above the page list; page-specific controls (e.g. Eval Dashboard provider selector) appear between the page list and the LLM toggle; LLM Provider toggle moved to the bottom of the sidebar
+- LLM status indicators downsized from colored info/success boxes to captions — less visual noise for a control meant to be out of the way
+- Removed redundant "Navigate using the sidebar pages" caption from Overview page
+
 ### Fixed (pre-existing test failures)
 - `test_triage_result_schema` and `test_triage_uses_quality_provider_for_p1`: `TicketTriageResult` grew a required `suggested_tags` field in 0.2.0 but these tests were never updated — both now pass
 
