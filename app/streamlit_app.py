@@ -106,8 +106,29 @@ def overview():
     # ── Needs Attention ────────────────────────────────────────────────────────
     st.subheader("Needs Attention")
 
+    _all_segments = ["Enterprise", "Mid-Market", "SMB"]
+    _all_tams = sorted(set(c.tam_owner for c in customers))
+    if "filter_segments" not in st.session_state:
+        st.session_state["filter_segments"] = _all_segments
+    if "filter_tams" not in st.session_state:
+        st.session_state["filter_tams"] = _all_tams
+    else:
+        st.session_state["filter_tams"] = [t for t in st.session_state["filter_tams"] if t in _all_tams]
+
+    col1, col2 = st.columns(2)
+    with col1:
+        sel_segments = st.multiselect("Segment", _all_segments, default=st.session_state["filter_segments"])
+        st.session_state["filter_segments"] = sel_segments
+    with col2:
+        sel_tams = st.multiselect("TAM Owner", _all_tams, default=st.session_state["filter_tams"])
+        st.session_state["filter_tams"] = sel_tams
+
     attention_rows = []
     for c in customers:
+        if c.tier not in sel_segments:
+            continue
+        if c.tam_owner not in (sel_tams if sel_tams else _all_tams):
+            continue
         cust_tickets = ticket_map.get(c.id, [])
         sub = sub_map.get(c.id)
         days_to_renewal = (c.renewal_date - _date.today()).days
@@ -125,7 +146,7 @@ def overview():
         if flags:
             attention_rows.append({
                 "Company": c.company_name,
-                "Tier": c.tier,
+                "Segment": c.tier,
                 "TAM": c.tam_owner,
                 "ARR": f"${c.arr:,.0f}",
                 "Flags": "  ".join(flags),
