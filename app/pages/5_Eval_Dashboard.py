@@ -27,6 +27,7 @@ def load_dataset():
 
 
 # Sidebar: provider selection
+st.sidebar.divider()
 st.sidebar.subheader("Run Eval")
 providers_to_run = st.sidebar.multiselect(
     "Providers",

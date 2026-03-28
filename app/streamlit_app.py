@@ -124,16 +124,32 @@ Side-by-side accuracy, latency, and cost benchmarks across Ollama, GPT-5.4-nano,
 #   2. Add a st.Page() entry to the list below
 # Streamlit will NOT auto-discover pages when st.navigation() is in use.
 
-pg = st.navigation([
+main_pages = [
     st.Page(overview, title="Overview", default=True),
     st.Page("pages/1_Customers.py", title="Customers"),
     st.Page("pages/2_Ticket_Triage.py", title="Ticket Triage"),
     st.Page("pages/3_Churn_Risk.py", title="Churn Risk"),
     st.Page("pages/4_QBR_Prep.py", title="QBR Prep"),
-    st.Page("pages/5_Eval_Dashboard.py", title="Eval Dashboard"),
     st.Page("pages/6_Ticket_Insights.py", title="Ticket Insights"),
     st.Page("pages/7_Management_Insights.py", title="Management Insights"),
     st.Page("pages/8_Expansion_Intelligence.py", title="Expansion Intelligence"),
-])
+]
+
+dev_pages = [
+    st.Page("pages/5_Eval_Dashboard.py", title="Eval Dashboard"),
+    st.Page("pages/9_Technical_Info.py", title="Technical Info"),
+]
+
+# position="hidden" suppresses Streamlit's automatic nav injection so we can
+# render page links manually after the branding, giving us full layout control.
+pg = st.navigation(main_pages + dev_pages, position="hidden")
+
+with st.sidebar:
+    for page in main_pages:
+        st.page_link(page)
+    with st.expander("Developers"):
+        for page in dev_pages:
+            st.page_link(page)
+
 pg.run()
 render_sidebar_footer()

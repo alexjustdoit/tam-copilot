@@ -18,9 +18,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `README.md`: updated 4 stale `GPT-4o-mini` references to `GPT-5.4-nano`; fixture count corrected from 200 to 500 tickets
 
 ### Changed
-- Sidebar layout restructured: branding (TAM Copilot title + caption) now appears above the page list; page-specific controls (e.g. Eval Dashboard provider selector) appear between the page list and the LLM toggle; LLM Provider toggle moved to the bottom of the sidebar
+- Sidebar layout restructured using `st.navigation(position="hidden")` + manual `st.page_link()` rendering: branding now appears above the page list, page-specific controls (e.g. Eval Dashboard provider selector) appear below it, and the LLM Provider toggle sits at the bottom
+- Eval Dashboard and Technical Info moved into a collapsible **Developers** expander in the sidebar — they are not day-to-day TAM tools
 - LLM status indicators downsized from colored info/success boxes to captions — less visual noise for a control meant to be out of the way
 - Removed redundant "Navigate using the sidebar pages" caption from Overview page
+- `requirements.txt` minimum Streamlit version bumped to `>=1.36.0` (`position="hidden"` requires 1.36)
+
+### Added (continued)
+- Technical Info page (Developers section) — active provider config with live Ollama reachability check, pulled models list, environment variable reference table, quality routing rules, fixture data stats, eval framework CLI reference, stack versions, and links to GitHub and Ollama model library
 
 ### Fixed (pre-existing test failures)
 - `test_triage_result_schema` and `test_triage_uses_quality_provider_for_p1`: `TicketTriageResult` grew a required `suggested_tags` field in 0.2.0 but these tests were never updated — both now pass

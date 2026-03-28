@@ -1,8 +1,14 @@
 """
-Shared sidebar rendered from the entry point.
+Shared sidebar rendered from the entry point (streamlit_app.py).
 
-Call render_sidebar_header() before st.navigation() — renders the branding above the page list.
-Call render_sidebar_footer() after pg.run() — renders the LLM toggle below page-specific controls.
+Sidebar order is controlled by call order in streamlit_app.py:
+  1. render_sidebar_header()        — branding, above nav
+  2. st.sidebar.page_link() loop   — nav links
+  3. pg.run()                       — page-specific controls (e.g. Eval Dashboard)
+  4. render_sidebar_footer()        — LLM toggle, below everything
+
+st.navigation() is called with position="hidden" so Streamlit does not inject
+its own nav into the sidebar; we render nav links manually for full layout control.
 """
 import os
 import streamlit as st
@@ -12,6 +18,7 @@ def render_sidebar_header():
     with st.sidebar:
         st.title("TAM Copilot")
         st.caption("AI-Powered Technical Account Management")
+        st.divider()
 
 
 def render_sidebar_footer():
