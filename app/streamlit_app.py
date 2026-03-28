@@ -40,20 +40,30 @@ if not st.session_state.get("_initialized"):
 
 st.markdown("""
 <style>
-/* Reduce default top padding on every page's main content area */
-.main .block-container { padding-top: 1.5rem !important; }
+/* Reduce default top padding on every page's main content area
+   Multiple selectors cover Streamlit version differences */
+.main .block-container,
+.stMainBlockContainer,
+[data-testid="stMainBlockContainer"],
+[data-testid="stAppViewBlockContainer"] {
+    padding-top: 1.5rem !important;
+}
 
-/* Tighten sidebar top padding */
-section[data-testid="stSidebar"] > div:first-child {
+/* Tighten sidebar top padding and enable flex column for anchored footer */
+section[data-testid="stSidebar"] > div:first-child,
+[data-testid="stSidebarContent"] {
     padding-top: 0.75rem !important;
+}
+section[data-testid="stSidebar"] > div:first-child {
     display: flex !important;
     flex-direction: column !important;
-    height: 100% !important;
+    height: 100vh !important;
 }
 
 /* Spacer before LLM footer — flex:1 fills remaining height, pushing footer to bottom */
 section[data-testid="stSidebar"] > div:first-child > div:has(.sidebar-footer-spacer) {
     flex: 1 !important;
+    min-height: 1rem !important;
 }
 </style>""", unsafe_allow_html=True)
 
