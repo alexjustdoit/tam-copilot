@@ -121,7 +121,20 @@ selected_id = st.selectbox("Select Account for Deep Assessment", options=[c.id f
 
 selected_customer = next(c for c in customers if c.id == selected_id)
 
-if st.button("Run Churn Risk Assessment", type="primary", use_container_width=True):
+if "churn_assessments" not in st.session_state:
+    st.session_state["churn_assessments"] = {}
+
+cached = st.session_state["churn_assessments"].get(selected_id)
+
+col_btn, col_hint = st.columns([2, 5])
+with col_btn:
+    run_label = "Re-run Assessment" if cached else "Run Churn Risk Assessment"
+    run = st.button(run_label, type="primary", use_container_width=True)
+with col_hint:
+    if cached:
+        st.caption(f"Showing cached result. Click Re-run to refresh.")
+
+if run:
     with st.spinner("Analyzing churn risk..."):
         try:
             from features.churn_risk import assess_churn_risk
@@ -132,46 +145,45 @@ if st.button("Run Churn Risk Assessment", type="primary", use_container_width=Tr
                 tickets=ticket_map.get(selected_id, []),
                 subscription=sub_map.get(selected_id),
             )
-
-            # Risk tier with color
-            tier_colors = {"Low": "green", "Medium": "orange", "High": "red", "Critical": "red"}
-            tier_icons = {"Low": "✅", "Medium": "⚠️", "High": "🔴", "Critical": "🚨"}
-
-            col1, col2 = st.columns(2)
-            with col1:
-                st.metric(
-                    "Risk Tier",
-                    f"{tier_icons[result.risk_tier]} {result.risk_tier}",
-                )
-            with col2:
-                st.metric("Churn Probability", f"{result.churn_probability_pct}%")
-
-            st.divider()
-
-            col1, col2 = st.columns(2)
-            with col1:
-                st.subheader("Top Risk Factors")
-                for factor in result.top_risk_factors:
-                    st.markdown(f"- {factor}")
-
-                st.subheader("Positive Signals")
-                for signal in result.positive_signals:
-                    st.markdown(f"- {signal}")
-
-            with col2:
-                st.subheader("Recommended Actions")
-                for i, action in enumerate(result.recommended_actions, 1):
-                    st.markdown(f"**{i}.** {action}")
-
-            st.divider()
-            st.subheader("Suggested Outreach Message")
-            st.text_area("Draft Message", result.suggested_outreach_message, height=150)
-
-            with st.expander("Reasoning"):
-                st.write(result.reasoning)
+            st.session_state["churn_assessments"][selected_id] = result
+            cached = result
 
         except ConnectionError as e:
             st.error(str(e))
         except Exception as e:
             st.error(f"Assessment failed: {e}")
             raise
+
+if cached:
+    result = cached
+    tier_icons = {"Low": "✅", "Medium": "⚠️", "High": "🔴", "Critical": "🚨"}
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Risk Tier", f"{tier_icons[result.risk_tier]} {result.risk_tier}")
+    with col2:
+        st.metric("Churn Probability", f"{result.churn_probability_pct}%")
+
+    st.divider()
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Top Risk Factors")
+        for factor in result.top_risk_factors:
+            st.markdown(f"- {factor}")
+
+        st.subheader("Positive Signals")
+        for signal in result.positive_signals:
+            st.markdown(f"- {signal}")
+
+    with col2:
+        st.subheader("Recommended Actions")
+        for i, action in enumerate(result.recommended_actions, 1):
+            st.markdown(f"**{i}.** {action}")
+
+    st.divider()
+    st.subheader("Suggested Outreach Message")
+    st.text_area("Draft Message", result.suggested_outreach_message, height=150)
+
+    with st.expander("Reasoning"):
+        st.write(result.reasoning)
