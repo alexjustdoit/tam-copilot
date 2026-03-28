@@ -23,6 +23,7 @@ def render_sidebar_header():
 
 def render_sidebar_footer():
     with st.sidebar:
+        st.markdown('<div class="sidebar-footer-spacer"></div>', unsafe_allow_html=True)
         st.divider()
         st.subheader("LLM Provider")
         use_local = st.toggle(

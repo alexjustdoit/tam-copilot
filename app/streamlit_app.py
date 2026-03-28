@@ -38,6 +38,25 @@ if not st.session_state.get("_initialized"):
     st.session_state["_initialized"] = True
     st.rerun()
 
+st.markdown("""
+<style>
+/* Reduce default top padding on every page's main content area */
+.main .block-container { padding-top: 1.5rem !important; }
+
+/* Tighten sidebar top padding */
+section[data-testid="stSidebar"] > div:first-child {
+    padding-top: 0.75rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+/* Spacer before LLM footer — flex:1 fills remaining height, pushing footer to bottom */
+section[data-testid="stSidebar"] > div:first-child > div:has(.sidebar-footer-spacer) {
+    flex: 1 !important;
+}
+</style>""", unsafe_allow_html=True)
+
 render_sidebar_header()
 
 
