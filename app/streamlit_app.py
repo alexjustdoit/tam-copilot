@@ -29,6 +29,15 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# On the first render of a fresh session (e.g. after server restart), the
+# position="hidden" sidebar layout can produce a broken frame before
+# Streamlit's frontend fully initialises. Triggering an immediate rerun
+# discards that first execution's output entirely — the frontend never sees
+# the broken state — and the second pass renders the full sidebar correctly.
+if not st.session_state.get("_initialized"):
+    st.session_state["_initialized"] = True
+    st.rerun()
+
 render_sidebar_header()
 
 
@@ -185,14 +194,6 @@ with st.sidebar:
     with st.expander("Developers"):
         for page in dev_pages:
             st.page_link(page)
-
-# On the first render after a server restart, session state is empty.
-# With position="hidden", the entire sidebar is Python-rendered, so a
-# deep-linked URL can produce a broken first render cycle. Redirecting to
-# Overview ensures the sidebar initialises correctly before the user navigates.
-if not st.session_state.get("_initialized"):
-    st.session_state["_initialized"] = True
-    st.switch_page(main_pages[0])
 
 pg.run()
 render_sidebar_footer()
