@@ -18,6 +18,10 @@ _SIDEBAR_CSS = """<style>
 [data-testid="stLogoSpacer"] {
     display: none !important;
 }
+[data-testid="stSidebarHeader"] {
+    min-height: 0 !important;
+    padding-bottom: 0 !important;
+}
 [data-testid="stSidebarContent"] {
     display: flex !important;
     flex-direction: column !important;
