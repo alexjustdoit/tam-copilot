@@ -99,9 +99,6 @@ Auto-generates executive-ready Quarterly Business Review talking points from 12 
 
 **Expansion Intelligence**
 Finds upsell and cross-sell opportunities by analyzing feature gaps vs. industry benchmarks.
-
-**Provider Comparison Eval**
-Side-by-side accuracy, latency, and cost benchmarks across Ollama, GPT-5.4-nano, and Claude Haiku.
 """)
 
     st.divider()
