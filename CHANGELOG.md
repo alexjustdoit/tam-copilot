@@ -8,13 +8,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.0.1] — 2026-03-28
 
 ### Added
-- TAM Owner filter on Churn Risk, Ticket Insights, Expansion Intelligence, and Management Insights pages — all pages with portfolio scope now have both Segment and TAM Owner filters
-- Segment filter added to Management Insights (was missing)
+- Persistent Segment and TAM Owner filters on every portfolio page (Overview, Customers, Churn Risk, Ticket Insights, Management Insights, Expansion Intelligence) — shared via session state, change once and all pages reflect it
+- Segment filter added to Management Insights and Overview Needs Attention (were missing)
 - Churn Risk assessment results cached in session state per customer — navigating away and back restores the last result instantly; button switches to "Re-run Assessment" when a cached result exists
 
 ### Fixed
 - Filter persistence across page navigation — switched from Streamlit `key=` pattern to explicit `default=session_state` + write-back, which reliably restores selections after page switches
-- Broken initial render when hard-refreshing on a deep-linked URL after server restart — app now redirects to Overview on first load to ensure the sidebar initialises correctly
+- Broken initial render when hard-refreshing on a deep-linked URL after server restart — immediate rerun on fresh session discards the broken first frame before it reaches the frontend
 
 ### Changed
 - Page titles now match sidebar nav labels exactly: Customers, Ticket Triage, Churn Risk, QBR Preparation
