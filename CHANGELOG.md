@@ -5,11 +5,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [1.0.1] — 2026-03-27
+## [1.0.1] — 2026-03-28
+
+### Added
+- TAM Owner filter on Churn Risk, Ticket Insights, Expansion Intelligence, and Management Insights pages — all pages with portfolio scope now have both Segment and TAM Owner filters
+- Segment filter added to Management Insights (was missing)
+
+### Fixed
+- Filter persistence across page navigation — switched from Streamlit `key=` pattern to explicit `default=session_state` + write-back, which reliably restores selections after page switches
 
 ### Changed
-- Segment filter selections (`filter_segments`, `filter_tams`) are now persistent across page navigation — set once on any page and all other pages reflect it immediately
-- Renamed "Tier" → "Segment" in all filter labels and summary table columns across Customers, Churn Risk, Ticket Insights, and Expansion Intelligence pages
+- Page titles now match sidebar nav labels exactly: Customers, Ticket Triage, Churn Risk, QBR Preparation
+- Renamed "Tier" → "Segment" in all filter labels and table columns across all pages
+- Segment and TAM Owner filters are shared across pages via session state (`filter_segments`, `filter_tams`) — changing a filter on one page is reflected on all others
+- Removed Provider / Latency metric from Churn Risk assessment output — not relevant to TAMs
 
 ---
 
@@ -29,32 +38,20 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [0.3.0] — 2026-03-27
 
 ### Added
-- Expansion Intelligence page (`8_Expansion_Intelligence.py`) — portfolio-wide expansion ranking table with heuristic scoring (seat utilization, DAU/MAU engagement, peer feature gaps, tier), plus per-account AI deep-dive using the existing `features/expansion.py` module
-- Customer detail drill-down on the Customers page — select any account to see subscription info, DAU/MAU trend chart, features adopted/unadopted, open tickets table, and on-demand AI health assessment
-- 7 new tests covering expansion schemas, `find_expansion_opportunities` provider wiring, `summarize_tag_trends` quality-provider enforcement, empty-tag edge case, and `taxonomy.py` round-trip/append behavior; 28/28 passing
+- Expansion Intelligence page — portfolio-wide expansion ranking table with heuristic scoring (seat utilization, DAU/MAU engagement, peer feature gaps, tier), plus per-account AI deep-dive
+- Customer detail drill-down on the Customers page — subscription info, DAU/MAU trend chart, features adopted/unadopted, open tickets table, and on-demand AI health assessment
+- Technical Info page (Developers section) — active provider config, live Ollama status, environment variable reference, quality routing rules, fixture stats, eval CLI reference, stack versions
+- 7 new tests covering expansion schemas, provider wiring, tag insights quality enforcement, and taxonomy persistence; 28/28 passing
 
 ### Fixed
-- `eval/evaluator.py`: replaced `"resp" in dir()` guard with `resp = None` initialization + `resp is not None` check — previous pattern could incorrectly inherit latency/cost from the prior loop iteration when a case failed mid-eval
-- `5_Eval_Dashboard.py`: stale caption updated from `GPT-4o-mini` to `GPT-5.4-nano`
-- `README.md`: updated 4 stale `GPT-4o-mini` references to `GPT-5.4-nano`; fixture count corrected from 200 to 500 tickets
+- `eval/evaluator.py`: `resp = None` initialization replaces `"resp" in dir()` guard — previous pattern could inherit stale latency/cost from prior loop iteration on failed cases
+- Stale `GPT-4o-mini` references updated to `GPT-5.4-nano` in Eval Dashboard and README
 
 ### Changed
-- Sidebar layout restructured using `st.navigation(position="hidden")` + manual `st.page_link()` rendering: branding now appears above the page list, page-specific controls (e.g. Eval Dashboard provider selector) appear below it, and the LLM Provider toggle sits at the bottom
-- Eval Dashboard and Technical Info moved into a collapsible **Developers** expander in the sidebar — they are not day-to-day TAM tools
-- LLM status indicators downsized from colored info/success boxes to captions — less visual noise for a control meant to be out of the way
-- Removed redundant "Navigate using the sidebar pages" caption from Overview page
-- Removed "Provider Comparison Eval" paragraph from Overview — it is a developer tool, not a TAM-facing feature
-- Moved LLM Provider Architecture table from Overview to Technical Info
-- Overview feature descriptions now use "**Feature Name:** Description" format for visual clarity
-- Overview top stats expanded from 4 to 6 metrics: added Triage Coverage % and ARR Renewing in 90 Days
-- Overview now includes a **Needs Attention** section — accounts with open P1/P2 tickets, renewals within 60 days, or low seat utilization near renewal, sorted by severity
-- `requirements.txt` minimum Streamlit version bumped to `>=1.36.0` (`position="hidden"` requires 1.36)
-
-### Added (continued)
-- Technical Info page (Developers section) — active provider config with live Ollama reachability check, pulled models list, environment variable reference table, quality routing rules, fixture data stats, eval framework CLI reference, stack versions, and links to GitHub and Ollama model library
-
-### Fixed (pre-existing test failures)
-- `test_triage_result_schema` and `test_triage_uses_quality_provider_for_p1`: `TicketTriageResult` grew a required `suggested_tags` field in 0.2.0 but these tests were never updated — both now pass
+- Sidebar layout restructured: branding above page list, Eval Dashboard and Technical Info moved into collapsible **Developers** expander, LLM status downsized to captions
+- Overview expanded: Needs Attention table (P1/P2, renewals, low utilization), 6-metric stats row, feature descriptions with colons for visual separation
+- LLM Provider Architecture table moved from Overview to Technical Info
+- `requirements.txt` minimum Streamlit bumped to `>=1.36.0`
 
 ---
 
