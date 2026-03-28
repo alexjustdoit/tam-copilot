@@ -14,6 +14,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 - Filter persistence across page navigation — switched from Streamlit `key=` pattern to explicit `default=session_state` + write-back, which reliably restores selections after page switches
+- Broken initial render when hard-refreshing on a deep-linked URL after server restart — app now redirects to Overview on first load to ensure the sidebar initialises correctly
 
 ### Changed
 - Page titles now match sidebar nav labels exactly: Customers, Ticket Triage, Churn Risk, QBR Preparation
