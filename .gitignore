@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 eval/results.json
+.DS_Store
+app/.DS_Store
+data/.DS_Store
+eval/.DS_Store
+llm/.DS_Store
