@@ -2,6 +2,8 @@
 
 AI-powered Technical Account Management dashboard built to demonstrate LLM engineering, structured outputs, cost-aware provider routing, and deep TAM/CSM domain knowledge.
 
+![App screenshot](docs/screenshot.png) 
+
 ## Features
 
 | Page | What it does |
