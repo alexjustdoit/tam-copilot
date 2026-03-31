@@ -38,12 +38,24 @@ Provider selection is a single `.env` flag — no code changes needed to switch.
 
 ## Quick Start
 
+**Mac/Linux:**
 ```bash
 git clone https://github.com/alexjustdoit/tam-copilot
 cd tam-copilot
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env        # edit: set USE_LOCAL_LLM and API keys
+streamlit run app/streamlit_app.py
+```
+
+**Windows (Command Prompt or PowerShell):**
+```bat
+git clone https://github.com/alexjustdoit/tam-copilot
+cd tam-copilot
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+copy .env.example .env
 streamlit run app/streamlit_app.py
 ```
 
@@ -76,7 +88,11 @@ Set `USE_LOCAL_LLM=true` in `.env`. All LLM calls are free and run on your machi
 ## Tests
 
 ```bash
+# Mac/Linux
 source venv/bin/activate
+# Windows
+venv\Scripts\activate
+
 pytest tests/ -v
 ```
 
