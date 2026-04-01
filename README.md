@@ -6,7 +6,19 @@ AI-powered Technical Account Management dashboard built to demonstrate LLM engin
 
 > **Note:** Hosted on Streamlit's free tier — the app sleeps after a period of inactivity. If you see a "This app has gone to sleep" screen, click the wake-up button and allow 30–60 seconds to start.
 
-![App screenshot](docs/screenshot.png) 
+![App screenshot](docs/screenshot.png)
+
+---
+
+## Why I built this
+
+The TAM role is reactive by default — triage, health monitoring, QBR prep, and churn assessment each live in a different tool, and the work of connecting them falls to manual effort or doesn't happen at all. This app models what the proactive version looks like when the data is unified: see at a glance which accounts need attention today, run triage across an entire portfolio without opening each ticket individually, identify churn risk before renewal pressure hits, and generate QBR material from twelve months of structured data rather than from memory.
+
+This is a portfolio project targeting Solutions Architect and pre-sales engineering roles. It's built to demonstrate both domain fluency — the pages and workflows reflect what someone who has actually done TAM work would want to see — and technical depth: provider abstraction, structured outputs, quality-aware routing, and an eval framework with a labeled dataset.
+
+Fixture data covers 50 customers, 500 tickets, usage records, and subscriptions — all committed to the repo so any reviewer can clone and run immediately.
+
+---
 
 ## Features
 
@@ -28,6 +40,8 @@ Developer tools (collapsible sidebar section):
 | **Eval Dashboard** | Run the 20-case labeled eval against any provider; side-by-side accuracy/latency/cost comparison |
 | **Technical Info** | Live Ollama status, active provider config, env var reference, quality routing rules, fixture stats, stack versions |
 
+---
+
 ## Architecture
 
 ```
@@ -40,7 +54,15 @@ Provider selection is a single `.env` flag — no code changes needed to switch.
 
 **Quality routing triggers:** P1 ticket triage, churn risk within 90 days of renewal, QBR generation, AI narrative summaries (tag insights, management insights).
 
-## Quick Start
+---
+
+## Stack
+
+Python · Streamlit · Pydantic v2 · OpenAI GPT-5.4-nano · Anthropic Claude Haiku 4.5 · Ollama · Faker
+
+---
+
+## Setup
 
 **Mac/Linux:**
 ```bash
@@ -65,10 +87,9 @@ streamlit run app/streamlit_app.py
 
 Fixture data (50 customers, 500 tickets, usage records, subscriptions) is committed — the app runs immediately with no seed step.
 
-## Configuration
+**Environment variables** (in `.env`):
 
 ```bash
-# .env
 USE_LOCAL_LLM=true          # true → Ollama (free); false → OpenAI/Claude API
 OLLAMA_BASE_URL=http://localhost:11434   # override for remote Ollama
 OPENAI_API_KEY=sk-...       # required when USE_LOCAL_LLM=false
@@ -79,7 +100,7 @@ ANTHROPIC_API_KEY=sk-ant-...  # optional — enables quality routing to Claude
 
 Demo session cost on GPT-5.4-nano: ~$0.05–0.20 total.
 
-## Local LLM (Ollama)
+**Local LLM (Ollama):**
 
 ```bash
 # Install: https://ollama.com
@@ -88,6 +109,8 @@ ollama serve
 ```
 
 Set `USE_LOCAL_LLM=true` in `.env`. All LLM calls are free and run on your machine.
+
+---
 
 ## Tests
 
@@ -179,6 +202,8 @@ If the laptop can't reach the desktop, add a port proxy in Windows PowerShell (A
 ```powershell
 netsh interface portproxy add v4tov4 listenport=11434 listenaddress=0.0.0.0 connectport=11434 connectaddress=<wsl2-ip>
 ```
+
+---
 
 ## Portfolio Talking Points
 
