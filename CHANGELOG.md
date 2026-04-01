@@ -5,6 +5,25 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.1.0] — 2026-04-01
+
+### Added
+- Per-session data isolation for Streamlit Community Cloud (`SCC_MODE=true`) — each visitor gets their own copy of fixture data in `data/sessions/{token}/` via URL query param token; triage saves, taxonomy changes, and tag edits never bleed between sessions
+- **Reset Demo Data** button in sidebar (SCC only) — wipes session directory, clears token and state, restores stock fixture data instantly
+- QBR **TAM Summary** — candid internal bullet points covering health signals, risks, renewal urgency, and relationship context; for pre-call prep
+- QBR **Executive Summary** split from single string to list of polished talking points — positive/forward-looking but honest about major known issues
+
+### Fixed
+- Sidebar default nav flash on initial load — moved `st.navigation(position="hidden")` before `render_sidebar_header()` so Streamlit registers hidden nav before rendering the sidebar
+- `SCC_MODE` env var not detected on Streamlit Cloud — switched from `os.getenv` to `st.secrets` with `os.getenv` fallback for local dev
+- QBR generation truncated JSON error — increased Claude provider `max_tokens` from 1024 to 2048 to accommodate larger structured output
+
+### Changed
+- `load_data()` on all pages now accepts `fixtures_dir: str` parameter so `@st.cache_data` caches per session directory in SCC mode
+- `data/taxonomy.py` is session-aware in SCC mode — reads/writes taxonomy from session directory instead of shared file
+
+---
+
 ## [1.0.1] — 2026-03-28
 
 ### Added
