@@ -90,7 +90,7 @@ def render_sidebar_footer():
 
         st.caption("Python · Streamlit · Ollama · OpenAI · Anthropic")
 
-        if os.getenv("SCC_MODE", "false").lower() == "true":
+        if str(st.secrets.get("SCC_MODE", os.getenv("SCC_MODE", "false"))).lower() == "true":
             st.divider()
             if st.button("↺ Reset Demo Data", use_container_width=True, help="Restore stock fixture data and start a fresh session"):
                 from data.session_store import reset_session

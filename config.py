@@ -9,7 +9,14 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent / ".env")
 
 # Demo isolation (Streamlit Community Cloud only — set via SCC secrets, never locally)
-SCC_MODE: bool = os.getenv("SCC_MODE", "false").lower() == "true"
+def _get_scc_mode() -> bool:
+    try:
+        import streamlit as st
+        return str(st.secrets.get("SCC_MODE", os.getenv("SCC_MODE", "false"))).lower() == "true"
+    except Exception:
+        return os.getenv("SCC_MODE", "false").lower() == "true"
+
+SCC_MODE: bool = _get_scc_mode()
 
 # LLM routing
 USE_LOCAL_LLM: bool = os.getenv("USE_LOCAL_LLM", "true").lower() == "true"
