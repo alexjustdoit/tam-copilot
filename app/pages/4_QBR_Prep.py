@@ -90,8 +90,19 @@ if run:
 if cached:
     qbr = cached
 
+    st.subheader("TAM Summary")
+    st.caption("Internal — your quick pre-call snapshot.")
+    for bullet in qbr.tam_summary:
+        st.markdown(f"- {bullet}")
+
+    st.divider()
+
     st.subheader("Executive Summary")
-    st.info(qbr.executive_summary)
+    st.caption("Talking points to adapt when opening the QBR with customer stakeholders.")
+    for point in qbr.executive_summary:
+        st.markdown(f"- {point}")
+
+    st.divider()
 
     col1, col2 = st.columns(2)
     with col1:
@@ -131,8 +142,11 @@ if cached:
 Generated: {date.today()}
 TAM: {selected.tam_owner}
 
-EXECUTIVE SUMMARY
-{qbr.executive_summary}
+TAM SUMMARY (internal)
+{chr(10).join(f'- {b}' for b in qbr.tam_summary)}
+
+EXECUTIVE SUMMARY (talking points)
+{chr(10).join(f'- {p}' for p in qbr.executive_summary)}
 
 BUSINESS WINS
 {chr(10).join(f'- {w}' for w in qbr.business_wins)}

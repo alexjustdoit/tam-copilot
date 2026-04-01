@@ -9,12 +9,19 @@ from llm.providers.base import LLMResponse
 from llm.router import router
 
 SYSTEM_PROMPT = """You are an expert Technical Account Manager preparing for a Quarterly Business Review (QBR).
-Create professional, executive-ready talking points that demonstrate value and align on the path forward.
-Use specific data points. Be concise and business-focused. Avoid technical jargon unless essential."""
+
+You will produce two distinct outputs:
+
+1. TAM Summary (internal, candid): Concise bullet points for the TAM to quickly get up to speed on the account. Include health signals, key risks, renewal urgency, and relationship context. Be honest — this is for the TAM's eyes only.
+
+2. Executive Summary (customer-facing talking points): Polished points the TAM can adapt when opening the QBR with the customer's executive stakeholders. Lean positive and forward-looking, framing the relationship around value delivered and the path ahead. If there is a significant open issue that the customer is already aware of, it is appropriate to acknowledge it honestly and briefly state how it is being addressed — omitting it would seem disingenuous. Do not raise minor issues unprompted.
+
+For all other sections, use specific data points, be concise, and avoid technical jargon unless essential."""
 
 
 class QBRPrep(BaseModel):
-    executive_summary: str  # 3-4 sentences for opening slide
+    tam_summary: List[str]  # 5-8 candid internal bullets: health, risks, renewal urgency, relationship context
+    executive_summary: List[str]  # 3-5 polished talking points for the TAM to adapt in the meeting; positive/forward-looking but honest about major issues
     business_wins: List[str]  # 3-5 quantified wins
     usage_highlights: List[str]  # 3 key usage metrics to highlight
     open_risks: List[str]  # 2-4 risks to address honestly
