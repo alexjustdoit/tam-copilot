@@ -10,25 +10,25 @@ from llm.router import router
 
 SYSTEM_PROMPT = """You are an expert Technical Account Manager preparing for a Quarterly Business Review (QBR).
 
+Keep every item brief — 15 words or fewer per bullet or talking point. Use specific data points. Avoid filler and jargon.
+
 You will produce two distinct outputs:
 
-1. TAM Summary (internal, candid): Concise bullet points for the TAM to quickly get up to speed on the account. Include health signals, key risks, renewal urgency, and relationship context. Be honest — this is for the TAM's eyes only.
+1. TAM Summary (internal, candid): Brief bullets for the TAM to get up to speed fast. Cover health signals, key risks, renewal urgency, and relationship context. Be honest — this is internal only.
 
-2. Executive Summary (customer-facing talking points): Polished points the TAM can adapt when opening the QBR with the customer's executive stakeholders. Lean positive and forward-looking, framing the relationship around value delivered and the path ahead. If there is a significant open issue that the customer is already aware of, it is appropriate to acknowledge it honestly and briefly state how it is being addressed — omitting it would seem disingenuous. Do not raise minor issues unprompted.
-
-For all other sections, use specific data points, be concise, and avoid technical jargon unless essential."""
+2. Executive Summary (customer-facing talking points): Short polished points the TAM adapts when opening the QBR. Lean positive and forward-looking. If a significant known issue exists, acknowledge it briefly and note how it is being addressed — omitting it would seem disingenuous. Do not raise minor issues."""
 
 
 class QBRPrep(BaseModel):
-    tam_summary: List[str]  # 5-8 candid internal bullets: health, risks, renewal urgency, relationship context
-    executive_summary: List[str]  # 3-5 polished talking points for the TAM to adapt in the meeting; positive/forward-looking but honest about major issues
-    business_wins: List[str]  # 3-5 quantified wins
+    tam_summary: List[str]  # 4-6 candid internal bullets: health, risks, renewal urgency, relationship context
+    executive_summary: List[str]  # 3-4 polished talking points; positive/forward-looking but honest about major issues
+    business_wins: List[str]  # 3 quantified wins
     usage_highlights: List[str]  # 3 key usage metrics to highlight
-    open_risks: List[str]  # 2-4 risks to address honestly
-    strategic_asks: List[str]  # 2-3 asks from customer (exec sponsor, expansion, etc.)
-    renewal_talking_points: List[str]  # 2-3 points to frame the renewal
-    suggested_agenda: List[str]  # 5-7 agenda items with estimated time
-    follow_up_actions: List[str]  # 3-5 post-QBR next steps
+    open_risks: List[str]  # 2-3 risks to address honestly
+    strategic_asks: List[str]  # 2 asks from customer (exec sponsor, expansion, etc.)
+    renewal_talking_points: List[str]  # 2 points to frame the renewal
+    suggested_agenda: List[str]  # 5 agenda items with estimated time
+    follow_up_actions: List[str]  # 3 post-QBR next steps
 
 
 def generate_qbr(
