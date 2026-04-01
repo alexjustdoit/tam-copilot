@@ -77,7 +77,7 @@ def render_sidebar_header():
         st.divider()
 
 
-def render_sidebar_footer():
+def render_sidebar_footer(dev_pages=None):
     with st.sidebar:
         st.markdown('<div class="sidebar-footer-spacer"></div>', unsafe_allow_html=True)
         st.divider()
@@ -112,6 +112,11 @@ def render_sidebar_footer():
                 if has_anthropic:
                     st.caption("✅ Anthropic key set")
 
+
+        if dev_pages:
+            with st.expander("Developers"):
+                for page in dev_pages:
+                    st.page_link(page)
 
         if scc_mode:
             st.divider()
