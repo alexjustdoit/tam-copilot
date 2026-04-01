@@ -14,13 +14,17 @@ import os
 import streamlit as st
 
 
-_TAM_ICON_SVG = """
-<div style="display:flex; justify-content:center; padding: 0.75rem 0 0.5rem 0;">
-<svg width="52" height="44" viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="2" y="26" width="12" height="18" rx="2.5" fill="#4A90D9" opacity="0.55"/>
-  <rect x="20" y="14" width="12" height="30" rx="2.5" fill="#4A90D9" opacity="0.75"/>
-  <rect x="38" y="2" width="12" height="42" rx="2.5" fill="#4A90D9"/>
-</svg>
+_TAM_BRANDING_HTML = """
+<div style="min-height: 130px;">
+  <div style="display:flex; justify-content:center; padding: 0.75rem 0 0.5rem 0;">
+    <svg width="52" height="44" viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="26" width="12" height="18" rx="2.5" fill="#4A90D9" opacity="0.55"/>
+      <rect x="20" y="14" width="12" height="30" rx="2.5" fill="#4A90D9" opacity="0.75"/>
+      <rect x="38" y="2" width="12" height="42" rx="2.5" fill="#4A90D9"/>
+    </svg>
+  </div>
+  <p style="font-size: 1.75rem; font-weight: 700; line-height: 1.2; margin: 0 0 0.2rem 0;">TAM Copilot</p>
+  <p style="font-size: 0.875rem; opacity: 0.6; margin: 0; line-height: 1.4;">AI-Powered Technical Account Management</p>
 </div>
 """
 
@@ -69,9 +73,7 @@ section[data-testid="stSidebar"] [data-testid="stSidebarHeader"] {
 def render_sidebar_header():
     with st.sidebar:
         st.markdown(_SIDEBAR_CSS, unsafe_allow_html=True)
-        st.markdown(_TAM_ICON_SVG, unsafe_allow_html=True)
-        st.title("TAM Copilot")
-        st.caption("AI-Powered Technical Account Management")
+        st.markdown(_TAM_BRANDING_HTML, unsafe_allow_html=True)
         st.divider()
 
 
