@@ -10,6 +10,7 @@ import config  # noqa: F401
 
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
 from data.session_store import get_fixtures_dir
+from features.qbr_prep import QBRPrep
 
 st.title("QBR Preparation")
 st.caption("Auto-generate executive-ready Quarterly Business Review talking points from customer data.")
@@ -54,14 +55,65 @@ with col4:
 
 st.divider()
 
+_QBR_CACHE_FILE = Path(get_fixtures_dir()) / "qbr_cache.json"
+
 if "qbr_cache" not in st.session_state:
     st.session_state["qbr_cache"] = {}
 
+# Populate session cache from file-based cache on first access per customer
+if selected_id not in st.session_state["qbr_cache"] and _QBR_CACHE_FILE.exists():
+    try:
+        file_cache = json.loads(_QBR_CACHE_FILE.read_text())
+        if selected_id in file_cache:
+            st.session_state["qbr_cache"][selected_id] = QBRPrep.model_validate(file_cache[selected_id])
+    except Exception:
+        pass
+
 cached = st.session_state["qbr_cache"].get(selected_id)
 
-col_btn, col_hint = st.columns([2, 5])
+col_btn, col_dl, col_hint = st.columns([2, 2, 3])
 with col_btn:
     run = st.button("Re-run QBR" if cached else "Generate QBR", type="primary", use_container_width=True)
+with col_dl:
+    if cached:
+        _dl_text = f"""QBR Preparation: {selected.company_name}
+Generated: {date.today()}
+TAM: {selected.tam_owner}
+
+TAM SUMMARY (internal)
+{chr(10).join(f'- {b}' for b in cached.tam_summary)}
+
+EXECUTIVE SUMMARY (talking points)
+{chr(10).join(f'- {p}' for p in cached.executive_summary)}
+
+BUSINESS WINS
+{chr(10).join(f'- {w}' for w in cached.business_wins)}
+
+USAGE HIGHLIGHTS
+{chr(10).join(f'- {h}' for h in cached.usage_highlights)}
+
+OPEN RISKS
+{chr(10).join(f'- {r}' for r in cached.open_risks)}
+
+STRATEGIC ASKS
+{chr(10).join(f'- {a}' for a in cached.strategic_asks)}
+
+RENEWAL TALKING POINTS
+{chr(10).join(f'- {p}' for p in cached.renewal_talking_points)}
+
+SUGGESTED AGENDA
+{chr(10).join(f'- {i}' for i in cached.suggested_agenda)}
+
+FOLLOW-UP ACTIONS
+{chr(10).join(f'- {a}' for a in cached.follow_up_actions)}
+"""
+        st.download_button(
+            label="Download QBR Notes",
+            data=_dl_text,
+            file_name=f"qbr_{selected.company_name.replace(' ', '_')}_{date.today()}.txt",
+            mime="text/plain",
+            use_container_width=True,
+        )
 with col_hint:
     if cached:
         st.caption("Showing cached result. Click Re-run to refresh.")
@@ -79,7 +131,17 @@ if run:
             )
             st.session_state["qbr_cache"][selected_id] = qbr
             cached = qbr
+
+            # Persist to file-based cache so it survives page navigation
+            try:
+                existing = json.loads(_QBR_CACHE_FILE.read_text()) if _QBR_CACHE_FILE.exists() else {}
+                existing[selected_id] = qbr.model_dump()
+                _QBR_CACHE_FILE.write_text(json.dumps(existing))
+            except Exception:
+                pass
+
             st.success(f"QBR generated in {resp.latency_ms:.0f}ms via {resp.provider.upper()}")
+            st.rerun()
 
         except ConnectionError as e:
             st.error(str(e))
@@ -136,42 +198,3 @@ if cached:
     for item in qbr.suggested_agenda:
         st.markdown(f"- {item}")
 
-    st.divider()
-
-    qbr_text = f"""QBR Preparation: {selected.company_name}
-Generated: {date.today()}
-TAM: {selected.tam_owner}
-
-TAM SUMMARY (internal)
-{chr(10).join(f'- {b}' for b in qbr.tam_summary)}
-
-EXECUTIVE SUMMARY (talking points)
-{chr(10).join(f'- {p}' for p in qbr.executive_summary)}
-
-BUSINESS WINS
-{chr(10).join(f'- {w}' for w in qbr.business_wins)}
-
-USAGE HIGHLIGHTS
-{chr(10).join(f'- {h}' for h in qbr.usage_highlights)}
-
-OPEN RISKS
-{chr(10).join(f'- {r}' for r in qbr.open_risks)}
-
-STRATEGIC ASKS
-{chr(10).join(f'- {a}' for a in qbr.strategic_asks)}
-
-RENEWAL TALKING POINTS
-{chr(10).join(f'- {p}' for p in qbr.renewal_talking_points)}
-
-SUGGESTED AGENDA
-{chr(10).join(f'- {i}' for i in qbr.suggested_agenda)}
-
-FOLLOW-UP ACTIONS
-{chr(10).join(f'- {a}' for a in qbr.follow_up_actions)}
-"""
-    st.download_button(
-        label="Download QBR Notes",
-        data=qbr_text,
-        file_name=f"qbr_{selected.company_name.replace(' ', '_')}_{date.today()}.txt",
-        mime="text/plain",
-    )
