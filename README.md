@@ -64,7 +64,6 @@ Python · Streamlit · Pydantic v2 · OpenAI GPT-5.4-nano · Anthropic Claude Ha
 
 ## Setup
 
-**Mac/Linux:**
 ```bash
 git clone https://github.com/alexjustdoit/tam-copilot
 cd tam-copilot
@@ -74,16 +73,7 @@ cp .env.example .env        # edit: set USE_LOCAL_LLM and API keys
 streamlit run app/streamlit_app.py
 ```
 
-**Windows (Command Prompt or PowerShell):**
-```bat
-git clone https://github.com/alexjustdoit/tam-copilot
-cd tam-copilot
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-copy .env.example .env
-streamlit run app/streamlit_app.py
-```
+**Windows:** replace `cp` with `copy` and `source venv/bin/activate` with `venv\Scripts\activate`.
 
 Fixture data (50 customers, 500 tickets, usage records, subscriptions) is committed — the app runs immediately with no seed step.
 
@@ -91,35 +81,17 @@ Fixture data (50 customers, 500 tickets, usage records, subscriptions) is commit
 
 ```bash
 USE_LOCAL_LLM=true          # true → Ollama (free); false → OpenAI/Claude API
-OLLAMA_BASE_URL=http://localhost:11434   # override for remote Ollama
 OPENAI_API_KEY=sk-...       # required when USE_LOCAL_LLM=false
 ANTHROPIC_API_KEY=sk-ant-...  # optional — enables quality routing to Claude
 ```
 
-**Recommended workflow:** develop with `USE_LOCAL_LLM=true` (free, instant), flip to `false` before a demo or interview where output quality matters.
-
-Demo session cost on GPT-5.4-nano: ~$0.05–0.20 total.
-
-**Local LLM (Ollama):**
-
-```bash
-# Install: https://ollama.com
-ollama pull llama3.1:8b
-ollama serve
-```
-
-Set `USE_LOCAL_LLM=true` in `.env`. All LLM calls are free and run on your machine.
+To run fully free locally, install [Ollama](https://ollama.com), run `ollama pull llama3.1:8b`, and set `USE_LOCAL_LLM=true`. All LLM calls run on your machine at no cost. Demo session cost on API providers: ~$0.05–0.20 total.
 
 ---
 
 ## Tests
 
 ```bash
-# Mac/Linux
-source venv/bin/activate
-# Windows
-venv\Scripts\activate
-
 pytest tests/ -v
 ```
 
@@ -158,49 +130,6 @@ tam-copilot/
 │   ├── metrics.py              # scoring logic (EvalReport, score_triage)
 │   └── datasets/               # 20-case labeled JSONL dataset
 └── tests/                      # pytest suite
-```
-
-## WSL2 Setup (Windows + GPU)
-
-If you're running this on Windows with a GPU for Ollama:
-
-**Prerequisites (Windows side):**
-- WSL2 with Ubuntu: `wsl --install` in PowerShell (Admin), then reboot
-- NVIDIA drivers: download from nvidia.com — no separate CUDA install needed in WSL2
-
-**Inside WSL2:**
-```bash
-# Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-ollama pull llama3.1:8b
-
-# Clone and set up the project inside WSL2 (not on /mnt/c — performance matters)
-cd ~
-git clone https://github.com/alexjustdoit/tam-copilot
-cd tam-copilot
-python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-
-# Run
-ollama serve &
-streamlit run app/streamlit_app.py --server.address 0.0.0.0
-```
-
-Access via the WSL2 IP printed at startup (not localhost) in your Windows browser. Find it anytime with `hostname -I | awk '{print $1}'`.
-
-**Remote Ollama (desktop GPU → laptop):**
-```bash
-# On desktop WSL2:
-OLLAMA_HOST=0.0.0.0 ollama serve
-
-# On laptop .env:
-OLLAMA_BASE_URL=http://<desktop-windows-ip>:11434
-```
-
-If the laptop can't reach the desktop, add a port proxy in Windows PowerShell (Admin):
-```powershell
-netsh interface portproxy add v4tov4 listenport=11434 listenaddress=0.0.0.0 connectport=11434 connectaddress=<wsl2-ip>
 ```
 
 ---
