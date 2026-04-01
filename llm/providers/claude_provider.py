@@ -53,29 +53,27 @@ class ClaudeProvider(LLMProvider):
         schema: Type[BaseModel],
         temperature: float = 0.1,
     ) -> tuple[BaseModel, LLMResponse]:
-        schema_json = json.dumps(schema.model_json_schema(), indent=2)
-        structured_system = (
-            f"{system}\n\n"
-            f"Respond with a JSON object matching this schema:\n{schema_json}\n"
-            "Output only the JSON, no markdown fences or explanation."
-        )
+        tool_def = {
+            "name": "structured_output",
+            "description": "Output the structured result.",
+            "input_schema": schema.model_json_schema(),
+        }
         start = time.monotonic()
         response = self.client.messages.create(
             model=self.model,
             max_tokens=4096,
-            system=structured_system,
+            system=system,
             messages=[{"role": "user", "content": user}],
+            tools=[tool_def],
+            tool_choice={"type": "tool", "name": "structured_output"},
             temperature=temperature,
         )
         latency_ms = (time.monotonic() - start) * 1000
-        content = response.content[0].text
 
-        clean = content.strip()
-        if clean.startswith("```"):
-            lines = clean.split("\n")
-            clean = "\n".join(lines[1:-1]) if len(lines) > 2 else clean
+        tool_block = next(b for b in response.content if b.type == "tool_use")
+        parsed = schema.model_validate(tool_block.input)
+        content = json.dumps(tool_block.input)
 
-        parsed = schema.model_validate_json(clean)
         resp = LLMResponse(
             content=content,
             provider="claude",
