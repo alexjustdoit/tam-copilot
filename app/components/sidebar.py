@@ -79,29 +79,40 @@ def render_sidebar_footer():
     with st.sidebar:
         st.markdown('<div class="sidebar-footer-spacer"></div>', unsafe_allow_html=True)
         st.divider()
-        st.subheader("LLM Provider")
-        use_local = st.toggle(
-            "Use Local LLM (Ollama)",
-            value=os.getenv("USE_LOCAL_LLM", "true").lower() == "true",
-            help="Toggle between free local Ollama and API providers",
-        )
-        os.environ["USE_LOCAL_LLM"] = "true" if use_local else "false"
+        scc_mode = str(st.secrets.get("SCC_MODE", os.getenv("SCC_MODE", "false"))).lower() == "true"
 
-        if use_local:
-            st.caption("Local mode · Free · requires Ollama")
+        st.subheader("LLM Provider")
+        if scc_mode:
+            st.toggle(
+                "Use Local LLM (Ollama)",
+                value=False,
+                disabled=True,
+                help="Local Ollama is not available on the hosted demo — the app uses OpenAI (standard tasks) and Anthropic Claude (quality tasks) automatically.",
+            )
+            st.caption("Demo uses OpenAI + Anthropic · Local Ollama available when self-hosted")
         else:
-            has_openai = bool(os.getenv("OPENAI_API_KEY"))
-            has_anthropic = bool(os.getenv("ANTHROPIC_API_KEY"))
-            if has_openai:
-                st.caption("✅ OpenAI key set")
+            use_local = st.toggle(
+                "Use Local LLM (Ollama)",
+                value=os.getenv("USE_LOCAL_LLM", "true").lower() == "true",
+                help="Toggle between free local Ollama and API providers",
+            )
+            os.environ["USE_LOCAL_LLM"] = "true" if use_local else "false"
+
+            if use_local:
+                st.caption("Local mode · Free · requires Ollama")
             else:
-                st.warning("Set OPENAI_API_KEY in .env")
-            if has_anthropic:
-                st.caption("✅ Anthropic key set")
+                has_openai = bool(os.getenv("OPENAI_API_KEY"))
+                has_anthropic = bool(os.getenv("ANTHROPIC_API_KEY"))
+                if has_openai:
+                    st.caption("✅ OpenAI key set")
+                else:
+                    st.warning("Set OPENAI_API_KEY in .env")
+                if has_anthropic:
+                    st.caption("✅ Anthropic key set")
 
         st.caption("Python · Streamlit · Ollama · OpenAI · Anthropic")
 
-        if str(st.secrets.get("SCC_MODE", os.getenv("SCC_MODE", "false"))).lower() == "true":
+        if scc_mode:
             st.divider()
             if st.button("↺ Reset Demo Data", use_container_width=True, help="Restore stock fixture data and start a fresh session"):
                 from data.session_store import reset_session
