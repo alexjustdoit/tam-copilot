@@ -29,6 +29,13 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# On the first render after a cold start, Streamlit's frontend hasn't fully
+# initialised position="hidden" nav yet, producing a broken default sidebar.
+# Forcing an immediate rerun discards that frame before it reaches the user.
+if not st.session_state.get("_initialized"):
+    st.session_state["_initialized"] = True
+    st.rerun()
+
 st.markdown("""
 <style>
 /* Reduce default top padding on every page's main content area */
