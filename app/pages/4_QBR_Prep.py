@@ -76,42 +76,54 @@ with col_btn:
     run = st.button("Re-run QBR" if cached else "Generate QBR", type="primary", use_container_width=True)
 with col_dl:
     if cached:
-        _dl_text = f"""QBR Preparation: {selected.company_name}
-Generated: {date.today()}
-TAM: {selected.tam_owner}
+        _dl_text = f"""# QBR Preparation: {selected.company_name}
 
-TAM SUMMARY (internal)
+**Generated:** {date.today()}
+**TAM:** {selected.tam_owner}
+
+---
+
+## TAM Summary *(internal)*
+
 {chr(10).join(f'- {b}' for b in cached.tam_summary)}
 
-EXECUTIVE SUMMARY (talking points)
+## Executive Summary *(talking points)*
+
 {chr(10).join(f'- {p}' for p in cached.executive_summary)}
 
-BUSINESS WINS
+## Business Wins
+
 {chr(10).join(f'- {w}' for w in cached.business_wins)}
 
-USAGE HIGHLIGHTS
+## Usage Highlights
+
 {chr(10).join(f'- {h}' for h in cached.usage_highlights)}
 
-OPEN RISKS
+## Open Risks *(address honestly)*
+
 {chr(10).join(f'- {r}' for r in cached.open_risks)}
 
-STRATEGIC ASKS
+## Strategic Asks
+
 {chr(10).join(f'- {a}' for a in cached.strategic_asks)}
 
-RENEWAL TALKING POINTS
+## Renewal Talking Points
+
 {chr(10).join(f'- {p}' for p in cached.renewal_talking_points)}
 
-SUGGESTED AGENDA
+## Suggested Agenda
+
 {chr(10).join(f'- {i}' for i in cached.suggested_agenda)}
 
-FOLLOW-UP ACTIONS
+## Follow-Up Actions
+
 {chr(10).join(f'- {a}' for a in cached.follow_up_actions)}
 """
         st.download_button(
             label="Download QBR Notes",
             data=_dl_text,
-            file_name=f"qbr_{selected.company_name.replace(' ', '_')}_{date.today()}.txt",
-            mime="text/plain",
+            file_name=f"qbr_{selected.company_name.replace(' ', '_')}_{date.today()}.md",
+            mime="text/markdown",
             use_container_width=True,
         )
 with col_hint:
