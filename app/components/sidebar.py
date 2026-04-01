@@ -121,7 +121,7 @@ section[data-testid="stSidebar"] div[data-testid="stButton"] button {
     letter-spacing: 0.01em;
 }
 </style>""", unsafe_allow_html=True)
-            if st.button("↺\u2002Reset Demo Data", use_container_width=True, help="Restore stock fixture data and start a fresh session"):
+            if st.button("↺\u2002Reset Demo", use_container_width=True, help="Restore stock fixture data and start a fresh session"):
                 from data.session_store import reset_session
                 reset_session()
                 st.rerun()
