@@ -110,7 +110,6 @@ def render_sidebar_footer():
                 if has_anthropic:
                     st.caption("✅ Anthropic key set")
 
-        st.caption("Python · Streamlit · Ollama · OpenAI · Anthropic")
 
         if scc_mode:
             st.divider()
