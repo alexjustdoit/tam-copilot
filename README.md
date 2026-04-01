@@ -2,7 +2,7 @@
 
 AI-powered Technical Account Management dashboard built to demonstrate LLM engineering, structured outputs, cost-aware provider routing, and deep TAM/CSM domain knowledge.
 
-[Demo the app on Streamlit!](https://tam-copilot.streamlit.app/)
+**[Try the live demo →](https://tam-copilot.streamlit.app)**
 
 > **Note:** Hosted on Streamlit's free tier — the app sleeps after a period of inactivity. If you see a "This app has gone to sleep" screen, click the wake-up button and allow 30–60 seconds to start.
 
