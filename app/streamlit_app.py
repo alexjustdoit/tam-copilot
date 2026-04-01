@@ -4,7 +4,7 @@ Run with: streamlit run app/streamlit_app.py
 
 NOTE FOR DEVELOPERS: Adding a new page is a two-step process:
   1. Create the page file in app/pages/
-  2. Register it in the st.navigation() list at the bottom of this file
+  2. Register it in the st.navigation() list below
 Streamlit will NOT auto-discover pages when st.navigation() is in use.
 """
 import sys
@@ -29,15 +29,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# On the first render of a fresh session (e.g. after server restart), the
-# position="hidden" sidebar layout can produce a broken frame before
-# Streamlit's frontend fully initialises. Triggering an immediate rerun
-# discards that first execution's output entirely — the frontend never sees
-# the broken state — and the second pass renders the full sidebar correctly.
-if not st.session_state.get("_initialized"):
-    st.session_state["_initialized"] = True
-    st.rerun()
-
 st.markdown("""
 <style>
 /* Reduce default top padding on every page's main content area */
@@ -48,8 +39,6 @@ st.markdown("""
     padding-top: 1.5rem !important;
 }
 </style>""", unsafe_allow_html=True)
-
-render_sidebar_header()
 
 
 # ---------- Data loading (cached) ----------
@@ -196,12 +185,14 @@ def overview():
 """)
 
 
-
 # ---------- Navigation ----------
+# st.navigation() must be called before any sidebar rendering so Streamlit
+# registers position="hidden" before it renders the sidebar — preventing the
+# default file-based nav from flashing on initial load.
+#
 # NOTE FOR DEVELOPERS: Adding a new page is a two-step process:
 #   1. Create the page file in app/pages/
 #   2. Add a st.Page() entry to the list below
-# Streamlit will NOT auto-discover pages when st.navigation() is in use.
 
 main_pages = [
     st.Page(overview, title="Overview", default=True),
@@ -219,9 +210,9 @@ dev_pages = [
     st.Page("pages/9_Technical_Info.py", title="Technical Info"),
 ]
 
-# position="hidden" suppresses Streamlit's automatic nav injection so we can
-# render page links manually after the branding, giving us full layout control.
 pg = st.navigation(main_pages + dev_pages, position="hidden")
+
+render_sidebar_header()
 
 with st.sidebar:
     for page in main_pages:
