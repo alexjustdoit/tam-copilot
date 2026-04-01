@@ -62,7 +62,7 @@ class ClaudeProvider(LLMProvider):
         start = time.monotonic()
         response = self.client.messages.create(
             model=self.model,
-            max_tokens=2048,
+            max_tokens=4096,
             system=structured_system,
             messages=[{"role": "user", "content": user}],
             temperature=temperature,
