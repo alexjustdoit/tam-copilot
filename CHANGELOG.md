@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.1.1] — 2026-04-01
+
+### Added
+- QBR results cached to `qbr_cache.json` per customer — survives page navigation and app restarts; populated into session state on first page load
+- QBR download button moved to top of page (next to Generate/Re-run) so it's accessible without scrolling; downloads as `.md` with full markdown formatting
+
+### Fixed
+- QBR TAM Summary generating as one long run-on bullet — added explicit one-fact-per-bullet instruction to system prompt
+- Sidebar showing Streamlit's default auto-discovered nav ("streamlit app" link + all pages) after SCC reboot — removed `_initialized`/`st.rerun()` workaround that was causing sidebar content to be dropped; added CSS to unconditionally hide `[data-testid="stSidebarNav"]` regardless of `position="hidden"` timing
+
+### Changed
+- README: added cold-start note near the demo link explaining the Streamlit free tier sleep behavior
+
+---
+
 ## [1.1.0] — 2026-04-01
 
 ### Added
