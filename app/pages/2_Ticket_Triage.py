@@ -10,24 +10,24 @@ import streamlit as st
 import config  # noqa: F401
 
 from data.models import Customer, SupportTicket
+from data.session_store import get_fixtures_dir
 from data.taxonomy import load_taxonomy, save_taxonomy
 
 st.title("Ticket Triage")
 st.caption("Classify priority, detect sentiment, assess escalation risk, and draft responses — instantly.")
 
-FIXTURES_PATH = Path(__file__).parent.parent.parent / "data" / "fixtures"
-
 
 @st.cache_data
-def load_data():
-    customers = [Customer(**c) for c in json.loads((FIXTURES_PATH / "customers.json").read_text())]
-    tickets = [SupportTicket(**t) for t in json.loads((FIXTURES_PATH / "tickets.json").read_text())]
+def load_data(fixtures_dir: str):
+    fixtures = Path(fixtures_dir)
+    customers = [Customer(**c) for c in json.loads((fixtures / "customers.json").read_text())]
+    tickets = [SupportTicket(**t) for t in json.loads((fixtures / "tickets.json").read_text())]
     return customers, tickets
 
 
 def save_ticket(updated_ticket: SupportTicket):
-    """Write updated ticket back to fixtures/tickets.json and clear cache."""
-    tickets_path = FIXTURES_PATH / "tickets.json"
+    """Write updated ticket back to tickets.json and clear cache."""
+    tickets_path = get_fixtures_dir() / "tickets.json"
     all_tickets = json.loads(tickets_path.read_text())
     for i, t in enumerate(all_tickets):
         if t["id"] == updated_ticket.id:
@@ -38,8 +38,8 @@ def save_ticket(updated_ticket: SupportTicket):
 
 
 def save_tickets_batch(updated_tickets: list[SupportTicket]):
-    """Write multiple updated tickets back to fixtures/tickets.json in a single pass."""
-    tickets_path = FIXTURES_PATH / "tickets.json"
+    """Write multiple updated tickets back to tickets.json in a single pass."""
+    tickets_path = get_fixtures_dir() / "tickets.json"
     all_tickets = json.loads(tickets_path.read_text())
     updated_map = {t.id: t for t in updated_tickets}
     for i, t in enumerate(all_tickets):
@@ -64,7 +64,7 @@ def find_similar(value: str, existing: list, threshold: float = 0.65) -> list:
 
 # ── Data loading ──────────────────────────────────────────────────────────────
 
-customers, tickets = load_data()
+customers, tickets = load_data(str(get_fixtures_dir()))
 customer_map = {c.id: c for c in customers}
 
 # ── Customer selector ─────────────────────────────────────────────────────────

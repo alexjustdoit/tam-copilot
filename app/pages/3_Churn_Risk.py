@@ -11,14 +11,15 @@ import streamlit as st
 import config  # noqa: F401
 
 from data.models import Customer, Subscription, SupportTicket, UsageMetrics
+from data.session_store import get_fixtures_dir
 
 st.title("Churn Risk")
 st.caption("AI-powered at-risk account detection with specific risk factors and recommended actions.")
 
 
 @st.cache_data
-def load_data():
-    fixtures = Path(__file__).parent.parent.parent / "data" / "fixtures"
+def load_data(fixtures_dir: str):
+    fixtures = Path(fixtures_dir)
     customers = [Customer(**c) for c in json.loads((fixtures / "customers.json").read_text())]
     tickets = [SupportTicket(**t) for t in json.loads((fixtures / "tickets.json").read_text())]
     usage = [UsageMetrics(**u) for u in json.loads((fixtures / "usage.json").read_text())]
@@ -26,7 +27,7 @@ def load_data():
     return customers, tickets, usage, subscriptions
 
 
-customers, tickets, usage, subscriptions = load_data()
+customers, tickets, usage, subscriptions = load_data(str(get_fixtures_dir()))
 sub_map = {s.customer_id: s for s in subscriptions}
 usage_map: dict[str, list] = {}
 for u in usage:

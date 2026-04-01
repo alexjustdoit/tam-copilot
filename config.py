@@ -8,6 +8,9 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
 
+# Demo isolation (Streamlit Community Cloud only — set via SCC secrets, never locally)
+SCC_MODE: bool = os.getenv("SCC_MODE", "false").lower() == "true"
+
 # LLM routing
 USE_LOCAL_LLM: bool = os.getenv("USE_LOCAL_LLM", "true").lower() == "true"
 OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")

@@ -9,6 +9,7 @@ import streamlit as st
 import config  # noqa: F401
 
 from data.models import Customer, Subscription, UsageMetrics
+from data.session_store import get_fixtures_dir
 from features.expansion import ALL_FEATURES, INDUSTRY_FEATURE_BENCHMARKS
 
 st.title("Expansion Intelligence")
@@ -16,15 +17,15 @@ st.caption("AI-powered upsell and cross-sell opportunity finder using usage patt
 
 
 @st.cache_data
-def load_data():
-    fixtures = Path(__file__).parent.parent.parent / "data" / "fixtures"
+def load_data(fixtures_dir: str):
+    fixtures = Path(fixtures_dir)
     customers = [Customer(**c) for c in json.loads((fixtures / "customers.json").read_text())]
     usage = [UsageMetrics(**u) for u in json.loads((fixtures / "usage.json").read_text())]
     subscriptions = [Subscription(**s) for s in json.loads((fixtures / "subscriptions.json").read_text())]
     return customers, usage, subscriptions
 
 
-customers, usage, subscriptions = load_data()
+customers, usage, subscriptions = load_data(str(get_fixtures_dir()))
 sub_map = {s.customer_id: s for s in subscriptions}
 usage_map: dict[str, list] = {}
 for u in usage:

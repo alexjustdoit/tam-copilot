@@ -10,22 +10,22 @@ import streamlit as st
 import config  # noqa: F401
 
 from data.models import Customer, SupportTicket
+from data.session_store import get_fixtures_dir
 from data.taxonomy import load_taxonomy
 
 st.title("Management Insights")
 st.caption("Department-level view across all TAMs and segments. Use this page to identify portfolio-wide patterns, coverage gaps, and team performance.")
 
-FIXTURES_PATH = Path(__file__).parent.parent.parent / "data" / "fixtures"
-
 
 @st.cache_data
-def load_data():
-    customers = [Customer(**c) for c in json.loads((FIXTURES_PATH / "customers.json").read_text())]
-    tickets = [SupportTicket(**t) for t in json.loads((FIXTURES_PATH / "tickets.json").read_text())]
+def load_data(fixtures_dir: str):
+    fixtures = Path(fixtures_dir)
+    customers = [Customer(**c) for c in json.loads((fixtures / "customers.json").read_text())]
+    tickets = [SupportTicket(**t) for t in json.loads((fixtures / "tickets.json").read_text())]
     return customers, tickets
 
 
-customers, tickets = load_data()
+customers, tickets = load_data(str(get_fixtures_dir()))
 taxonomy = load_taxonomy()
 
 customer_map = {c.id: c for c in customers}
