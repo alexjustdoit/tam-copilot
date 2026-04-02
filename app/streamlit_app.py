@@ -32,6 +32,10 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+/* Suppress auto-discovered nav immediately on cold start */
+[data-testid="stSidebarNav"],
+[data-testid="stSidebarNavItems"],
+[data-testid="stSidebarNavLink"] { display: none !important; }
 /* Reduce default top padding on every page's main content area */
 .main .block-container,
 .stMainBlockContainer,
