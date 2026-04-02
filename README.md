@@ -131,24 +131,3 @@ tam-copilot/
 │   └── datasets/               # 20-case labeled JSONL dataset
 └── tests/                      # pytest suite
 ```
-
----
-
-## Portfolio Talking Points
-
-**LLM engineering**
-- Provider abstraction layer — Ollama, OpenAI, and Anthropic behind a single interface; swap providers with one env var
-- Structured outputs via Pydantic throughout — every LLM call returns a validated schema, not raw text
-- Quality routing — high-stakes tasks (P1 triage, QBR, near-renewal churn) automatically upgrade to the best available model
-- Eval framework — labeled dataset, reproducible scoring, side-by-side provider comparison on accuracy/latency/cost
-
-**Product and domain depth**
-- Covers the real TAM workflow end-to-end: triage → health → churn → QBR → expansion
-- Batch triage scoped by customer, TAM, or full portfolio — reflects how a manager versus individual TAM would use the tool
-- Tag taxonomy system that grows as TAMs use it, with similarity checks to prevent duplicates
-- Overview built as a morning briefing (Needs Attention, renewal pipeline, triage coverage) rather than a feature demo
-
-**Engineering decisions**
-- Local-first development (Ollama, free) with a one-line switch to production APIs
-- Fixture data committed to the repo so any reviewer can clone and run immediately
-- 28-test suite covering generators, router logic, feature schemas, and file persistence
