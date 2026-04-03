@@ -20,9 +20,12 @@ from typing import List
 from rich.console import Console
 from rich.table import Table
 
-from eval.metrics import EvalReport, EvalResult, score_triage
+from eval.metrics import EvalReport, EvalResult, score_triage, score_qbr, score_churn_risk
 from features.ticket_triage import TicketTriageResult
+from features.qbr_prep import QBRPrep
+from features.churn_risk import ChurnRiskAssessment
 from llm.router import LLMRouter
+from data.models import Customer, UsageMetrics, SupportTicket, Subscription
 
 console = Console()
 DATASET_PATH = Path(__file__).parent / "datasets" / "ticket_triage_eval.jsonl"
@@ -87,6 +90,102 @@ Provide your structured assessment."""
             model=getattr(provider, "model", "unknown"),
             output=output,
             expected=expected,
+            accuracy_score=accuracy,
+            latency_ms=resp.latency_ms if resp is not None else 0,
+            estimated_cost_usd=resp.estimated_cost_usd if resp is not None else 0,
+            field_scores=field_scores,
+        ))
+
+    return EvalReport(
+        provider=provider_name,
+        model=getattr(provider, "model", "unknown"),
+        results=results,
+    )
+
+
+def run_qbr_eval(provider_name: str, dataset: List[dict]) -> EvalReport:
+    """Evaluate QBR Prep feature."""
+    from features.qbr_prep import generate_qbr
+
+    router = LLMRouter()
+    provider = router.get_provider_by_name(provider_name)
+    results = []
+
+    for case in dataset:
+        case_id = case["id"]
+        customer_data = case["customer"]
+        usage_data = case["usage"]
+        tickets_data = case["tickets"]
+        subscription_data = case["subscription"]
+
+        customer = Customer(**customer_data)
+        usage_records = [UsageMetrics(**u) for u in usage_data]
+        tickets = [SupportTicket(**t) for t in tickets_data]
+        subscription = Subscription(**subscription_data) if subscription_data else None
+
+        resp = None
+        try:
+            qbr, resp = generate_qbr(customer, usage_records, tickets, subscription)
+            output = qbr.model_dump()
+        except Exception as e:
+            console.print(f"[red]Error on case {case_id}: {e}[/red]")
+            output = {}
+
+        accuracy, field_scores = score_qbr(output, case.get("expected", {}))
+        results.append(EvalResult(
+            case_id=case_id,
+            provider=provider_name,
+            model=getattr(provider, "model", "unknown"),
+            output=output,
+            expected=case.get("expected", {}),
+            accuracy_score=accuracy,
+            latency_ms=resp.latency_ms if resp is not None else 0,
+            estimated_cost_usd=resp.estimated_cost_usd if resp is not None else 0,
+            field_scores=field_scores,
+        ))
+
+    return EvalReport(
+        provider=provider_name,
+        model=getattr(provider, "model", "unknown"),
+        results=results,
+    )
+
+
+def run_churn_eval(provider_name: str, dataset: List[dict]) -> EvalReport:
+    """Evaluate Churn Risk feature."""
+    from features.churn_risk import assess_churn_risk
+
+    router = LLMRouter()
+    provider = router.get_provider_by_name(provider_name)
+    results = []
+
+    for case in dataset:
+        case_id = case["id"]
+        customer_data = case["customer"]
+        usage_data = case["usage"]
+        tickets_data = case["tickets"]
+        subscription_data = case["subscription"]
+
+        customer = Customer(**customer_data)
+        usage_records = [UsageMetrics(**u) for u in usage_data]
+        tickets = [SupportTicket(**t) for t in tickets_data]
+        subscription = Subscription(**subscription_data) if subscription_data else None
+
+        resp = None
+        try:
+            assessment, resp = assess_churn_risk(customer, usage_records, tickets, subscription)
+            output = assessment.model_dump()
+        except Exception as e:
+            console.print(f"[red]Error on case {case_id}: {e}[/red]")
+            output = {}
+
+        accuracy, field_scores = score_churn_risk(output, case.get("expected", {}))
+        results.append(EvalResult(
+            case_id=case_id,
+            provider=provider_name,
+            model=getattr(provider, "model", "unknown"),
+            output=output,
+            expected=case.get("expected", {}),
             accuracy_score=accuracy,
             latency_ms=resp.latency_ms if resp is not None else 0,
             estimated_cost_usd=resp.estimated_cost_usd if resp is not None else 0,
