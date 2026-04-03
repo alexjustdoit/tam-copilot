@@ -37,7 +37,7 @@ Developer tools (collapsible sidebar section):
 
 | Page | What it does |
 |---|---|
-| **Eval Dashboard** | Run the 20-case labeled eval against any provider; side-by-side accuracy/latency/cost comparison |
+| **Eval Dashboard** | Run labeled evals for Ticket Triage, QBR Prep, or Churn Risk against any provider; side-by-side accuracy/latency/cost comparison |
 | **Technical Info** | Live Ollama status, active provider config, env var reference, quality routing rules, fixture stats, stack versions |
 
 ---
@@ -104,7 +104,12 @@ python eval/evaluator.py --providers openai,claude
 python eval/evaluator.py --providers local   # requires Ollama
 ```
 
-Runs a 20-case labeled ticket triage dataset against the specified providers and outputs accuracy, latency, and cost. Results are saved to `eval/results.json` and visible in the Eval Dashboard.
+Labeled evaluation datasets for three features:
+- **Ticket Triage** — 20 cases covering priority, sentiment, escalation risk, category accuracy
+- **QBR Prep** — 3 cases with realistic customer scenarios; scored on output structure, field presence, word-count compliance
+- **Churn Risk** — 3 cases with declining/stable/growth usage; scored on risk tier validity and probability ranges
+
+Run evals from the CLI above or via the **Eval Dashboard** page. Select a feature, choose providers, and click Run Eval to see accuracy, latency, and cost trade-offs. Results are saved to `eval/results.json`.
 
 ## Project Structure
 

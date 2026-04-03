@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.2.0] — 2026-04-03
+
+### Added
+- **QBR Prep eval dataset** — 3 test cases covering growth, decline, and enterprise scenarios with realistic customer data and subscription context
+- **Churn Risk eval dataset** — 3 test cases (high risk, stable, growth trajectory) with usage trends and ticket context
+- **Eval scoring functions** — `score_qbr()` validates output structure and word-count compliance (<15 words/item); `score_churn_risk()` validates risk_tier, probability range (0-100), and field presence
+- **Multi-feature Eval Dashboard** — Feature selector radio button (Ticket Triage, QBR Prep, Churn Risk); results filtered by selected feature; dataset previews adapt to feature type
+- **Eval evaluator support** — `run_qbr_eval()` and `run_churn_eval()` functions in evaluator.py for programmatic access
+
+### Changed
+- Eval Dashboard now supports three feature evaluations instead of ticket triage only
+- README eval section expanded to document all three datasets and scoring approaches
+
+---
+
 ## [1.1.1] — 2026-04-01
 
 ### Added
