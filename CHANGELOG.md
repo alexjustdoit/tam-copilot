@@ -5,6 +5,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Unreleased]
+
+### Backlog
+- **Prioritization Model and Tracker Module** — Framework for ranking accounts and opportunities by strategic value, engagement, and churn risk; dashboard showing per-TAM workload distribution and recommended prioritization order
+
+---
+
 ## [1.2.0] — 2026-04-03
 
 ### Added
